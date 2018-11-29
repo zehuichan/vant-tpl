@@ -1,12 +1,32 @@
 const getters = {
+
+  // loading
   loading: state => state.app.loading,
 
-
+  // userInfo
   avatar: state => state.user.avatar,
   identityFlag: state => state.user.identityFlag,
-  wxNickName: state => state.user.wxNickName,
+  nickName: state => state.user.nickName,
 
-  token: state => state.auth.token
+  // auth
+  token: state => state.auth.token,
+
+  // shopCart
+  cartProducts: (state, getters, rootState) => {
+    return state.cart.items.map(({id, quantity}) => {
+      const product = rootState.products.all.find(product => product.id === id)
+      return {
+        title: product.title,
+        price: product.price,
+        quantity
+      }
+    })
+  },
+  cartTotalPrice: (state, getters) => {
+    return getters.cartProducts.reduce((total, product) => {
+      return total + product.quantity * product.price
+    }, 0)
+  }
 }
 
 export default getters

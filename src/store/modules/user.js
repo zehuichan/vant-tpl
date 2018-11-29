@@ -4,17 +4,17 @@ const user = {
   state: {
     avatar: '',
     identityFlag: '',
-    wxNickName: ''
+    nickName: ''
   },
   mutations: {
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
     },
-    SET_IDENTTITYFLAG(state, ident) {
-      state.identityFlag = ident
+    SET_IDENTITY_FLAG(state, identityFlag) {
+      state.identityFlag = identityFlag
     },
-    SET_WXNICKNAME(state, nickName) {
-      state.wxNickName = nickName
+    SET_NICKNAME(state, nickName) {
+      state.nickName = nickName
     }
   },
   actions: {
@@ -36,8 +36,8 @@ const user = {
     //     getUserInfo().then((res) => {
     //       if (res.res === 1) {
     //         commit('SET_AVATAR', res.obj.headImgUrl)
-    //         commit('SET_IDENTTITYFLAG', res.obj.identityFlag)
-    //         commit('SET_WXNICKNAME', res.obj.wxNickName)
+    //         commit('SET_IDENTITY_FLAG', res.obj.identityFlag)
+    //         commit('SET_NICKNAME', res.obj.wxNickName)
     //         resolve(res)
     //       } else {
     //         reject(res)
