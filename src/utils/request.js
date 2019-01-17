@@ -1,22 +1,18 @@
 import Vue from 'vue'
+import {Toast} from 'vant'
 import axios from 'axios'
 import store from '@/store'
-import {saveToLocal, loadFromLocal} from '@/utils'
-import {ToastPlugin} from 'vux'
-
-Vue.use(ToastPlugin, {position: 'top'})
-
-const TokenKey = 'authorization'
+import {getWXToken} from '@/utils/auth'
 
 // create an axios instance
 const http = axios.create({
-  baseURL: process.env.BASE_API, // api的base_url
+  baseURL: process.env.VUE_APP_BASE_API, // api的base_url
   timeout: 5000 // request timeout
 })
 
 http.interceptors.request.use(config => {
   if (store.getters.token) {
-    config.headers['authorization'] = loadFromLocal('token')
+    config.headers['authorization'] = getWXToken()
   }
   return config
 }, error => {
@@ -28,7 +24,10 @@ http.interceptors.response.use(
   (response) => {
     const res = response.data
     if (res.res !== 1) {
-      Vue.$vux.toast.text(res.resMsg, 'top')
+      Toast({
+        position: 'bottom',
+        message: res.resMsg
+      })
       return Promise.reject(res.resMsg)
     } else {
       return response.data
@@ -36,7 +35,10 @@ http.interceptors.response.use(
   },
   (error) => {
     console.log(`err,${error}`)
-    Vue.$vux.toast.text(error, 'top')
+    Toast({
+      position: 'bottom',
+      message: error
+    })
     return Promise.reject(error)
   }
 )

@@ -1,22 +1,31 @@
 import router from './router'
 import store from './store'
-import {loadFromLocal, saveToLocal} from '@/utils' // getToken from cookie
+import {getWXToken} from '@/utils/auth'
 
 const whiteList = ['/guide', '/fastLogin']// no redirect whitelist
 
 router.beforeEach((to, from, next) => {
   // store.commit('SET_LOADING_STATE', true)
 
-  if (loadFromLocal('token') !== null) { // determine if there has token
+  if (getWXToken()) { // determine if there has token
     // has token
     console.log('has token')
     if (to.path === '/guide') {
-      /*store.dispatch('GetUserInfo').then((res) => {
-        next({path: '/index'})
-      })*/
       next({path: '/index'})
     } else {
-      next()
+      // 判断当前用户是否已拉取完user_info信息
+      if (store.getters.wxNickName === '') {
+        // 拉取user_info
+        store.dispatch('GetUserInfo')
+          .then((res) => {
+            next({ ...to, replace: true })
+          })
+          .catch((e) => {
+            next({path: '/guide'})
+          })
+      } else {
+        next()
+      }
     }
   } else {
     // has no token

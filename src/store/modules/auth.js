@@ -1,8 +1,8 @@
-import {saveToLocal, loadFromLocal} from '@/utils'
+import {getWXToken, setToken, removeToken} from '@/utils/auth'
 
 const auth = {
   state: {
-    token: loadFromLocal('token')
+    token: getWXToken()
   },
   mutations: {
     SET_TOKEN(state, token) {
