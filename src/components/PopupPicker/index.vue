@@ -2,7 +2,7 @@
   <div class="popup-picker van-cell">
     <van-field
       v-bind="$props"
-      :value="currentValue && currentValue.text"
+      :value="currentText"
       clearable
       right-icon="arrow"
       @click="onClick"
@@ -33,8 +33,9 @@
 
       data: Array,
       show: Boolean,
-      value: [Array, String, Object],
-      placeholder: String
+      value: [String, Number, Object],
+      placeholder: String,
+      disabled: Boolean
     },
     watch: {
       value(val) {
@@ -51,12 +52,14 @@
     data() {
       return {
         showValue: false,
-        currentValue: this.value
+        currentValue: this.value,
+        currentText: ''
       }
     },
     created() {
-      if (typeof this.show !== 'undefined') {
+      if (typeof this.show !== 'undefined' && this.disabled) {
         this.showValue = this.show
+        this.currentText = this.data.find(v => v && v.value === this.value) && this.data.find(v => v && v.value === this.value).text
       }
     },
     methods: {
@@ -68,8 +71,8 @@
       },
       onConfirm(value, index) {
         this.showValue = false
-        this.currentValue = value
-        console.log(value)
+        this.currentValue = value.value
+        this.currentText = value.text
       },
       onClick() {
         this.showValue = true

@@ -1,14 +1,30 @@
 <template>
   <div class="home">
     <h1>首页</h1>
+    {{value}}
+    <popup-picker v-model="value" :data="columns" placeholder="请选择"></popup-picker>
   </div>
 </template>
 
 <script>
+  import PopupPicker from '@/components/PopupPicker'
+
   export default {
     name: 'home',
     data() {
-      return {}
+      return {
+        columns: [
+          {text: '杭州', value: 1},
+          {text: '宁波', value: 2},
+          {text: '温州', value: 3},
+          {text: '嘉兴', value: 4},
+          {text: '湖州', value: 5},
+        ],
+        value: ''
+      }
+    },
+    components: {
+      PopupPicker
     }
   }
 </script>
