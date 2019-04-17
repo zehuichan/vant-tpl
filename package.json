@@ -12,18 +12,18 @@
     "fastclick": "^1.0.6",
     "js-cookie": "^2.2.0",
     "normalize.css": "^8.0.1",
-    "vant": "^1.4.4",
-    "vue": "^2.5.17",
+    "vant": "^1.6.14",
+    "vue": "^2.6.10",
     "vue-count-to": "^1.0.13",
-    "vue-router": "^3.0.1",
-    "vuex": "^3.0.1"
+    "vue-router": "^3.0.5",
+    "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.1.1",
-    "@vue/cli-service": "^3.1.4",
+    "@vue/cli-plugin-babel": "^3.6.0",
+    "@vue/cli-service": "^3.6.0",
     "babel-plugin-import": "^1.11.0",
-    "less": "^3.0.4",
+    "less": "^3.9.0",
     "less-loader": "^4.1.0",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.6.10"
   }
 }
