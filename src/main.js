@@ -18,7 +18,16 @@ fastclick.attach(document.body)
 import { Lazyload } from 'vant'
 Vue.use(Lazyload)
 
+import {Toast, Dialog} from 'vant'
+
+Vue.use(Toast)
+Vue.use(Dialog)
+
 // import './permission'
+
+import WechatPlugin from '@/plugins/wechat/index'
+
+Vue.use(WechatPlugin)
 
 import * as filters from './filters'
 
@@ -26,10 +35,6 @@ import * as filters from './filters'
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
-
-import WechatPlugin from '@/plugins/wechat/index'
-
-Vue.use(WechatPlugin)
 
 Vue.config.productionTip = false
 

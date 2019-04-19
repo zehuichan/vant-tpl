@@ -1,8 +1,7 @@
 <template>
   <div class="home">
     <h1>首页</h1>
-    {{value}}
-    <popup-picker v-model="value" :data="columns" placeholder="请选择"></popup-picker>
+    <popup-picker v-model="aaa" :data="columns" placeholder="请选择"></popup-picker>
   </div>
 </template>
 
@@ -20,8 +19,16 @@
           {text: '嘉兴', value: 4},
           {text: '湖州', value: 5},
         ],
-        value: ''
+        aaa: 2,
       }
+    },
+    computed: {
+      selected() {
+        return this.value1 != null || this.value1 != ''
+      },
+      selected1() {
+        return this.value != null || this.value != ''
+      },
     },
     components: {
       PopupPicker

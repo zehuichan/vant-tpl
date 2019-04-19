@@ -59,8 +59,8 @@
     created() {
       if (typeof this.show !== 'undefined' && this.disabled) {
         this.showValue = this.show
-        this.currentText = this.data.find(v => v && v.value === this.value) && this.data.find(v => v && v.value === this.value).text
       }
+      this.currentText = this.data.find(v => v && v.value === this.value) && this.data.find(v => v && v.value === this.value).text
     },
     methods: {
       onClear() {

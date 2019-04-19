@@ -1,4 +1,4 @@
-const port = 8080 // dev port
+const port = 9527 // dev port
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
