@@ -3,10 +3,11 @@
     <van-field
       v-bind="$props"
       :value="currentValue"
-      clearable
-      right-icon="clock-o"
-      @clear="onClear"
-      @click-right-icon="onClick"/>
+      left-icon="clock-o"
+      :right-icon="showIcon"
+      readonly
+      @click="onClick"
+      @click-right-icon="onClear"/>
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-datetime-picker
@@ -47,6 +48,12 @@
       },
       show(val) {
         this.showValue = val
+      },
+    },
+    computed: {
+      showIcon() {
+        console.log(this.value)
+        return this.value ? 'clear' : ''
       },
     },
     data() {

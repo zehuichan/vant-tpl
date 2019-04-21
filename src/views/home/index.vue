@@ -3,10 +3,10 @@
     <h1>首页</h1>
     <h1>aaa:{{aaa}}</h1>
     <h1>bbb:{{bbb}}</h1>
-    <popup-picker v-model="aaa" :data="columns1" placeholder="请选择" @change="onChange1"></popup-picker>
-    <popup-picker v-model="bbb" :data="columns2" placeholder="请选择" @change="onChange2"></popup-picker>
+    <popup-picker v-model="aaa" label="奥师多456" :data="columns1" placeholder="请选择" @change="onChange1"></popup-picker>
+    <popup-picker v-model="bbb" label="奥师多123" :data="columns2" placeholder="请选择" @change="onChange2"></popup-picker>
 
-    <popup-datetime-picker v-model="time" placeholder="请选择" @change="onChange3"></popup-datetime-picker>
+    <popup-datetime-picker v-model="time" label="时间" placeholder="请选择" @change="onChange3"></popup-datetime-picker>
   </div>
 </template>
 
