@@ -44,7 +44,6 @@
       },
       currentValue(val) {
         this.$emit('input', val)
-        this.$emit('change', val)
       },
       show(val) {
         this.showValue = val
@@ -73,7 +72,8 @@
       onConfirm(value) {
         this.showValue = false
         this.currentValue = parseTime(value, '{y}-{m}-{d}')
-        console.log(value)
+
+        this.$emit('change', parseTime(value, '{y}-{m}-{d}'))
       },
       onClick() {
         this.showValue = true

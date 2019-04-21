@@ -40,10 +40,10 @@
     watch: {
       value(val) {
         this.currentValue = val
+        this.currentText = this.data.find(v => v && v.value === val) && this.data.find(v => v && v.value === val).text
       },
       currentValue(val) {
         this.$emit('input', val)
-        this.$emit('change', val)
       },
       show(val) {
         this.showValue = val
@@ -73,6 +73,8 @@
         this.showValue = false
         this.currentValue = value.value
         this.currentText = value.text
+
+        this.$emit('change', value.value)
       },
       onClick() {
         this.showValue = true

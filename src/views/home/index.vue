@@ -1,37 +1,63 @@
 <template>
   <div class="home">
     <h1>首页</h1>
-    <popup-picker v-model="aaa" :data="columns" placeholder="请选择"></popup-picker>
+    <h1>aaa:{{aaa}}</h1>
+    <h1>bbb:{{bbb}}</h1>
+    <popup-picker v-model="aaa" :data="columns1" placeholder="请选择" @change="onChange1"></popup-picker>
+    <popup-picker v-model="bbb" :data="columns2" placeholder="请选择" @change="onChange2"></popup-picker>
+
+    <popup-datetime-picker v-model="time" placeholder="请选择" @change="onChange3"></popup-datetime-picker>
   </div>
 </template>
 
 <script>
   import PopupPicker from '@/components/PopupPicker'
+  import PopupDatetimePicker from '@/components/PopupDatetimePicker'
 
   export default {
     name: 'home',
     data() {
       return {
-        columns: [
+        columns1: [
           {text: '杭州', value: 1},
           {text: '宁波', value: 2},
           {text: '温州', value: 3},
           {text: '嘉兴', value: 4},
           {text: '湖州', value: 5},
         ],
+        columns2: [
+          {text: '杭州1', value: 6},
+          {text: '宁波2', value: 7},
+          {text: '温州3', value: 8},
+          {text: '嘉兴4', value: 9},
+          {text: '湖州5', value: 10},
+        ],
         aaa: 2,
+        bbb: 6,
+
+        time: null
       }
     },
-    computed: {
-      selected() {
-        return this.value1 != null || this.value1 != ''
+    methods: {
+      onChange1(val) {
+        if (this.bbb) {
+          this.$toast('只能选一个')
+          this.bbb = null
+        }
       },
-      selected1() {
-        return this.value != null || this.value != ''
+      onChange2(val) {
+        if (this.aaa) {
+          this.$toast('只能选一个')
+          this.aaa = null
+        }
+      },
+      onChange3(val){
+        console.log(val)
       },
     },
     components: {
-      PopupPicker
+      PopupPicker,
+      PopupDatetimePicker,
     }
   }
 </script>
