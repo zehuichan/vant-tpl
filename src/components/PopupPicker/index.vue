@@ -3,10 +3,11 @@
     <van-field
       v-bind="$props"
       :value="currentText"
-      clearable
-      right-icon="arrow"
       @click="onClick"
-      @clear="onClear"/>
+      @click-right-icon="onClear">
+
+      <i class="van-icon" :class="showIcon" slot="right-icon"></i>
+    </van-field>
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-picker
@@ -47,6 +48,11 @@
       },
       show(val) {
         this.showValue = val
+      },
+    },
+    computed: {
+      showIcon() {
+        return this.value ? 'van-icon-clear' : 'van-icon-arrow'
       },
     },
     data() {
