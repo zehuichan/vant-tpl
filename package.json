@@ -3,24 +3,25 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "serve": "vue-cli-service serve --mode development",
+    "build:stage": "vue-cli-service build --mode staging",
+    "build:prod": "vue-cli-service build --mode production"
   },
   "dependencies": {
+    "@chenfengyuan/vue-countdown": "^1.1.2",
     "axios": "^0.18.0",
     "better-scroll": "^1.15.0",
     "fastclick": "^1.0.6",
     "js-cookie": "^2.2.0",
     "normalize.css": "^8.0.1",
-    "vant": "^1.6.14",
+    "vant": "^1.6.16",
     "vue": "^2.6.10",
-    "vue-count-to": "^1.0.13",
     "vue-router": "^3.0.5",
     "vuex": "^3.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.6.0",
-    "@vue/cli-service": "^3.6.0",
+    "@vue/cli-plugin-babel": "^3.7.0",
+    "@vue/cli-service": "^3.7.0",
     "babel-plugin-import": "^1.11.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",

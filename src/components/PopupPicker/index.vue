@@ -3,10 +3,9 @@
     <van-field
       v-bind="$props"
       :value="currentText"
+      :right-icon="showIcon"
       @click="onClick"
       @click-right-icon="onClear">
-
-      <i class="van-icon" :class="showIcon" slot="right-icon"></i>
     </van-field>
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
@@ -52,7 +51,7 @@
     },
     computed: {
       showIcon() {
-        return this.value ? 'van-icon-clear' : 'van-icon-arrow'
+        return this.value ? 'clear' : 'arrow'
       },
     },
     data() {

@@ -13,9 +13,11 @@ import router from './router/index'
 import store from './store/index'
 
 import fastclick from 'fastclick'
+
 fastclick.attach(document.body)
 
-import { Lazyload } from 'vant'
+import {Lazyload} from 'vant'
+
 Vue.use(Lazyload)
 
 import {Toast, Dialog} from 'vant'

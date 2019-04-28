@@ -3,7 +3,6 @@
     <van-field
       v-bind="$props"
       :value="currentValue"
-      left-icon="clock-o"
       :right-icon="showIcon"
       readonly
       @click="onClick"
@@ -53,7 +52,7 @@
     computed: {
       showIcon() {
         console.log(this.value)
-        return this.value ? 'clear' : ''
+        return this.value ? 'clear' : 'clock-o'
       },
     },
     data() {
