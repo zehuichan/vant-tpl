@@ -52,7 +52,6 @@
     },
     computed: {
       showIcon() {
-        console.log(this.value)
         return this.value ? 'clear' : ''
       },
     },
