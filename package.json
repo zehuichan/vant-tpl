@@ -3,11 +3,12 @@
   "version": "1.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --mode development",
     "build:stage": "vue-cli-service build --mode staging",
     "build:prod": "vue-cli-service build --mode production"
   },
   "dependencies": {
+    "@chenfengyuan/vue-countdown": "^1.1.2",
     "axios": "^0.18.0",
     "better-scroll": "^1.15.0",
     "fastclick": "^1.0.6",

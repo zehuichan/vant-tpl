@@ -6,7 +6,6 @@
       :right-icon="showIcon"
       @click="onClick"
       @click-right-icon="onClear">
-      <slot name="left-icon" slot="left-icon"></slot>
     </van-field>
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">

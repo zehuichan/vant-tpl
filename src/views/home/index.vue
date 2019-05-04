@@ -3,14 +3,17 @@
     <h1>首页</h1>
     <h1>aaa:{{aaa}}</h1>
     <h1>bbb:{{bbb}}</h1>
-    <popup-picker v-model="aaa" label="奥师多456" :data="columns1" placeholder="请选择" @change="onChange1"></popup-picker>
-    <popup-picker v-model="bbb" label="奥师多123" :data="columns2" placeholder="请选择" @change="onChange2"></popup-picker>
-
-    <popup-datetime-picker v-model="time" placeholder="请选择" @change="onChange3"></popup-datetime-picker>
+    <van-cell-group>
+      <van-field v-model="aaa" label="用户名" placeholder="请输入用户名"/>
+      <popup-picker v-model="aaa" label="奥师多456" :data="columns1" placeholder="请选择" @change="onChange1"/>
+      <popup-picker v-model="bbb" label="奥师多123" :data="columns2" placeholder="请选择" @change="onChange2"/>
+      <popup-datetime-picker v-model="time" label="日期" placeholder="请选择" @change="onChange3"/>
+    </van-cell-group>
   </div>
 </template>
 
 <script>
+  import {Field, CellGroup} from 'vant'
   import PopupPicker from '@/components/PopupPicker'
   import PopupDatetimePicker from '@/components/PopupDatetimePicker'
 
@@ -51,11 +54,13 @@
           this.aaa = null
         }
       },
-      onChange3(val){
+      onChange3(val) {
         console.log(val)
       },
     },
     components: {
+      [Field.name]: Field,
+      [CellGroup.name]: CellGroup,
       PopupPicker,
       PopupDatetimePicker,
     }
