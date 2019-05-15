@@ -1,6 +1,6 @@
 {
   "name": "vant-tpl",
-  "version": "1.1.0",
+  "version": "1.4.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@chenfengyuan/vue-countdown": "^1.1.2",
+    "amfe-flexible": "^2.2.1",
     "axios": "^0.18.0",
     "better-scroll": "^1.15.0",
     "fastclick": "^1.0.6",
@@ -26,6 +27,7 @@
     "babel-plugin-import": "^1.11.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
+    "postcss-pxtorem": "^4.0.1",
     "vue-template-compiler": "^2.6.10"
   }
 }

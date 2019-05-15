@@ -1,3 +1,5 @@
+import 'amfe-flexible'
+
 import Vue from 'vue'
 
 // iconfont
