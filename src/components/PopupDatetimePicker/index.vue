@@ -51,7 +51,7 @@
     },
     computed: {
       showIcon() {
-        return this.value ? 'clear' : 'clock-o'
+        return this.clearable && this.value ? 'clear' : 'clock-o'
       },
     },
     data() {
@@ -68,11 +68,15 @@
     },
     methods: {
       onClear() {
-        this.currentValue = ''
+        if (!this.clearable) {
+          return false
+        }
+        this.currentValue = null
         this.currentDate = new Date()
       },
       onCancel() {
         this.showValue = false
+        this.currentValue = this.value
       },
       onConfirm(value) {
         this.showValue = false
@@ -82,6 +86,9 @@
       },
       onClick() {
         this.showValue = true
+        if (this.currentValue) {
+          this.currentDate = new Date(this.currentValue)
+        }
       },
     },
     components: {

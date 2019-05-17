@@ -7,7 +7,7 @@
       <van-field v-model="aaa" label="用户名" placeholder="请输入用户名"/>
       <popup-picker v-model="aaa" label="奥师多456" :data="columns1" placeholder="请选择" @change="onChange1"/>
       <popup-picker v-model="bbb" label="奥师多123" :data="columns2" placeholder="请选择" @change="onChange2"/>
-      <popup-datetime-picker v-model="time" label="日期" placeholder="请选择" @change="onChange3"/>
+      <popup-datetime-picker v-model="time" label="日期" clearable placeholder="请选择" @change="onChange3"/>
     </van-cell-group>
   </div>
 </template>
