@@ -1,5 +1,5 @@
 <template>
-  <div class="popup-picker van-cell">
+  <div class="popup-area-picker van-cell">
     <van-field
       v-bind="$props"
       :value="currentText"
@@ -10,9 +10,10 @@
     </van-field>
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
-      <van-picker
-        show-toolbar
-        :columns="data"
+      <van-area
+        ref="area"
+        :area-list="area"
+        :value="currentCode"
         @cancel="onCancel"
         @confirm="onConfirm"/>
     </van-popup>
@@ -20,28 +21,28 @@
 </template>
 
 <script>
+  // data
+  import area from './area'
   // components
-  import {Field, Picker, Popup} from 'vant'
+  import {Field, Area, Popup} from 'vant'
 
   export default {
-    name: 'popup-picker',
+    name: 'popup-area-picker',
     props: {
       // Field.props
       ...Field.props,
 
       // Picker.props
-      ...Picker.props,
+      ...Area.props,
 
-      data: Array,
       show: Boolean,
-      value: [String, Number, Object],
+      value: [String, Number, Object, Array],
       placeholder: String,
       disabled: Boolean
     },
     watch: {
       value(val) {
         this.currentValue = val
-        this.currentText = this.data.find(v => v && v.value === val) && this.data.find(v => v && v.value === val).text
       },
       currentValue(val) {
         this.$emit('input', val)
@@ -54,19 +55,24 @@
       showIcon() {
         return this.value ? 'clear' : 'arrow'
       },
+      currentText() {
+        return Array.from(this.currentValue).map(v => v.name).join(' ')
+      },
+      currentCode() {
+        return Array.from(this.currentValue).map(v => v.code).pop()
+      }
     },
     data() {
       return {
+        area,
         showValue: false,
         currentValue: this.value,
-        currentText: ''
       }
     },
     created() {
       if (typeof this.show !== 'undefined' && this.disabled) {
         this.showValue = this.show
       }
-      this.currentText = this.data.find(v => v && v.value === this.value) && this.data.find(v => v && v.value === this.value).text
     },
     methods: {
       onClear() {
@@ -77,18 +83,17 @@
       },
       onConfirm(value, index) {
         this.showValue = false
-        this.currentValue = value.value
-        this.currentText = value.text
+        this.currentValue = value
 
-        this.$emit('change', value.value)
+        this.$emit('change', value)
       },
       onClick() {
         this.showValue = true
-      },
+      }
     },
     components: {
       [Field.name]: Field,
-      [Picker.name]: Picker,
+      [Area.name]: Area,
       [Popup.name]: Popup
     }
   }
@@ -97,7 +102,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
-  .popup-picker.van-cell {
+  .popup-area-picker.van-cell {
     padding: 0;
   }
 </style>
