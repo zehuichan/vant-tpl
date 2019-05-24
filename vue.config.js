@@ -20,12 +20,12 @@ module.exports = {
   // proxy: {
   //   // change xxx-api/login => mock/login
   //   // detail: https://cli.vuejs.org/config/#devserver-proxy
-  //   '/': {
-  //     target: process.env.VUE_APP_BASE_API,
+  //   '/api': {
+  //     target: 'http://www.baidu.com',
   //     secure: false,
   //     changeOrigin: true,
   //     pathRewrite: {
-  //       '/': '/'
+  //       '^/api': '/api'
   //     }
   //   }
   // },

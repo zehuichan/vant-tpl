@@ -1,13 +1,15 @@
 <template>
   <div class="home">
-    <h1>首页</h1>
-    <h1>aaa:{{aaa}}</h1>
-    <h1>bbb:{{bbb}}</h1>
+    <div>首页</div>
+    <div>aaa:{{aaa}}</div>
+    <div>bbb:{{bbb}}</div>
+    <div>ccc:{{ccc}}</div>
     <van-cell-group>
       <van-field v-model="aaa" label="用户名" placeholder="请输入用户名"/>
       <popup-picker v-model="aaa" label="奥师多456" :data="columns1" placeholder="请选择" @change="onChange1"/>
       <popup-picker v-model="bbb" label="奥师多123" :data="columns2" placeholder="请选择" @change="onChange2"/>
-      <popup-datetime-picker v-model="time" label="日期" placeholder="请选择" @change="onChange3"/>
+      <popup-datetime-picker v-model="time" label="日期" clearable placeholder="请选择" @change="onChange3"/>
+      <popup-area-picker v-model="ccc" label="城市" placeholder="请选择" @change="onChange3"/>
     </van-cell-group>
   </div>
 </template>
@@ -15,6 +17,7 @@
 <script>
   import {Field, CellGroup} from 'vant'
   import PopupPicker from '@/components/PopupPicker'
+  import PopupAreaPicker from '@/components/PopupAreaPicker'
   import PopupDatetimePicker from '@/components/PopupDatetimePicker'
 
   export default {
@@ -35,8 +38,9 @@
           {text: '嘉兴4', value: 9},
           {text: '湖州5', value: 10},
         ],
-        aaa: 2,
-        bbb: null,
+        aaa: 2,=
+        bbb: 6,
+        ccc: '',
 
         time: null
       }
@@ -62,6 +66,7 @@
       [Field.name]: Field,
       [CellGroup.name]: CellGroup,
       PopupPicker,
+      PopupAreaPicker,
       PopupDatetimePicker,
     }
   }

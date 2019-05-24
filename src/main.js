@@ -18,16 +18,13 @@ import fastclick from 'fastclick'
 
 fastclick.attach(document.body)
 
-import {Lazyload} from 'vant'
-
-Vue.use(Lazyload)
-
-import {Toast, Dialog} from 'vant'
+import {Toast, Dialog, Lazyload} from 'vant'
 
 Vue.use(Toast)
 Vue.use(Dialog)
+Vue.use(Lazyload)
 
-// import './permission'
+import './permission'
 
 import WechatPlugin from '@/plugins/wechat/index'
 

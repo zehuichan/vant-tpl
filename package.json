@@ -1,6 +1,6 @@
 {
   "name": "vant-tpl",
-  "version": "1.4.0",
+  "version": "1.4.3",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
