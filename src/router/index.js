@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // basic components
-const Layout = () => import('@/views/layout/Layout')
+const Layout = () => import('@/layout')
 
 // view components
 const Home = () => import('@/views/home')
