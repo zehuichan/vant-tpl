@@ -10,6 +10,7 @@
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-picker
+        ref="picker"
         show-toolbar
         :columns="data"
         @cancel="onCancel"
@@ -47,28 +48,43 @@
       },
       show(val) {
         this.showValue = val
-      },
+      }
     },
     computed: {
       showIcon() {
-        return this.value ? 'clear' : 'arrow'
+        return this.clearable && this.value ? 'clear' : 'arrow'
       },
+      currentIndex() {
+        for (let i = 0; i < this.data.length; i++) {
+          const v = this.data[i]
+          if (v.value === this.value) {
+            return i
+          }
+        }
+        return 0
+      },
+      picker() {
+        return this.$refs.picker
+      }
     },
     data() {
       return {
         showValue: false,
         currentValue: this.value,
-        currentText: ''
+        currentText: null
       }
     },
     created() {
       if (typeof this.show !== 'undefined' && this.disabled) {
         this.showValue = this.show
       }
-      this.currentText = this.data.find(v => v && v.value === this.value) && this.data.find(v => v && v.value === this.value).text
+      this.currentText = this.value && this.data.find(v => v.value === this.value).text
     },
     methods: {
       onClear() {
+        if (!this.clearable) {
+          return false
+        }
         this.currentValue = ''
       },
       onCancel() {
@@ -83,7 +99,10 @@
       },
       onClick() {
         this.showValue = true
-      },
+        this.$nextTick(() => {
+          this.picker.setIndexes([this.currentIndex])
+        })
+      }
     },
     components: {
       [Field.name]: Field,
