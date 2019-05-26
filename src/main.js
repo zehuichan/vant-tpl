@@ -27,8 +27,10 @@ Vue.use(Lazyload)
 import './permission'
 
 import WechatPlugin from '@/plugins/wechat/index'
+import AmapPlugin from '@/plugins/amap/index'
 
 Vue.use(WechatPlugin)
+Vue.use(AmapPlugin)
 
 import * as filters from './filters'
 

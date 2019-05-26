@@ -20,7 +20,8 @@
 <style lang="less" rel="stylesheet/less" type="text/less">
   .app-main {
     height: 100%;
-    /*position: relative;*/
-    /*overflow: hidden;*/
+    position: relative;
+    overflow-x: hidden;
+    background: #f0f2f5;
   }
 </style>

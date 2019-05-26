@@ -1,6 +1,6 @@
 <template>
   <div class="message">
-    <h1>消息</h1>
+    <h3>{{city}}</h3>
   </div>
 </template>
 
@@ -9,7 +9,23 @@
   export default {
     name: 'message',
     data() {
-      return {}
+      return {
+        city: {}
+      }
+    },
+    created() {
+      const self = this
+      this.$amap().then((AMap) => {
+        AMap.plugin(['AMap.CitySearch'], function () {
+          const citySearch = new AMap.CitySearch()
+          citySearch.getLocalCity((status, result) => {
+            if (status === 'complete' && result.info === 'OK') {
+              // 查询成功，result即为当前所在城市信息
+              self.city = result
+            }
+          })
+        })
+      })
     }
   }
 </script>

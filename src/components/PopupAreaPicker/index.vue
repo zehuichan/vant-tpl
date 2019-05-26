@@ -21,7 +21,7 @@
 </template>
 
 <script>
-  // data
+  // data 可后端拿数据
   import area from './area'
   // components
   import {Field, Area, Popup} from 'vant'
