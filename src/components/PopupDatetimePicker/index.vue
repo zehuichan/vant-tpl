@@ -10,7 +10,7 @@
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-datetime-picker
-        v-model="currentDate"
+        :value="currentDate"
         type="date"
         @confirm="onConfirm"
         @cancel="onCancel"/>
@@ -51,7 +51,7 @@
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'clear' : 'clock-o'
+        return this.clearable && this.value ? 'clear' : 'underway-o'
       },
     },
     data() {

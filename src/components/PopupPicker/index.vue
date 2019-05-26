@@ -8,7 +8,6 @@
       @click="onClick"
       @click-right-icon="onClear">
     </van-field>
-
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-picker
         ref="picker"
@@ -35,14 +34,13 @@
 
       data: Array,
       show: Boolean,
-      value: [String, Number, Object],
+      value: [String, Number, Object, Array],
       placeholder: String,
       disabled: Boolean
     },
     watch: {
       value(val) {
         this.currentValue = val
-        this.currentText = this.data.find(v => v && v.value === val) && this.data.find(v => v && v.value === val).text
       },
       currentValue(val) {
         this.$emit('input', val)
@@ -54,6 +52,10 @@
     computed: {
       showIcon() {
         return this.clearable && this.value ? 'clear' : 'arrow'
+      },
+      currentText() {
+        const curr = Array.from(this.data).find(v => v.value === this.currentValue) || ''
+        return curr.text
       },
       currentIndex() {
         for (let i = 0; i < this.data.length; i++) {
@@ -71,15 +73,13 @@
     data() {
       return {
         showValue: false,
-        currentValue: this.value,
-        currentText: null
+        currentValue: this.value
       }
     },
     created() {
       if (typeof this.show !== 'undefined' && this.disabled) {
         this.showValue = this.show
       }
-      this.currentText = this.value && this.data.find(v => v.value === this.value).text
     },
     methods: {
       onClear() {
@@ -94,7 +94,6 @@
       onConfirm(value, index) {
         this.showValue = false
         this.currentValue = value.value
-        this.currentText = value.text
 
         this.$emit('change', value.value)
       },

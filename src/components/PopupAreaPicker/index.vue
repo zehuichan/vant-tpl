@@ -8,10 +8,10 @@
       @click="onClick"
       @click-right-icon="onClear">
     </van-field>
-
+    {{currentCode}}
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-area
-        ref="area"
+        ref="picker"
         :area-list="area"
         :value="currentCode"
         @cancel="onCancel"
@@ -38,7 +38,11 @@
       show: Boolean,
       value: [String, Number, Object, Array],
       placeholder: String,
-      disabled: Boolean
+      disabled: Boolean,
+      separator: {
+        type: String,
+        default: ' '
+      }
     },
     watch: {
       value(val) {
@@ -56,10 +60,11 @@
         return this.value ? 'clear' : 'arrow'
       },
       currentText() {
-        return Array.from(this.currentValue).map(v => v.name).join(' ')
+        const curr = Array.from(this.currentValue).map(v => v.name)
+        return curr.join(this.separator)
       },
-      currentCode() {
-        return Array.from(this.currentValue).map(v => v.code).pop()
+      picker() {
+        return this.$refs.picker
       }
     },
     data() {
@@ -67,6 +72,7 @@
         area,
         showValue: false,
         currentValue: this.value,
+        currentCode: ''
       }
     },
     created() {
@@ -80,6 +86,7 @@
       },
       onCancel() {
         this.showValue = false
+        this.currentValue = this.value
       },
       onConfirm(value, index) {
         this.showValue = false
@@ -89,6 +96,11 @@
       },
       onClick() {
         this.showValue = true
+        const curr = Array.from(this.currentValue).pop() || ''
+        this.currentCode = curr.code
+
+        console.log('currentText', this.currentText)
+        console.log('currentCode', this.currentCode)
       }
     },
     components: {
