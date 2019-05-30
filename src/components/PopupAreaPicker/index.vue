@@ -8,7 +8,7 @@
       @click="onClick"
       @click-right-icon="onClear">
     </van-field>
-    {{currentCode}}
+
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-area
         ref="picker"
@@ -98,9 +98,6 @@
         this.showValue = true
         const curr = Array.from(this.currentValue).pop() || ''
         this.currentCode = curr.code
-
-        console.log('currentText', this.currentText)
-        console.log('currentCode', this.currentCode)
       }
     },
     components: {
