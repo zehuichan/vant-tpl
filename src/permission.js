@@ -4,12 +4,10 @@ import store from './store'
 const whiteList = ['/guide', '/fastLogin']// no redirect whitelist
 
 router.beforeEach((to, from, next) => {
-  store.commit('SET_LOADING_STATE', true)
+  // store.commit('SET_LOADING_STATE', true)
   next()
 })
 
 router.afterEach(() => {
-  setTimeout(() => {
-    store.commit('SET_LOADING_STATE', false)
-  }, 10000)
+    // store.commit('SET_LOADING_STATE', false)
 })

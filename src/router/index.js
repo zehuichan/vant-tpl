@@ -12,7 +12,7 @@ const Me = () => import('@/views/me')
 Vue.use(Router)
 
 export const routes = [
-  {path: '/', redirect: 'home'},
+  {path: '/', redirect: 'message'},
   {path: '/403', component: () => import('@/views/errorPage/403')},
   {path: '/404', component: () => import('@/views/errorPage/404')},
   {path: '/500', component: () => import('@/views/errorPage/500')},

@@ -14,6 +14,9 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 
+import i18n from './lang' // internationalization
+
+
 import fastclick from 'fastclick'
 
 fastclick.attach(document.body)
@@ -26,8 +29,8 @@ Vue.use(Lazyload)
 
 import './permission'
 
-import WechatPlugin from '@/plugins/wechat/index'
-import AmapPlugin from '@/plugins/amap/index'
+import WechatPlugin from '@/plugins/wechat/index' // 微信jssdk
+import AmapPlugin from '@/plugins/amap/index' // 高德地图API
 
 Vue.use(WechatPlugin)
 Vue.use(AmapPlugin)
@@ -44,5 +47,6 @@ Vue.config.productionTip = false
 new Vue({
   router,
   store,
+  i18n,
   render: h => h(App)
 }).$mount('#app')

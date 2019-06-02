@@ -3,9 +3,9 @@
     <!--    <div>-->
     <app-main/>
     <van-tabbar v-model="active">
-      <van-tabbar-item icon="shop" to="/home">首页</van-tabbar-item>
-      <van-tabbar-item icon="chat" to="/message">信息</van-tabbar-item>
-      <van-tabbar-item icon="records" to="/me">我的</van-tabbar-item>
+      <van-tabbar-item icon="shop" to="/home">{{$t('navbar.home')}}</van-tabbar-item>
+      <van-tabbar-item icon="chat" to="/message">{{$t('navbar.message')}}</van-tabbar-item>
+      <van-tabbar-item icon="records" to="/me">{{$t('navbar.me')}}</van-tabbar-item>
     </van-tabbar>
     <!--    </div>-->
   </div>

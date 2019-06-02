@@ -2,19 +2,19 @@
 
 const user = {
   state: {
-    avatar: '',
-    identityFlag: '',
-    nickName: ''
+    avatar: 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLYMVgaumib5h42GP4pAlLTQCpzFAmUZTVUg4MmH9eFyb4shrm6Ux2Ocic1ic0ekTWEYVfxibGcMMC3UQ/132',
+    cellphone: '15800066380',
+    username: 'chan'
   },
   mutations: {
     SET_AVATAR: (state, avatar) => {
       state.avatar = avatar
     },
-    SET_IDENTITY_FLAG(state, identityFlag) {
-      state.identityFlag = identityFlag
+    SET_CELLPHONE(state, cellphone) {
+      state.cellphone = cellphone
     },
-    SET_NICKNAME(state, nickName) {
-      state.nickName = nickName
+    SET_USER_NAME(state, username) {
+      state.username = username
     }
   },
   actions: {

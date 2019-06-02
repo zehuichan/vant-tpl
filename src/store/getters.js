@@ -1,12 +1,14 @@
 const getters = {
+  // index
+  language: state => state.app.language,
 
   // loading
   loading: state => state.app.loading,
 
   // userInfo
   avatar: state => state.user.avatar,
-  identityFlag: state => state.user.identityFlag,
-  nickName: state => state.user.nickName,
+  cellphone: state => state.user.cellphone,
+  username: state => state.user.username,
 
   // auth
   token: state => state.auth.token,

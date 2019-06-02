@@ -1,13 +1,27 @@
 <template>
   <div class="me">
-    <h1>我的</h1>
+    <h3>业务组件-示例页</h3>
+    <van-cell-group>
+      <van-cell title="地址管理" is-link/>
+      <van-cell title="Language">
+        <lang-selector></lang-selector>
+      </van-cell>
+    </van-cell-group>
   </div>
 </template>
 
 <script>
+  import {Cell, CellGroup} from 'vant'
+  import LangSelector from '@/components/LangSelector'
+
 
   export default {
     name: 'me',
+    components: {
+      [Cell.name]: Cell,
+      [CellGroup.name]: CellGroup,
+      LangSelector
+    },
     data() {
       return {}
     }
