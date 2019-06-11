@@ -5,16 +5,19 @@
       :value="currentText"
       :right-icon="showIcon"
       readonly
+      clickable
       @click="onClick"
       @click-right-icon="onClear">
     </van-field>
+
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-picker
         ref="picker"
         show-toolbar
-        :columns="data"
+        :columns="columns"
         @cancel="onCancel"
-        @confirm="onConfirm"/>
+        @confirm="onConfirm">
+      </van-picker>
     </van-popup>
   </div>
 </template>
@@ -32,7 +35,7 @@
       // Picker.props
       ...Picker.props,
 
-      data: Array,
+      columns: Array,
       show: Boolean,
       value: [String, Number, Object, Array],
       placeholder: String,
@@ -54,19 +57,19 @@
         return this.clearable && this.value ? 'clear' : 'arrow'
       },
       currentText() {
-        const curr = Array.from(this.data).find(v => v.value === this.currentValue) || ''
+        const curr = Array.from(this.columns).find(v => v.value === this.currentValue) || ''
         return curr.text
       },
       currentIndex() {
-        for (let i = 0; i < this.data.length; i++) {
-          const v = this.data[i]
+        for (let i = 0; i < this.columns.length; i++) {
+          const v = this.columns[i]
           if (v.value === this.value) {
             return i
           }
         }
         return 0
       },
-      picker() {
+      $picker() {
         return this.$refs.picker
       }
     },
@@ -100,7 +103,7 @@
       onClick() {
         this.showValue = true
         this.$nextTick(() => {
-          this.picker.setIndexes([this.currentIndex])
+          this.$picker.setIndexes([this.currentIndex])
         })
       }
     },

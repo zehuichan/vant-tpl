@@ -1,6 +1,6 @@
 {
   "name": "vant-tpl",
-  "version": "1.5.3",
+  "version": "1.6.22",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --mode development",
@@ -10,12 +10,12 @@
   "dependencies": {
     "@chenfengyuan/vue-countdown": "^1.1.2",
     "amfe-flexible": "^2.2.1",
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "better-scroll": "^1.15.0",
     "fastclick": "^1.0.6",
     "js-cookie": "^2.2.0",
     "normalize.css": "^8.0.1",
-    "vant": "^1.6.21",
+    "vant": "^1.6.22",
     "vue": "^2.6.10",
     "vue-count-to": "^1.0.13",
     "vue-i18n": "^8.11.2",
@@ -23,9 +23,9 @@
     "vuex": "^3.1.1"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.7.0",
-    "@vue/cli-service": "^3.7.0",
-    "babel-plugin-import": "^1.11.2",
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "babel-plugin-import": "^1.12.0",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "postcss-pxtorem": "^4.0.1",

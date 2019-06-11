@@ -5,8 +5,8 @@
     <div>bbb:{{bbb}}</div>
     <van-cell-group>
       <van-field v-model="aaa" label="用户名" placeholder="请输入用户名"/>
-      <popup-picker v-model="aaa" label="奥师多456" :data="columns1" clearable placeholder="请选择" @change="onChange1"/>
-      <popup-picker v-model="bbb" label="奥师多123" :data="columns2" clearable placeholder="请选择" @change="onChange2"/>
+      <popup-picker v-model="aaa" label="奥师多456" :columns="columns1" clearable placeholder="请选择" @change="onChange1"/>
+      <popup-picker v-model="bbb" label="奥师多123" :columns="columns2" clearable placeholder="请选择" @change="onChange2"/>
       <popup-datetime-picker v-model="time" label="日期" clearable placeholder="请选择" @change="onChange3"/>
       <popup-area-picker v-model="ccc" label="城市" placeholder="请选择" separator="-" @change="onChange4"/>
     </van-cell-group>
@@ -42,10 +42,10 @@
         ccc: [
           {code: '110000', name: '北京市'},
           {code: '110100', name: '北京市'},
-          {code: '110102', name: '西城区'}
+          {code: '110105', name: '朝阳区'}
         ],
 
-        time: null
+        time: '2019-06-02'
       }
     },
     methods: {

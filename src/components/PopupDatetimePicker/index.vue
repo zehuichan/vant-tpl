@@ -5,15 +5,18 @@
       :value="currentValue"
       :right-icon="showIcon"
       readonly
+      clickable
       @click="onClick"
-      @click-right-icon="onClear"/>
+      @click-right-icon="onClear">
+    </van-field>
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-datetime-picker
-        :value="currentDate"
         type="date"
+        :value="currentDate"
         @confirm="onConfirm"
-        @cancel="onCancel"/>
+        @cancel="onCancel">
+      </van-datetime-picker>
     </van-popup>
   </div>
 </template>
@@ -33,7 +36,6 @@
       // DatetimePicker.props
       ...DatetimePicker.props,
 
-      data: Array,
       show: Boolean,
       value: [Array, String, Object],
       placeholder: String

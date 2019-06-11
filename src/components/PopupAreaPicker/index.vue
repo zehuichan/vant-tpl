@@ -5,17 +5,18 @@
       :value="currentText"
       :right-icon="showIcon"
       readonly
+      clickable
       @click="onClick"
       @click-right-icon="onClear">
     </van-field>
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
       <van-area
-        ref="picker"
+        ref="area"
         :area-list="area"
-        :value="currentCode"
         @cancel="onCancel"
-        @confirm="onConfirm"/>
+        @confirm="onConfirm">
+      </van-area>
     </van-popup>
   </div>
 </template>
@@ -63,16 +64,18 @@
         const curr = Array.from(this.currentValue).map(v => v.name)
         return curr.join(this.separator)
       },
-      picker() {
-        return this.$refs.picker
+      currentCode() {
+        return Array.from(this.currentValue).pop()
+      },
+      $area() {
+        return this.$refs.area
       }
     },
     data() {
       return {
         area,
         showValue: false,
-        currentValue: this.value,
-        currentCode: ''
+        currentValue: this.value
       }
     },
     created() {
@@ -96,8 +99,9 @@
       },
       onClick() {
         this.showValue = true
-        const curr = Array.from(this.currentValue).pop() || ''
-        this.currentCode = curr.code
+        this.$nextTick(() => {
+          this.$area.reset(this.currentCode && this.currentCode.code)
+        })
       }
     },
     components: {
