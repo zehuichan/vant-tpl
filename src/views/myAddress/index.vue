@@ -52,9 +52,9 @@
         this.$toast.loading('加载中...')
         setTimeout(() => {
           this.list = [
-            {id: 1, name: 'uuu', phone: '15811123456', address: '浙江省杭州市拱墅区莫干山路 50 号', default: 0},
-            {id: 2, name: 'bbb', phone: '15000512312', address: '浙江省杭州市拱墅区莫干山路 50 号123456', default: 0},
-            {id: 3, name: 'asd', phone: '15xxx1234gd', address: '浙江省杭州市拱墅区莫干山路 50 号123456', default: 1},
+            {id: 1, name: 'aaa', phone: '15811123456', address: '浙江省杭州市拱墅区莫干山路 50 号', default: 0},
+            {id: 2, name: 'bbb', phone: '15000512312', address: '浙江省杭州市拱墅区莫干山路 50 号', default: 0},
+            {id: 3, name: 'ccc', phone: '15xxx1234gd', address: '浙江省杭州市拱墅区莫干山路 50 号', default: 1},
           ]
           this.currentAddress = this.list.find(v => v.default === 1)
           this.$toast.clear()

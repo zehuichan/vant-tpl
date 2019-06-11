@@ -1,5 +1,5 @@
 <template>
-  <van-popup :value="showValue" style="width: 100%; height: 100%; background-color: #f0f2f5;">
+  <van-popup :value="showValue" position="right" style="width: 100%; height: 100%; background-color: #f0f2f5;">
     <van-nav-bar
       :left-text="title"
       left-arrow
