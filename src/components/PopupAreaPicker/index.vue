@@ -58,7 +58,7 @@
     },
     computed: {
       showIcon() {
-        return this.value ? 'clear' : 'arrow'
+        return this.clearable && this.value ? 'clear' : 'arrow'
       },
       currentText() {
         const curr = Array.from(this.currentValue).map(v => v.name)
@@ -85,6 +85,9 @@
     },
     methods: {
       onClear() {
+        if (!this.clearable) {
+          return false
+        }
         this.currentValue = ''
       },
       onCancel() {

@@ -5,6 +5,9 @@ const getters = {
   // loading
   loading: state => state.app.loading,
 
+  // tabbar
+  tabbar: state => state.app.tabbar,
+
   // userInfo
   avatar: state => state.user.avatar,
   cellphone: state => state.user.cellphone,

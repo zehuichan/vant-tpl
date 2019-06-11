@@ -2,7 +2,7 @@
   <div :class="layoutClass" class="app-wrapper">
     <!--    <div>-->
     <app-main/>
-    <van-tabbar v-model="active">
+    <van-tabbar v-model="active" v-if="tabbar">
       <van-tabbar-item icon="shop" to="/home">{{$t('navbar.home')}}</van-tabbar-item>
       <van-tabbar-item icon="chat" to="/message">{{$t('navbar.message')}}</van-tabbar-item>
       <van-tabbar-item icon="records" to="/me">{{$t('navbar.me')}}</van-tabbar-item>
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+  // vuex
+  import {mapGetters} from 'vuex'
   // components
   import {Tabbar, TabbarItem} from 'vant'
   import AppMain from './components/AppMain'
@@ -33,12 +35,12 @@
             me: 2,
           }
           return map[this.$route.name]
-        },
-        set(val) {
         }
-      }
+      },
+      ...mapGetters([
+        'tabbar'
+      ])
     },
-    methods: {},
     components: {
       [Tabbar.name]: Tabbar,
       [TabbarItem.name]: TabbarItem,

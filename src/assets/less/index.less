@@ -125,6 +125,45 @@ div:focus {
   padding: 0 10px;
 }
 
+
+.no-more {
+  text-align: center;
+  color: #bfbdbc;
+  padding: 16px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cell-group-title {
+  padding: 10px 15px 6px;
+  color: #999;
+  font-size: 14px;
+}
+
+.btn-wrapper {
+  width: 100%;
+
+  &.fixed-bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+
+  &.padded {
+    padding: 16px;
+  }
+
+  &.tool-bar {
+    background-color: #fff;
+    padding: 8px;
+    text-align: right;
+  }
+
+  .van-button + .van-button {
+    margin-left: 8px;
+  }
+}
+
 .cell-container {
   background-color: #fff;
   margin: 0 10px;
@@ -138,6 +177,31 @@ div:focus {
     &:before {
       border: 0;
     }
+  }
+}
+
+.demo-block {
+  padding: 16px;
+  background-color: #fff;
+}
+
+code {
+  border-radius: 4px;
+  padding: 16px;
+  position: relative;
+  display: block;
+  font-size: 12px;
+  font-weight: 400;
+  overflow-x: auto;
+  line-height: 22px;
+  word-break: break-all;
+  white-space: pre-wrap;
+  color: #455a64;
+  font-family: Consolas, Menlo, Courier, monospace;
+  background: #f7f7f7;
+
+  & + code {
+    margin-top: 12px;
   }
 }
 

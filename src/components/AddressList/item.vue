@@ -1,10 +1,12 @@
 <template>
   <div class="address-item">
-    <div class="address-cell">
-      <div class="address-cell__title">{{data.name}}</div>
-      <div class="address-cell__value">{{data.cellphone}}</div>
+    <div class="tap-active">
+      <div class="address-cell">
+        <div class="address-cell__title">{{data.name}}</div>
+        <div class="address-cell__value">{{data.cellphone}}</div>
+      </div>
+      <div class="address-item__address ellipsis-2">{{data.address}}</div>
     </div>
-    <div class="address-item__address ellipsis-2">{{data.address}}</div>
     <div class="address-edit van-hairline--top" v-if="switchable">
       <div class="address-edit__radio">
         <van-radio :name="data" checked-color="#01c2c3">默认地址</van-radio>
@@ -43,6 +45,7 @@
     background-color: #fff;
     color: #14151a;
     font-weight: 500;
+    font-size: 14px;
 
     & + .address-item {
       margin-top: 10px;
@@ -94,7 +97,7 @@
     }
 
     &__address {
-      margin: 0 16px 16px;
+      padding: 0 16px 16px;
     }
   }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <div class="address-list">
-    <van-radio-group v-model="currentValue" @change="$emit('default', currentValue)">
+    <van-radio-group v-model="currentValue" @change="onDefault">
       <item v-for="(item, index) in list"
             :key="item.id"
             :data="item"
@@ -45,6 +45,9 @@
       }
     },
     methods: {
+      onDefault(data) {
+        this.$emit('default', data)
+      },
       onEdit(data, index) {
         this.$emit('edit', data, index)
       },
