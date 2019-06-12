@@ -1,11 +1,10 @@
-import 'amfe-flexible'
-
 import Vue from 'vue'
 
 // iconfont
 import '@/assets/fonts/iconfont'
 
-import 'normalize.css/normalize.css' // A modern alternative to CSS resets
+// A modern alternative to CSS resets
+import 'normalize.css/normalize.css'
 
 import 'vant/lib/index.css';
 import '@/assets/less/index.less'
@@ -14,8 +13,8 @@ import App from './App.vue'
 import router from './router/index'
 import store from './store/index'
 
-import i18n from './lang' // internationalization
-
+// internationalization
+import i18n from './lang'
 
 import fastclick from 'fastclick'
 
@@ -29,8 +28,10 @@ Vue.use(Lazyload)
 
 import './permission'
 
-import WechatPlugin from '@/plugins/wechat/index' // 微信jssdk
-import AmapPlugin from '@/plugins/amap/index' // 高德地图API
+// 微信jssdk
+import WechatPlugin from '@/plugins/wechat/index'
+// 高德地图API
+import AmapPlugin from '@/plugins/amap/index'
 
 Vue.use(WechatPlugin)
 Vue.use(AmapPlugin)

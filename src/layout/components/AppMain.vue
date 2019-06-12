@@ -1,5 +1,5 @@
 <template>
-  <div class="app-main">
+  <div class="app-main" :class="padded">
     <!--<transition name="fade-transform" mode="out-in">-->
     <router-view/>
     <!--</transition>-->
@@ -7,10 +7,18 @@
 </template>
 
 <script>
+  // vuex
+  import {mapGetters} from 'vuex'
+
   export default {
     name: 'AppMain',
-    data() {
-      return {}
+    computed: {
+      padded(){
+        return this.tabbar ? 'has-padded' : ''
+      },
+      ...mapGetters([
+        'tabbar'
+      ])
     }
   }
 </script>
@@ -23,5 +31,9 @@
     position: relative;
     overflow-x: hidden;
     background: #f0f2f5;
+  }
+
+  .has-padded {
+    padding-bottom: 50px;
   }
 </style>

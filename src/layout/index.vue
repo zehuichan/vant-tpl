@@ -35,6 +35,8 @@
             me: 2,
           }
           return map[this.$route.name]
+        },
+        set(val) {
         }
       },
       ...mapGetters([

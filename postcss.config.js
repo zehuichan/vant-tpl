@@ -1,11 +1,11 @@
 module.exports = {
   plugins: {
-    'autoprefixer': {
-      browsers: ['Android >= 4.0', 'iOS >= 7']
-    },
-    'postcss-pxtorem': {
-      rootValue: 37.5,
-      propList: ['*']
+    'autoprefixer': {},
+    'postcss-px-to-viewport': {
+      viewportWidth: 375,
+      // 该项仅在使用 Circle 组件时需要
+      // 原因参见 https://github.com/youzan/vant/issues/1948
+      selectorBlackList: ['van-circle__layer']
     }
   }
 }

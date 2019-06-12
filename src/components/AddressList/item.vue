@@ -3,7 +3,7 @@
     <div class="tap-active">
       <div class="address-cell">
         <div class="address-cell__title">{{data.name}}</div>
-        <div class="address-cell__value">{{data.cellphone}}</div>
+        <div class="address-cell__value">{{data.phone}}</div>
       </div>
       <div class="address-item__address ellipsis-2">{{data.address}}</div>
     </div>
@@ -48,12 +48,12 @@
     font-size: 14px;
 
     & + .address-item {
-      margin-top: 10px;
+      margin-top: 8px;
     }
 
     .address-cell {
       display: flex;
-      padding: 8px 16px;
+      padding: 16px;
 
       &__title,
       &__value {
@@ -72,6 +72,7 @@
     .address-edit {
       display: flex;
       padding: 12px 16px;
+      font-size: 12px;
 
       &__radio,
       &__handle {
@@ -85,6 +86,7 @@
       .edit,
       .delete {
         padding: 8px;
+        font-weight: 500;
       }
 
       .edit {

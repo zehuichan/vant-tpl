@@ -1,6 +1,6 @@
 <template>
   <div class="me">
-    <h3>业务组件-示例页</h3>
+    <h3 class="demo-title">业务组件-示例页</h3>
     <van-cell-group>
       <van-cell title="地址管理" is-link to="/myAddress"/>
       <van-cell title="Language">
