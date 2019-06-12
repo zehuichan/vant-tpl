@@ -44,10 +44,14 @@
         showValue: false,
         dataForm: {
           id: '',
-          name: '',
-          phone: '',
-          area: '',
-          address: '',
+          name: '陈泽辉',
+          phone: '15800000000',
+          area: [
+            {code: '110000', name: '北京市'},
+            {code: '110100', name: '北京市'},
+            {code: '110105', name: '朝阳区'}
+          ],
+          address: '阿斯顿撒大所大',
         },
       }
     },
@@ -77,33 +81,28 @@
         this.showValue = false
       },
       onSave() {
-        if (this.dataForm.longitude) {
-          this.$toast('请选择收货地址')
-          return false
-        }
-
-        if (this.dataForm.area) {
-          this.$toast('请选择所在地区')
-          return false
-        }
-
-        if (this.dataForm.address) {
-          this.$toast('请填写详细的收货地址')
-          return false
-        }
-
-        if (this.dataForm.name) {
+        if (!this.dataForm.name) {
           this.$toast('请填写收货人姓名')
           return false
         }
 
-        if (this.dataForm.phone) {
+        if (!this.dataForm.phone) {
           this.$toast('请填写手机号')
           return false
         }
 
         if (!validatePhone(this.dataForm.phone)) {
           this.$toast('请填写正确的手机号')
+          return false
+        }
+
+        if (!this.dataForm.area) {
+          this.$toast('请选择所在地区')
+          return false
+        }
+
+        if (!this.dataForm.address) {
+          this.$toast('请填写详细的收货地址')
           return false
         }
 

@@ -18,7 +18,7 @@
     <handle v-model="show" :data="address"></handle>
 
 
-    <div class="demo-block">
+    <div class="demo-block" style="display: none;">
       <code>{{currentAddress}}</code>
     </div>
   </div>
@@ -58,7 +58,7 @@
           ]
           this.currentAddress = this.list.find(v => v.default === 1)
           this.$toast.clear()
-        }, 300)
+        }, 1000)
       },
       onClickLeft() {
         this.$router.push('/me')

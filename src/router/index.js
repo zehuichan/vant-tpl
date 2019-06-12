@@ -10,7 +10,7 @@ const Message = () => import('@/views/message')
 const Me = () => import('@/views/me')
 
 // 业务组件
-const MyAddress = () => import('@/views/myAddress')
+const MyAddress = () => import('@/views/example/myAddress')
 
 Vue.use(Router)
 
