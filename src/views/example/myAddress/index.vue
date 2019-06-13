@@ -9,17 +9,18 @@
       <a slot="right">添加新地址</a>
     </van-nav-bar>
 
-    <address-list v-model="currentAddress"
+    <address-list v-model="chosenAddress"
                   :list="list"
-                  @default="handleDef"
+                  :disabled="true"
+                  @default="handleDefault"
+                  @select="handleSelect"
                   @edit="handleEdit"
                   @delete="handleDelete"></address-list>
 
-    <handle v-model="show" :data="address"></handle>
-
+    <handle v-model="show" :data="address" @update="handleUpdate"></handle>
 
     <div class="demo-block" style="display: none;">
-      <code>{{currentAddress}}</code>
+      <code>{{chosenAddress}}</code>
     </div>
   </div>
 </template>
@@ -37,7 +38,7 @@
     data() {
       return {
         show: false,
-        currentAddress: null,
+        chosenAddress: null,
         address: null,
         list: []
       }
@@ -56,7 +57,7 @@
             {id: 2, name: 'bbb', phone: '15000512312', address: '浙江省杭州市拱墅区莫干山路 50 号', default: 0},
             {id: 3, name: 'ccc', phone: '15xxx1234gd', address: '浙江省杭州市拱墅区莫干山路 50 号', default: 1},
           ]
-          this.currentAddress = this.list.find(v => v.default === 1)
+          this.chosenAddress = this.list.find(v => v.default === 1)
           this.$toast.clear()
         }, 1000)
       },
@@ -64,14 +65,20 @@
         this.$router.push('/me')
       },
       onClickRight() {
-        this.currentAddress = null
+        this.chosenAddress = null
         this.show = true
       },
-      handleDef(item) {
-        console.log(item)
+      handleUpdate() {
+        this.getList()
+      },
+      handleDefault(item) {
+        console.log('handleDefault', item)
+      },
+      handleSelect(item) {
+        console.log('handleSelect', item)
       },
       handleEdit(item, index) {
-        console.log(item, index)
+        console.log('handleEdit', item, index)
         this.address = item
         this.show = true
       },

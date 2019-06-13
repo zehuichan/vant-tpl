@@ -1,13 +1,20 @@
 <template>
-  <div :class="layoutClass" class="app-wrapper">
-    <!--    <div>-->
+  <div class="app-wrapper">
     <app-main/>
     <van-tabbar v-model="active" v-if="tabbar">
-      <van-tabbar-item icon="shop" to="/home">{{$t('navbar.home')}}</van-tabbar-item>
-      <van-tabbar-item icon="chat" to="/message">{{$t('navbar.message')}}</van-tabbar-item>
-      <van-tabbar-item icon="records" to="/me">{{$t('navbar.me')}}</van-tabbar-item>
+      <van-tabbar-item to="/home">
+        <i slot="icon" class="iconfont icon-shouye"></i>
+        {{$t('navbar.home')}}
+      </van-tabbar-item>
+      <van-tabbar-item to="/message">
+        <i slot="icon" class="iconfont icon-xiaoxi"></i>
+        {{$t('navbar.message')}}
+      </van-tabbar-item>
+      <van-tabbar-item to="/me">
+        <i slot="icon" class="iconfont icon-wode"></i>
+        {{$t('navbar.me')}}
+      </van-tabbar-item>
     </van-tabbar>
-    <!--    </div>-->
   </div>
 </template>
 
@@ -20,9 +27,6 @@
 
   export default {
     name: 'layout',
-    props: {
-      layoutClass: {},
-    },
     data() {
       return {}
     },
@@ -30,11 +34,11 @@
       active: {
         get() {
           const map = {
-            home: 0,
-            message: 1,
-            me: 2,
+            '/home': 0,
+            '/message': 1,
+            '/me': 2,
           }
-          return map[this.$route.name]
+          return map[this.$route.path]
         },
         set(val) {
         }
@@ -57,5 +61,11 @@
     position: relative;
     height: 100%;
     overflow: hidden;
+  }
+
+  .van-tabbar-item__icon {
+    .iconfont {
+      font-size: inherit;
+    }
   }
 </style>

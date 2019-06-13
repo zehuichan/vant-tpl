@@ -30,7 +30,6 @@
     height: 100%;
     position: relative;
     overflow-x: hidden;
-    background: #f0f2f5;
   }
 
   .has-padded {

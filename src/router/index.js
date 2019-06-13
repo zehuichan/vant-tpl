@@ -11,11 +11,12 @@ const Me = () => import('@/views/me')
 
 // 业务组件
 const MyAddress = () => import('@/views/example/myAddress')
+const ConfirmOrder = () => import('@/views/example/confirmOrder')
 
 Vue.use(Router)
 
 export const routes = [
-  {path: '/', redirect: 'message'},
+  {path: '/', redirect: 'me'},
   {path: '/403', component: () => import('@/views/errorPage/403')},
   {path: '/404', component: () => import('@/views/errorPage/404')},
   {path: '/500', component: () => import('@/views/errorPage/500')},
@@ -64,6 +65,18 @@ export const routes = [
         component: MyAddress,
         name: 'myAddress',
         meta: {title: '地址管理'}
+      }
+    ]
+  },
+  {
+    path: '/confirmOrder',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: ConfirmOrder,
+        name: 'confirmOrder',
+        meta: {title: '确认订单'}
       }
     ]
   },

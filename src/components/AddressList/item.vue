@@ -1,15 +1,15 @@
 <template>
   <div class="address-item">
-    <div class="tap-active">
+    <div class="tap-active" @click="$emit('select')">
       <div class="address-cell">
         <div class="address-cell__title">{{data.name}}</div>
         <div class="address-cell__value">{{data.phone}}</div>
       </div>
       <div class="address-item__address ellipsis-2">{{data.address}}</div>
     </div>
-    <div class="address-edit van-hairline--top" v-if="switchable">
+    <div class="address-edit van-hairline--top" v-if="address.switchable">
       <div class="address-edit__radio">
-        <van-radio :name="data" checked-color="#01c2c3">默认地址</van-radio>
+        <van-radio :name="data" :checked-color="address.checkedColor">默认地址</van-radio>
       </div>
       <div class="address-edit__handle">
         <span class="edit" @click="$emit('edit')">编辑</span>
@@ -26,10 +26,9 @@
   export default {
     name: 'address-item',
     props: {
-      data: Object,
-      disabled: Boolean,
-      switchable: Boolean
+      data: Object
     },
+    inject: ['address'],
     components: {
       [Radio.name]: Radio
     }

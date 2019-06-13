@@ -5,8 +5,9 @@
             :key="item.id"
             :data="item"
             :switchable="switchable"
-            @edit="onEdit(item,index)"
-            @delete="onDelete(item,index)"></item>
+            @select="onSelect(item, index)"
+            @edit="onEdit(item, index)"
+            @delete="onDelete(item, index)"></item>
     </van-radio-group>
   </div>
 </template>
@@ -26,9 +27,22 @@
           return []
         }
       },
+      disabled: {
+        type: Boolean,
+        default: true
+      },
       switchable: {
         type: Boolean,
         default: true
+      },
+      checkedColor: {
+        type: String,
+        default: '#01c2c3'
+      }
+    },
+    provide() {
+      return {
+        address: this
       }
     },
     watch: {
@@ -47,6 +61,9 @@
     methods: {
       onDefault(data) {
         this.$emit('default', data)
+      },
+      onSelect(data, index) {
+        this.$emit(this.disabled ? 'select-disabled' : 'select', data, index)
       },
       onEdit(data, index) {
         this.$emit('edit', data, index)

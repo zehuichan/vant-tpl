@@ -1,6 +1,6 @@
 export default {
   navbar: {
-    home: '网站首页',
+    home: '首页',
     message: '信息',
     me: '我的',
   }

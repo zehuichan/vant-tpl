@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <div>首页</div>
-    <div>aaa:{{aaa}}</div>
-    <div>bbb:{{bbb}}</div>
+    <h3 class="demo-title">首页-测试</h3>
     <van-cell-group>
       <van-field v-model="aaa" label="用户名" placeholder="请输入用户名"/>
       <popup-picker v-model="aaa" label="奥师多456" :columns="columns1" clearable placeholder="请选择" @change="onChange1"/>
