@@ -1,10 +1,9 @@
 <template>
   <div class="address-list">
-    <van-radio-group v-model="currentValue" @change="onDefault">
+    <van-radio-group v-model="currentValue">
       <item v-for="(item, index) in list"
             :key="item.id"
             :data="item"
-            :switchable="switchable"
             @select="onSelect(item, index)"
             @edit="onEdit(item, index)"
             @delete="onDelete(item, index)"></item>

@@ -10,9 +10,8 @@
     </van-nav-bar>
 
     <address-list v-model="chosenAddress"
-                  :list="list"
+                  :list="address_list"
                   :disabled="true"
-                  @default="handleDefault"
                   @select="handleSelect"
                   @edit="handleEdit"
                   @delete="handleDelete"></address-list>
@@ -20,17 +19,17 @@
     <handle v-model="show" :data="address" @update="handleUpdate"></handle>
 
     <div class="demo-block" style="display: none;">
-      <code>{{chosenAddress}}</code>
+      <code>{{default_address}}</code>
     </div>
   </div>
 </template>
 
 <script>
   // vuex
-  import {mapActions} from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
   // components
   import {NavBar} from 'vant'
-  import Handle from './components/handle'
+  import Handle from './components/Handle'
   import AddressList from '@/components/AddressList'
 
   export default {
@@ -38,31 +37,40 @@
     data() {
       return {
         show: false,
-        chosenAddress: null,
         address: null,
-        list: []
+        list: [],
+
+        redirect: undefined
       }
+    },
+    watch: {
+      $route: {
+        handler: function (route) {
+          this.redirect = route.query && route.query.redirect
+        },
+        immediate: true
+      }
+    },
+    computed: {
+      chosenAddress: {
+        get() {
+          return this.default_address
+        },
+        set(val) {
+          console.log(val)
+        }
+      },
+      ...mapGetters([
+        'address_list',
+        'default_address'
+      ])
     },
     created() {
       this.SetTabBarState(false)
-
-      this.getList()
     },
     methods: {
-      getList() {
-        this.$toast.loading('加载中...')
-        setTimeout(() => {
-          this.list = [
-            {id: 1, name: 'aaa', phone: '15811123456', address: '浙江省杭州市拱墅区莫干山路 50 号', default: 0},
-            {id: 2, name: 'bbb', phone: '15000512312', address: '浙江省杭州市拱墅区莫干山路 50 号', default: 0},
-            {id: 3, name: 'ccc', phone: '15xxx1234gd', address: '浙江省杭州市拱墅区莫干山路 50 号', default: 1},
-          ]
-          this.chosenAddress = this.list.find(v => v.default === 1)
-          this.$toast.clear()
-        }, 1000)
-      },
       onClickLeft() {
-        this.$router.push('/me')
+        this.$router.push({path: this.redirect || '/me'})
       },
       onClickRight() {
         this.chosenAddress = null
@@ -70,9 +78,6 @@
       },
       handleUpdate() {
         this.getList()
-      },
-      handleDefault(item) {
-        console.log('handleDefault', item)
       },
       handleSelect(item) {
         console.log('handleSelect', item)

@@ -108,9 +108,13 @@
 
         console.log(this.data)
         console.log(this.dataForm)
-        this.$toast('保存')
-        this.showValue = false
-        this.$emit('update')
+        this.$toast({
+          message: '保存',
+          onClose: () => {
+            this.showValue = false
+            this.$emit('update')
+          }
+        })
       },
     },
     components: {

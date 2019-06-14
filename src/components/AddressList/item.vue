@@ -1,11 +1,11 @@
 <template>
   <div class="address-item">
-    <div class="tap-active" @click="$emit('select')">
+    <div :class="address.disabled ? '' : 'tap-active'" @click="$emit('select')">
       <div class="address-cell">
         <div class="address-cell__title">{{data.name}}</div>
         <div class="address-cell__value">{{data.phone}}</div>
       </div>
-      <div class="address-item__address ellipsis-2">{{data.address}}</div>
+      <div class="address-item__address ellipsis-2">{{_address}}</div>
     </div>
     <div class="address-edit van-hairline--top" v-if="address.switchable">
       <div class="address-edit__radio">
@@ -25,10 +25,16 @@
 
   export default {
     name: 'address-item',
+    inject: ['address'],
     props: {
       data: Object
     },
-    inject: ['address'],
+    computed: {
+      _address() {
+        const area = JSON.parse(this.data.area).map(item => item.name).join('')
+        return area + this.data.address
+      }
+    },
     components: {
       [Radio.name]: Radio
     }

@@ -3,11 +3,18 @@ import store from './store'
 
 const whiteList = ['/guide', '/fastLogin']// no redirect whitelist
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   // store.commit('SET_LOADING_STATE', true)
-  next()
+  if (store.getters.username) {
+    next()
+  } else {
+    store.dispatch('GetUserInfo').then(() => {
+      store.dispatch('GetAddressList')
+    })
+    next()
+  }
 })
 
 router.afterEach(() => {
-    // store.commit('SET_LOADING_STATE', false)
+  // store.commit('SET_LOADING_STATE', false)
 })

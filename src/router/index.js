@@ -11,6 +11,7 @@ const Me = () => import('@/views/me')
 
 // 业务组件
 const MyAddress = () => import('@/views/example/myAddress')
+const ChosenAddress = () => import('@/views/example/chosenAddress')
 const ConfirmOrder = () => import('@/views/example/confirmOrder')
 
 Vue.use(Router)
@@ -52,7 +53,7 @@ export const routes = [
         path: '',
         component: Me,
         name: 'me',
-        meta: {title: '我的'}
+        meta: {title: '我'}
       }
     ]
   },
@@ -64,7 +65,19 @@ export const routes = [
         path: '',
         component: MyAddress,
         name: 'myAddress',
-        meta: {title: '地址管理'}
+        meta: {title: '收货地址管理'}
+      }
+    ]
+  },
+  {
+    path: '/chosenAddress',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: ChosenAddress,
+        name: 'chosenAddress',
+        meta: {title: '选择收货地址'}
       }
     ]
   },

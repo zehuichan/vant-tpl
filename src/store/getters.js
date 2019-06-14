@@ -13,6 +13,11 @@ const getters = {
   cellphone: state => state.user.cellphone,
   username: state => state.user.username,
 
+  // address
+  address_list: state => state.address.address_list,
+  chosen_address: state => state.address.chosen_address,
+  default_address: state => state.address.address_list.find((item) => item.default === 1),
+
   // auth
   token: state => state.auth.token,
 

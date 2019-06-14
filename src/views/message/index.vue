@@ -1,7 +1,9 @@
 <template>
   <div class="message">
     <h3 class="demo-title">高德API-示例页</h3>
-    <h3>{{city}}</h3>
+    <div class="demo-block">
+      <code>{{city}}</code>
+    </div>
   </div>
 </template>
 

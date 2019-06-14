@@ -1,5 +1,5 @@
 <template>
-  <div :style="[splitStyle,{height:`${height}px`}]"></div>
+  <div :style="[splitStyle, {height: `${gutter}px`}]"></div>
 </template>
 
 <script>
@@ -7,9 +7,9 @@
     name: 'split',
     props: {
       splitStyle: {},
-      height: {
-        type: Number,
-        default: 10
+      gutter: {
+        type: String,
+        default: '10'
       }
     }
   }

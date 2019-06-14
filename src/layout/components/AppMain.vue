@@ -1,8 +1,8 @@
 <template>
   <div class="app-main" :class="padded">
-    <!--<transition name="fade-transform" mode="out-in">-->
+    <!--    <transition name="fade-transform" mode="out-in">-->
     <router-view/>
-    <!--</transition>-->
+    <!--    </transition>-->
   </div>
 </template>
 
@@ -13,7 +13,7 @@
   export default {
     name: 'AppMain',
     computed: {
-      padded(){
+      padded() {
         return this.tabbar ? 'has-padded' : ''
       },
       ...mapGetters([

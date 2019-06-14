@@ -3,6 +3,7 @@
     <h3 class="demo-title">业务组件-示例页</h3>
     <van-cell-group>
       <van-cell title="地址管理" is-link to="/myAddress"/>
+      <van-cell title="选择地址" is-link to="/chosenAddress"/>
       <van-cell title="确认订单" is-link to="/confirmOrder"/>
       <van-cell title="Language">
         <lang-selector></lang-selector>
