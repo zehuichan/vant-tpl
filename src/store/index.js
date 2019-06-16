@@ -20,7 +20,10 @@ const store = new Vuex.Store({
     app,
     user,
     auth,
-    address
+    address,
+
+    cart,
+    products
   },
   getters
 })

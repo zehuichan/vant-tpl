@@ -67,6 +67,10 @@
     },
     created() {
       this.SetTabBarState(false)
+
+      if (this.address_list.length === 0) {
+        this.GetAddressList()
+      }
     },
     methods: {
       onClickLeft() {
@@ -98,7 +102,8 @@
         })
       },
       ...mapActions([
-        'SetTabBarState'
+        'SetTabBarState',
+        'GetAddressList'
       ])
     },
     components: {
