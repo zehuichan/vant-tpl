@@ -32,8 +32,7 @@ const list = [
 const address = {
   state: {
     address_list: [],
-    chosen_address: null,
-    default_address: null
+    chosen_address: null
   },
   mutations: {
     SET_ADDRESS_LIST(state, list) {

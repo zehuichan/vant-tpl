@@ -4,11 +4,11 @@
       <i class="iconfont icon-dingwei van-cell__left-icon"></i>
       <div class="van-cell__value van-cell__value--alone">
         <div class="clearfix">
-          <div class="address-contact-cell__name fl">收货人：陈泽辉</div>
-          <div class="address-contact-cell__phone fr">15800000000</div>
+          <div class="address-contact-cell__name fl">收货人：{{data&&data.name}}</div>
+          <div class="address-contact-cell__phone fr">{{data&&data.phone}}</div>
         </div>
         <div class="address-contact-cell__address ellipsis-2">
-          浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室
+          {{address}} {{data&&data.address}}
         </div>
       </div>
       <i class="van-icon van-icon-arrow van-cell__right-icon"></i>
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+  // components
   import {NavBar} from 'vant'
 
   export default {
@@ -26,6 +27,12 @@
     },
     data() {
       return {}
+    },
+    computed: {
+      address() {
+        const area = this.data && JSON.parse(this.data.area) || []
+        return area.map(v => v.name).join(' ')
+      }
     },
     methods: {
       to() {

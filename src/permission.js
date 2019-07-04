@@ -8,7 +8,8 @@ router.beforeEach(async (to, from, next) => {
   if (store.getters.username) {
     next()
   } else {
-    store.dispatch('GetUserInfo')
+    store.dispatch('GetAddressList')
+    // store.dispatch('GetUserInfo')
     next()
   }
 })

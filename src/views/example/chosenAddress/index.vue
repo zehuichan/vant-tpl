@@ -14,9 +14,11 @@
                   :switchable="false"
                   @select="handleSelect"></address-list>
 
-    <code>
-      {{default_address}}
-    </code>
+    <div class="demo-block">
+      <code>
+        {{default_address}}
+      </code>
+    </div>
   </div>
 </template>
 
@@ -31,7 +33,17 @@
     name: 'chosenAddress',
     data() {
       return {
-        list: []
+        list: [],
+
+        redirect: undefined
+      }
+    },
+    watch: {
+      $route: {
+        handler: function (route) {
+          this.redirect = route.query && route.query.redirect
+        },
+        immediate: true
       }
     },
     computed: {
@@ -45,17 +57,20 @@
     },
     methods: {
       onClickLeft() {
-        this.$router.push('/me')
+        this.$router.push({path: this.redirect || '/me'})
       },
       onClickRight() {
         const {fullPath} = this.$route
         this.$router.push({path: `/myAddress?redirect=${fullPath}`})
       },
-      handleSelect(data, idnex) {
-        console.log(data)
+      handleSelect(address, index) {
+        console.log(address, index)
+        this.ChosenAddress(address)
+        this.$router.push({path: '/confirmOrder'})
       },
       ...mapActions([
-        'SetTabBarState'
+        'SetTabBarState',
+        'ChosenAddress'
       ])
     },
     components: {
