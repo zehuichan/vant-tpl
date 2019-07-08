@@ -83,16 +83,16 @@
       handleUpdate() {
         this.getList()
       },
-      handleSelect(item) {
-        console.log('handleSelect', item)
+      handleSelect(address) {
+        console.log('handleSelect', address)
       },
-      handleEdit(item, index) {
-        console.log('handleEdit', item, index)
-        this.address = item
+      handleEdit(address, index) {
+        console.log('handleEdit', address, index)
+        this.address = address
         this.show = true
       },
-      handleDelete(item, index) {
-        console.log(item, index)
+      handleDelete(address, index) {
+        console.log(address, index)
         this.$dialog.confirm({
           message: '确定要删除该地址吗？'
         }).then(() => {

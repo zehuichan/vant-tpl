@@ -6,13 +6,20 @@
       @click-left="onClickLeft">
     </van-nav-bar>
 
-    <address-contact></address-contact>
+    <address-contact :data="chosen_address || default_address"></address-contact>
+
+    <div class="demo-block">
+      <code>
+        chosen_address {{chosen_address}}
+        default_address {{default_address}}
+      </code>
+    </div>
   </div>
 </template>
 
 <script>
   // vuex
-  import {mapActions} from 'vuex'
+  import {mapActions, mapGetters} from 'vuex'
   // components
   import {NavBar} from 'vant'
   import AddressContact from './components/AddressContact'
@@ -24,6 +31,12 @@
       return {
         config: {}
       }
+    },
+    computed: {
+      ...mapGetters([
+        'chosen_address',
+        'default_address',
+      ])
     },
     created() {
       this.SetTabBarState(false)

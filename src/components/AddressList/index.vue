@@ -19,7 +19,7 @@
   export default {
     name: 'address-list',
     props: {
-      value: [String, Object],
+      value: [String, Object, Array],
       list: {
         type: Array,
         default() {
