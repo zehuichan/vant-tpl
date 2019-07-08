@@ -7,6 +7,17 @@
       <popup-picker v-model="bbb" label="奥师多123" :columns="columns2" clearable placeholder="请选择" @change="onChange2"/>
       <popup-datetime-picker v-model="time" label="日期" clearable placeholder="请选择" @change="onChange3"/>
       <popup-area-picker v-model="ccc" label="城市" placeholder="请选择" separator="-" @change="onChange4"/>
+
+      <van-field
+        v-model="username"
+        required
+        clearable
+        label="用户名"
+        right-icon="question-o"
+        placeholder="请输入用户名"
+        @click="test"
+        @click-right-icon="$toast('question')"
+      />
     </van-cell-group>
   </div>
 </template>
@@ -43,7 +54,8 @@
           {code: '110105', name: '朝阳区'}
         ],
 
-        time: '2019-06-02'
+        time: '2019-06-02',
+        username: ''
       }
     },
     methods: {
@@ -65,6 +77,9 @@
       onChange4(val) {
         console.log(val)
       },
+      test() {
+        alert(1)
+      }
     },
     components: {
       [Field.name]: Field,

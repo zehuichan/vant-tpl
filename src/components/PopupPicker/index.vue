@@ -39,7 +39,8 @@
       show: Boolean,
       value: [String, Number, Object, Array],
       placeholder: String,
-      disabled: Boolean
+      disabled: Boolean,
+      clearable: Boolean,
     },
     watch: {
       value(val) {

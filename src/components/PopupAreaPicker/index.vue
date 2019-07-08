@@ -40,6 +40,7 @@
       value: [String, Number, Object, Array],
       placeholder: String,
       disabled: Boolean,
+      clearable: Boolean,
       separator: {
         type: String,
         default: ' '

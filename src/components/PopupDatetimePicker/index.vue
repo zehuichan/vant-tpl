@@ -2,7 +2,7 @@
   <div class="popup-datetimePicker van-cell">
     <van-field
       v-bind="$props"
-      :value="currentValue"
+      v-model="currentValue"
       :right-icon="showIcon"
       readonly
       clickable
@@ -38,7 +38,8 @@
 
       show: Boolean,
       value: [Array, String, Object],
-      placeholder: String
+      placeholder: String,
+      clearable: Boolean,
     },
     watch: {
       value(val) {
@@ -53,7 +54,7 @@
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'clear' : 'underway-o'
+        return this.clearable && this.value ? 'clear' : 'clock'
       },
     },
     data() {
