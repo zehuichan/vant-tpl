@@ -6,8 +6,8 @@
       :right-icon="showIcon"
       readonly
       clickable
-      @click="onClick"
-      @click-right-icon="onClear">
+      @click.stop="onClick"
+      @click-right-icon.stop="onClear">
     </van-field>
 
     <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
