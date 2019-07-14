@@ -1,5 +1,3 @@
-const autoprefixer = require('autoprefixer')
-const pxtoviewport = require('postcss-px-to-viewport')
 const path = require('path')
 
 function resolve(dir) {
@@ -23,6 +21,7 @@ module.exports = {
       warnings: false,
       errors: true
     },
+    // proxy: process.env.VUE_APP_BASE_API,
     proxy: {
       // change xxx-api/login => mock/login
       // detail: https://cli.vuejs.org/config/#devserver-proxy
