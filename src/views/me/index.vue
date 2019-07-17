@@ -1,10 +1,19 @@
 <template>
   <div class="me">
-    <h3 class="demo-title">业务组件-示例页</h3>
+    <h3 class="demo-title">业务组件-地址</h3>
     <van-cell-group>
       <van-cell title="地址管理" is-link to="/myAddress"/>
       <van-cell title="选择地址" is-link to="/chosenAddress"/>
       <van-cell title="确认订单" is-link to="/confirmOrder"/>
+    </van-cell-group>
+    <h3 class="demo-title">业务组件-卡券</h3>
+    <van-cell-group>
+      <van-cell title="地址管理" is-link to="/myAddress"/>
+      <van-cell title="选择地址" is-link to="/chosenAddress"/>
+      <van-cell title="确认订单" is-link to="/confirmOrder"/>
+    </van-cell-group>
+    <h3 class="demo-title">业务组件-国际化</h3>
+    <van-cell-group>
       <van-cell title="Language">
         <lang-selector></lang-selector>
       </van-cell>
@@ -18,12 +27,12 @@
   // components
   import {Cell, CellGroup} from 'vant'
   import LangSelector from '@/components/LangSelector'
+  import Split from '@/components/Split'
 
   export default {
     name: 'me',
     created() {
       this.SetTabBarState(true)
-
     },
     methods: {
       ...mapActions([
@@ -33,7 +42,8 @@
     components: {
       [Cell.name]: Cell,
       [CellGroup.name]: CellGroup,
-      LangSelector
+      LangSelector,
+      Split
     }
   }
 </script>

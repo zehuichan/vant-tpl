@@ -1,5 +1,7 @@
 <template>
-  <div class="card" :class="borderRadius ?  `is-${borderRadius}-show`: `is-always-show`" @click="$emit('click')">
+  <div class="card"
+       :class="shadow ? 'is-' + shadow + '-shadow' : 'is-always-shadow'"
+       @click="$emit('click', $event)">
     <div class="card__header" v-if="$slots.header || header">
       <slot name="header">{{ header }}</slot>
     </div>
@@ -7,10 +9,10 @@
       <slot></slot>
     </div>
     <div class="card__extra" :style="extraStyle" v-if="$slots.extra || extra">
-      <slot name="extra"></slot>
+      <slot name="extra">{{ extra }}</slot>
     </div>
     <div class="card__footer" v-if="$slots.footer || footer">
-      <slot name="footer"></slot>
+      <slot name="footer">{{ footer }}</slot>
     </div>
   </div>
 </template>
@@ -24,16 +26,15 @@
       extraStyle: {},
       extra: {},
       footer: {},
-      borderRadius: String
+      shadow: {
+        type: String
+      }
     }
   }
 </script>
 
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
-  @import '~@/assets/less/1px.less';
-
   .card {
     position: relative;
     font-size: 12px;
@@ -64,7 +65,6 @@
 
   .card__header {
     padding: 11px 16px;
-    .vux-1px-b();
     box-sizing: border-box;
   }
 

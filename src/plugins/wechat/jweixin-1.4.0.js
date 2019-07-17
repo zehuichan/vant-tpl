@@ -503,6 +503,4 @@ let wx
   }
 });
 
-export {
-  wx
-}
+export default wx

@@ -1,7 +1,7 @@
-const wx = require('./jweixin-1.4.0').wx
+import wx from './jweixin-1.4.0'
 
 const plugin = {
-  install (Vue) {
+  install(Vue) {
     Vue.prototype.$wechat = wx
     Vue.wechat = wx
   },

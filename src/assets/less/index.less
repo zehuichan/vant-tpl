@@ -149,15 +149,21 @@ div:focus {
 
 .btn-wrapper {
   width: 100%;
+  background-color: #fff;
 
   &.fixed-bottom {
     position: fixed;
     left: 0;
     bottom: 0;
+    z-index: 1;
   }
 
   &.padded {
     padding: 16px;
+  }
+
+  &.padded-mini {
+    padding: 8px 16px;
   }
 
   &.tool-bar {

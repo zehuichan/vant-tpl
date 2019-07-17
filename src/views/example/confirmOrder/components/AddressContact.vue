@@ -53,7 +53,7 @@
       position: relative;
       display: flex;
       width: 100%;
-      padding: 15px;
+      padding: 16px;
       font-size: 14px;
       background-color: #fff;
 
@@ -90,6 +90,8 @@
         color: #7f7f8e;
         line-height: 20px;
         margin-top: 8px;
+        font-size: 12px;
+        font-weight: 500;
       }
     }
   }
