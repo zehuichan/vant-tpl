@@ -9,10 +9,14 @@ const Home = () => import('@/views/home')
 const Message = () => import('@/views/message')
 const Me = () => import('@/views/me')
 
-// 业务组件
-const MyAddress = () => import('@/views/example/myAddress')
-const ChosenAddress = () => import('@/views/example/chosenAddress')
-const ConfirmOrder = () => import('@/views/example/confirmOrder')
+// 业务组件-地址
+const MyAddress = () => import('@/views/addressExample/myAddress')
+const ChosenAddress = () => import('@/views/addressExample/chosenAddress')
+const ConfirmOrder = () => import('@/views/addressExample/confirmOrder')
+
+// 业务组件-卡券
+const MyCoupon = () => import('@/views/couponExample/myCoupon')
+
 
 Vue.use(Router)
 
@@ -93,6 +97,20 @@ export const routes = [
       }
     ]
   },
+  {
+    path: '/myCoupon',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: MyCoupon,
+        name: 'myCoupon',
+        meta: {title: '卡券管理'}
+      }
+    ]
+  },
+
+
   {path: '*', redirect: '/404'}
 ]
 

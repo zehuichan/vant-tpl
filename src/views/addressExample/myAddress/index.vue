@@ -68,6 +68,7 @@
     created() {
       this.SetTabBarState(false)
 
+      this.$toast.loading('加载中...')
       if (this.address_list.length === 0) {
         this.GetAddressList()
       }

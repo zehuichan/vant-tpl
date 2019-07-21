@@ -8,7 +8,7 @@
     </van-cell-group>
     <h3 class="demo-title">业务组件-卡券</h3>
     <van-cell-group>
-      <van-cell title="卡券管理" is-link to="/myAddress"/>
+      <van-cell title="卡券管理" is-link to="/myCoupon"/>
       <van-cell title="选择卡券" is-link to="/chosenAddress"/>
       <van-cell title="确认订单" is-link to="/confirmOrder"/>
     </van-cell-group>
