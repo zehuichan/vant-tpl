@@ -11,6 +11,8 @@ router.beforeEach(async (to, from, next) => {
     store.dispatch('GetUserInfo').then(()=>{
       store.dispatch('GetAddressList')
       next()
+    }).catch(() => {
+      next('/500')
     })
   }
 })

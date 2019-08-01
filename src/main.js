@@ -1,12 +1,8 @@
 import Vue from 'vue'
 
-// iconfont
-import '@/assets/fonts/iconfont'
-
 // A modern alternative to CSS resets
 import 'normalize.css/normalize.css'
 
-import 'vant/lib/index.css';
 import '@/assets/less/index.less'
 
 import App from './App.vue'
