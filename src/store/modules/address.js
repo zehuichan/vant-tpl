@@ -40,9 +40,6 @@ const address = {
     },
     SET_CHOSEN_ADDRESS(state, address) {
       state.chosen_address = address
-    },
-    SET_DEFAULT_ADDRESS(state, address) {
-      state.default_address = address
     }
   },
   actions: {

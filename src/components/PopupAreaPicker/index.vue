@@ -59,7 +59,7 @@
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'clear' : 'arrow'
+        return this.clearable && this.value.length ? 'clear' : 'arrow'
       },
       currentText() {
         const curr = Array.from(this.currentValue).map(v => v.name)

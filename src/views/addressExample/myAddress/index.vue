@@ -4,14 +4,14 @@
       left-text="管理收货地址"
       left-arrow
       @click-left="onClickLeft"
-      @click-right="onClickRight">
+      @click-right="handleAdd">
 
       <a slot="right">添加新地址</a>
     </van-nav-bar>
 
     <address-list v-model="chosenAddress"
                   :list="address_list"
-                  :disabled="true"
+                  disabled
                   @select="handleSelect"
                   @edit="handleEdit"
                   @delete="handleDelete"></address-list>
@@ -39,6 +39,7 @@
         show: false,
         address: null,
         list: [],
+        chosenAddress: null,
 
         redirect: undefined
       }
@@ -52,14 +53,6 @@
       }
     },
     computed: {
-      chosenAddress: {
-        get() {
-          return this.default_address
-        },
-        set(val) {
-          console.log(val)
-        }
-      },
       ...mapGetters([
         'address_list',
         'default_address'
@@ -68,8 +61,8 @@
     created() {
       this.SetTabBarState(false)
 
-      this.$toast.loading('加载中...')
-      if (this.address_list.length === 0) {
+      if (!this.address_list.length) {
+        this.$toast.loading('加载中...')
         this.GetAddressList()
       }
     },
@@ -77,15 +70,16 @@
       onClickLeft() {
         this.$router.push({path: this.redirect || '/me'})
       },
-      onClickRight() {
-        this.chosenAddress = null
-        this.show = true
-      },
       handleUpdate() {
         this.getList()
       },
       handleSelect(address) {
         console.log('handleSelect', address)
+      },
+      handleAdd() {
+        console.log('handleAdd', this.address)
+        this.address = null
+        this.show = true
       },
       handleEdit(address, index) {
         console.log('handleEdit', address, index)
@@ -93,7 +87,7 @@
         this.show = true
       },
       handleDelete(address, index) {
-        console.log(address, index)
+        console.log('handleDelete', address, index)
         this.$dialog.confirm({
           message: '确定要删除该地址吗？'
         }).then(() => {

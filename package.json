@@ -1,6 +1,6 @@
 {
   "name": "vant-tpl",
-  "version": "2.0.8",
+  "version": "2.1.1",
   "description": "vant-tpl",
   "author": "Chan <jasonchenzehui@gmail.com>",
   "scripts": {
@@ -16,7 +16,7 @@
     "fastclick": "^1.0.6",
     "js-cookie": "^2.2.0",
     "normalize.css": "^8.0.1",
-    "vant": "^2.0.9",
+    "vant": "^2.1.1",
     "vue": "^2.6.10",
     "vue-count-to": "^1.0.13",
     "vue-i18n": "^8.12.0",

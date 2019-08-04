@@ -44,14 +44,10 @@
         showValue: false,
         dataForm: {
           id: '',
-          name: '陈泽辉',
-          phone: '15800000000',
-          area: [
-            {code: '110000', name: '北京市'},
-            {code: '110100', name: '北京市'},
-            {code: '110105', name: '朝阳区'}
-          ],
-          address: '阿斯顿撒大所大',
+          name: '',
+          phone: '',
+          area: [],
+          address: '',
         },
       }
     },
