@@ -17,6 +17,9 @@ const ConfirmOrder = () => import('@/views/addressExample/confirmOrder')
 // 业务组件-卡券
 const MyCoupon = () => import('@/views/couponExample/myCoupon')
 
+// 业务组件-公共
+const FePage = () => import('@/views/commonExample/fePage')
+
 
 Vue.use(Router)
 
@@ -106,6 +109,19 @@ export const routes = [
         component: MyCoupon,
         name: 'myCoupon',
         meta: {title: '卡券管理'}
+      }
+    ]
+  },
+
+  {
+    path: '/fePage',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: FePage,
+        name: 'fePage',
+        meta: {title: '前端分页'}
       }
     ]
   },

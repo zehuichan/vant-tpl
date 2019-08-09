@@ -12,6 +12,10 @@
       <van-cell title="选择卡券" is-link to="/chosenAddress"/>
       <van-cell title="确认订单" is-link to="/confirmOrder"/>
     </van-cell-group>
+    <h3 class="demo-title">业务组件-公共</h3>
+    <van-cell-group>
+      <van-cell title="前端分页" is-link to="/fePage"/>
+    </van-cell-group>
     <h3 class="demo-title">业务组件-国际化</h3>
     <van-cell-group>
       <van-cell title="Language">
