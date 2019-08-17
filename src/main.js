@@ -12,9 +12,16 @@ import store from './store'
 // internationalization
 import i18n from './lang'
 
-import fastclick from 'fastclick'
+import FastClick from 'fastclick'
 
-fastclick.attach(document.body)
+if ('addEventListener' in document && 'ontouchstart' in window) {
+  FastClick.prototype.focus = function (targetElement) {
+    targetElement.focus()
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    FastClick.attach(document.body)
+  }, false)
+}
 
 import {Toast, Dialog, Lazyload} from 'vant'
 

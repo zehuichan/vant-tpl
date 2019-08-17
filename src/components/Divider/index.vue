@@ -78,15 +78,12 @@
 
     &:before,
     &:after {
-
       content: '';
       display: table-cell;
       position: relative;
       top: 50%;
       width: 50%;
       border-top: 1px solid #969799;
-      -webkit-transform: translateY(50%);
-      -ms-transform: translateY(50%);
       transform: translateY(50%);
     }
   }
