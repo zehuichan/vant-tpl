@@ -7,7 +7,7 @@ const http = axios.create({
   timeout: 50 * 1000 // request timeout
 })
 
-//在main.js设置全局的请求次数，请求的间隙
+// 在main.js设置全局的请求次数，请求的间隙
 http.defaults.retry = 4
 http.defaults.retryDelay = 1000
 
