@@ -1,8 +1,5 @@
 import Vue from 'vue'
 
-// A modern alternative to CSS resets
-import 'normalize.css/normalize.css'
-
 import '@/assets/less/index.less'
 
 import App from './App.vue'
