@@ -12,7 +12,6 @@
     <address-list v-model="chosenAddress"
                   :list="address_list"
                   disabled
-                  @select="handleSelect"
                   @edit="handleEdit"
                   @delete="handleDelete"></address-list>
 
@@ -72,9 +71,6 @@
       },
       handleUpdate() {
         this.getList()
-      },
-      handleSelect(address) {
-        console.log('handleSelect', address)
       },
       handleAdd() {
         console.log('handleAdd', this.address)

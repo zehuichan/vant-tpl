@@ -70,6 +70,7 @@
       },
       getResult: debounce(function () {
         const self = this
+        self.result = []
         this.$amap().then((AMap) => {
           AMap.plugin(['AMap.Autocomplete'], function () {
             const autoComplete = new AMap.Autocomplete({
