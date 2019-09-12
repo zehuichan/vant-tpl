@@ -7,7 +7,14 @@
       <popup-picker v-model="bbb" label="奥师多123" :columns="columns2" clearable placeholder="请选择" @change="onChange2"/>
       <popup-datetime-picker v-model="time" label="日期" clearable placeholder="请选择" @change="onChange3"/>
       <popup-area-picker v-model="ccc" label="城市" placeholder="请选择" separator="-" @change="onChange4"/>
+      <popup-map-address-picker v-model="ddd"></popup-map-address-picker>
     </van-cell-group>
+    <h3 class="demo-title">测试</h3>
+    <div class="demo-block">
+      <code>
+        {{ddd}}
+      </code>
+    </div>
   </div>
 </template>
 
@@ -16,6 +23,7 @@
   import PopupPicker from '@/components/PopupPicker'
   import PopupAreaPicker from '@/components/PopupAreaPicker'
   import PopupDatetimePicker from '@/components/PopupDatetimePicker'
+  import PopupMapAddressPicker from '@/components/PopupMapAddressPicker'
 
   export default {
     name: 'home',
@@ -42,6 +50,7 @@
           {code: '110100', name: '北京市'},
           {code: '110105', name: '朝阳区'}
         ],
+        ddd: {},
 
         time: '2019-06-02'
       }
@@ -72,6 +81,7 @@
       PopupPicker,
       PopupAreaPicker,
       PopupDatetimePicker,
+      PopupMapAddressPicker,
     }
   }
 </script>

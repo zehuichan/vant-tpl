@@ -10,7 +10,7 @@
       @click-right-icon.stop="onClear">
     </van-field>
 
-    <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
+    <van-popup v-model="show" position="bottom" get-container="body" style="width: 100%;">
       <van-datetime-picker
         type="date"
         :value="currentDate"
@@ -36,7 +36,6 @@
       // DatetimePicker.props
       ...DatetimePicker.props,
 
-      show: Boolean,
       value: [Array, String, Object],
       placeholder: String,
       clearable: Boolean,
@@ -47,10 +46,7 @@
       },
       currentValue(val) {
         this.$emit('input', val)
-      },
-      show(val) {
-        this.showValue = val
-      },
+      }
     },
     computed: {
       showIcon() {
@@ -59,14 +55,9 @@
     },
     data() {
       return {
-        showValue: false,
+        show: false,
         currentValue: this.value,
         currentDate: new Date()
-      }
-    },
-    created() {
-      if (typeof this.show !== 'undefined') {
-        this.showValue = this.show
       }
     },
     methods: {
@@ -78,17 +69,17 @@
         this.currentDate = new Date()
       },
       onCancel() {
-        this.showValue = false
+        this.show = false
         this.currentValue = this.value
       },
       onConfirm(value) {
-        this.showValue = false
+        this.show = false
         this.currentValue = parseTime(value, '{y}-{m}-{d}')
 
         this.$emit('change', parseTime(value, '{y}-{m}-{d}'))
       },
       onClick() {
-        this.showValue = true
+        this.show = true
         if (this.currentValue) {
           this.currentDate = new Date(this.currentValue)
         }

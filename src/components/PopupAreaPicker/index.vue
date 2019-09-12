@@ -10,7 +10,7 @@
       @click-right-icon.stop="onClear">
     </van-field>
 
-    <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
+    <van-popup v-model="show" position="bottom" get-container="body" style="width: 100%;">
       <van-area
         ref="area"
         :area-list="area"
@@ -36,7 +36,6 @@
       // Picker.props
       ...Area.props,
 
-      show: Boolean,
       value: [String, Number, Object, Array],
       placeholder: String,
       disabled: Boolean,
@@ -52,10 +51,7 @@
       },
       currentValue(val) {
         this.$emit('input', val)
-      },
-      show(val) {
-        this.showValue = val
-      },
+      }
     },
     computed: {
       showIcon() {
@@ -75,13 +71,8 @@
     data() {
       return {
         area,
-        showValue: false,
+        show: false,
         currentValue: this.value
-      }
-    },
-    created() {
-      if (typeof this.show !== 'undefined' && this.disabled) {
-        this.showValue = this.show
       }
     },
     methods: {
@@ -92,17 +83,17 @@
         this.currentValue = ''
       },
       onCancel() {
-        this.showValue = false
+        this.show = false
         this.currentValue = this.value
       },
       onConfirm(value, index) {
-        this.showValue = false
+        this.show = false
         this.currentValue = value
 
         this.$emit('change', value)
       },
       onClick() {
-        this.showValue = true
+        this.show = true
         this.$nextTick(() => {
           this.$area.reset(this.currentCode && this.currentCode.code)
         })

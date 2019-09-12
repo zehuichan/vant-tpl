@@ -10,7 +10,7 @@
       @click-right-icon.stop="onClear">
     </van-field>
 
-    <van-popup v-model="showValue" position="bottom" get-container="body" style="width: 100%;">
+    <van-popup v-model="show" position="bottom" get-container="body" style="width: 100%;">
       <van-picker
         ref="picker"
         show-toolbar
@@ -36,7 +36,6 @@
       ...Picker.props,
 
       columns: Array,
-      show: Boolean,
       value: [String, Number, Object, Array],
       placeholder: String,
       disabled: Boolean,
@@ -48,9 +47,6 @@
       },
       currentValue(val) {
         this.$emit('input', val)
-      },
-      show(val) {
-        this.showValue = val
       }
     },
     computed: {
@@ -76,13 +72,8 @@
     },
     data() {
       return {
-        showValue: false,
+        show: false,
         currentValue: this.value
-      }
-    },
-    created() {
-      if (typeof this.show !== 'undefined' && this.disabled) {
-        this.showValue = this.show
       }
     },
     methods: {
@@ -93,16 +84,16 @@
         this.currentValue = ''
       },
       onCancel() {
-        this.showValue = false
+        this.show = false
       },
       onConfirm(value, index) {
-        this.showValue = false
+        this.show = false
         this.currentValue = value.value
 
         this.$emit('change', value.value)
       },
       onClick() {
-        this.showValue = true
+        this.show = true
         this.$nextTick(() => {
           this.$picker.setIndexes([this.currentIndex])
         })
