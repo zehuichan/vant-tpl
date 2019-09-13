@@ -81,6 +81,8 @@
     },
     methods: {
       onClick() {
+        this.keyword = ''
+        this.result = []
         this.show = true
       },
       handleClear() {
