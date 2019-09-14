@@ -19,6 +19,7 @@ const MyCoupon = () => import('@/views/couponExample/myCoupon')
 
 // 业务组件-公共
 const FePage = () => import('@/views/commonExample/fePage')
+const Base64Demo = () => import('@/views/commonExample/base64Demo')
 
 
 Vue.use(Router)
@@ -122,6 +123,18 @@ export const routes = [
         component: FePage,
         name: 'fePage',
         meta: {title: '前端分页'}
+      }
+    ]
+  },
+  {
+    path: '/toBase64',
+    component: Layout,
+    children: [
+      {
+        path: '',
+        component: Base64Demo,
+        name: 'base64Demo',
+        meta: {title: '图片转base64'}
       }
     ]
   },

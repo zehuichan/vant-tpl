@@ -241,3 +241,19 @@ export function loadFromLocal(key) {
   const ret = window.localStorage.getItem(key)
   return JSON.parse(ret)
 }
+
+export function readFile(file, resultType = 'dataUrl') {
+  return new Promise(resolve => {
+    const reader = new FileReader()
+
+    reader.onload = event => {
+      resolve(event.target.result)
+    }
+
+    if (resultType === 'dataUrl') {
+      reader.readAsDataURL(file)
+    } else if (resultType === 'text') {
+      reader.readAsText(file)
+    }
+  })
+}
