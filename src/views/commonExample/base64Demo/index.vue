@@ -11,7 +11,7 @@
     <div class="page-container padded">
       <div class="uploader" v-if="!content">
         <i class="van-icon van-icon-plus van-uploader__upload-icon"></i>
-        <input type="file" accept="image/*" class="van-uploader__input" @change="onChange">
+        <input type="file" accept="image/*" multiple class="van-uploader__input" @change="onChange">
       </div>
       <div class="upload-preview" v-else>
         <van-image class="upload-preview__image" fit="cover" :src="content"/>

@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import Vue from 'vue'
 
 import '@/assets/less/index.less'
