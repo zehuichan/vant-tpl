@@ -9,20 +9,16 @@
     <div class="block"></div>
 
     <div class="page-container padded">
-      <div class="uploader" v-if="!content">
-        <i class="van-icon van-icon-plus van-uploader__upload-icon"></i>
-        <input type="file" accept="image/*" multiple class="van-uploader__input" @change="onChange">
+      <div class="uploader-wrapper">
+        <div class="upload-preview" v-for="(item, index) in fileList">
+          <van-image class="upload-preview__image" fit="cover" :src="item.content || item.url"/>
+          <i class="van-icon van-icon-delete van-uploader__delete" @click="onDelete(item, index)"></i>
+        </div>
+        <div class="uploader">
+          <i class="van-icon van-icon-plus van-uploader__upload-icon"></i>
+          <input type="file" accept="image/*" multiple class="van-uploader__input" @change="onChange">
+        </div>
       </div>
-      <div class="upload-preview" v-else>
-        <van-image class="upload-preview__image" fit="cover" :src="content"/>
-        <i class="van-icon van-icon-delete van-uploader__delete" @click="onDelete"></i>
-      </div>
-    </div>
-
-    <div class="demo-block">
-      <code>
-        {{content}}
-      </code>
     </div>
   </div>
 </template>
@@ -43,7 +39,7 @@
     },
     data() {
       return {
-        content: ''
+        fileList: []
       }
     },
     created() {
@@ -53,17 +49,36 @@
       onClickLeft() {
         this.$router.push({path: this.redirect || '/me'})
       },
+      readFile(files) {
+        if (Array.isArray(files)) {
+          Promise.all(files.map(file => readFile(file))).then(contents => {
+            const fileList = files.map((file, index) => ({
+              file,
+              content: contents[index]
+            }))
+
+            this.fileList = [...fileList]
+          })
+        } else {
+          readFile(files).then(content => {
+            const fileList = {
+              file: files,
+              content
+            }
+
+            this.fileList = [...fileList]
+          })
+        }
+      },
       onChange(event) {
         let {files} = event.target
 
         files = files.length === 1 ? files[0] : [].slice.call(files)
 
-        readFile(files).then(content => {
-          this.content = content
-        })
+        this.readFile(files)
       },
-      onDelete(){
-        this.content = ''
+      onDelete(file, index) {
+        this.fileList.splice(index, 1)
       },
       ...mapActions([
         'SetTabBarState'
@@ -74,6 +89,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less" scoped>
+  .uploader-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
   .uploader {
     position: relative;
     display: flex;
@@ -81,8 +101,8 @@
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    width: 100%;
-    height: 140px;
+    width: 80px;
+    height: 80px;
     background-color: #fff;
     border: 1px dashed #e5e5e5;
 
@@ -105,12 +125,16 @@
 
   .upload-preview {
     position: relative;
+    width: 80px;
+    height: 80px;
+    margin-right: 8px;
+
 
     .upload-preview__image {
       display: block;
       box-sizing: border-box;
       width: 100%;
-      height: 140px;
+      height: 100%;
     }
 
     .van-uploader__delete {
