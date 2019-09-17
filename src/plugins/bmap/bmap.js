@@ -1,10 +1,10 @@
-// const url = `//webapi.amap.com/maps?v=1.4.13&key=您申请的key值&callback=initAMap`
-const url = `//webapi.amap.com/maps?v=1.4.13&key=71f33b048d691bdc407961696a276b24&callback=initAMap`
+// const url = `//api.map.baidu.com/api?v=2.0&ak=您的密钥&callback=init`
+const url = `//api.map.baidu.com/api?v=2.0&ak=RUjYZ87U0gdVwNh0fAsMfscWbTVhkww9&callback=init`
 
-export default function amap() {
+export default function bmap() {
   return new Promise((resolve, reject) => {
-    if (window.AMap) {
-      resolve(window.AMap)
+    if (window.BMap) {
+      resolve(window.BMap)
     } else {
       const script = document.createElement('script')
       script.type = 'text/javascript'
@@ -14,7 +14,7 @@ export default function amap() {
       document.head.appendChild(script)
     }
     window.initAMap = () => {
-      resolve(window.AMap)
+      resolve(window.BMap)
     }
   })
 }

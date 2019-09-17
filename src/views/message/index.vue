@@ -52,6 +52,13 @@
     },
     created() {
       this.getLocalCity()
+
+      this.$bmap().then((BMap) => {
+        const citySearch = new BMap.LocalCity()
+        citySearch.get((result) => {
+          console.log(result)
+        })
+      })
     },
     methods: {
       getLocalCity() {
@@ -93,6 +100,7 @@
         this.result = []
       },
       handleClick(val) {
+        this.$toast(val)
       },
     }
   }
