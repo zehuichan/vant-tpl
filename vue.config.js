@@ -9,10 +9,11 @@ const name = 'vue Vant Tpl' // page title
 const port = 9527 // dev port
 
 module.exports = {
-  publicPath: '/',
+  publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
   outputDir: 'dist',
   assetsDir: 'static',
   lintOnSave: process.env.NODE_ENV === 'development' ? 'error' : false,
+  filenameHashing: true,
   productionSourceMap: false,
   devServer: {
     port: port,
