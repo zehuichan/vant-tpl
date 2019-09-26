@@ -19,7 +19,7 @@
 </template>
 
 <script>
-  import {Field, CellGroup} from 'vant'
+  import {Field, CellGroup, Button} from 'vant'
   import PopupPicker from '@/components/PopupPicker'
   import PopupAreaPicker from '@/components/PopupAreaPicker'
   import PopupDatetimePicker from '@/components/PopupDatetimePicker'
@@ -81,7 +81,7 @@
       PopupPicker,
       PopupAreaPicker,
       PopupDatetimePicker,
-      PopupMapAddressPicker,
+      PopupMapAddressPicker
     }
   }
 </script>

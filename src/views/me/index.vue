@@ -16,13 +16,18 @@
     <van-cell-group>
       <van-cell title="前端分页" is-link to="/fePage"/>
       <van-cell title="图片转base64" is-link to="/toBase64"/>
+      <van-cell title="ajax-bar">
+        <van-button type="primary" size="mini" @click="trigger">Trigger</van-button>
+      </van-cell>
     </van-cell-group>
     <h3 class="demo-title">业务组件-国际化</h3>
     <van-cell-group>
       <van-cell title="Language">
-        <lang-selector></lang-selector>
+        <lang-selector/>
       </van-cell>
     </van-cell-group>
+
+    <ajax-bar ref="bar" skip-hijack/>
   </div>
 </template>
 
@@ -30,9 +35,10 @@
   // vuex
   import {mapActions} from 'vuex'
   // components
-  import {Cell, CellGroup} from 'vant'
+  import {Cell, CellGroup, Button} from 'vant'
   import LangSelector from '@/components/LangSelector'
   import Split from '@/components/Split'
+  import AjaxBar from '@/components/AjaxBar'
 
   export default {
     name: 'me',
@@ -40,6 +46,15 @@
       this.SetTabBarState(true)
     },
     methods: {
+      trigger() {
+        const bar = this.$refs.bar
+        bar.start()
+        setTimeout(() => {
+          if (this.$refs.bar) {
+            this.$refs.bar.stop()
+          }
+        }, Math.random() * 3000 + 1000)
+      },
       ...mapActions([
         'SetTabBarState'
       ])
@@ -47,8 +62,10 @@
     components: {
       [Cell.name]: Cell,
       [CellGroup.name]: CellGroup,
+      [Button.name]: Button,
       LangSelector,
-      Split
+      Split,
+      AjaxBar,
     }
   }
 </script>

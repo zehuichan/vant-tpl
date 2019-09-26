@@ -24,7 +24,7 @@
           placeholder="请输入搜索关键词"
           :label="city.city || '加载中'"
           @clear="handleClear"/>
-        <div class="cell-group-title">搜索结果</div>
+        <div class= "cell-group-title">搜索结果</div>
       </div>
       <div class="AMap-box__content">
         <van-cell-group>
