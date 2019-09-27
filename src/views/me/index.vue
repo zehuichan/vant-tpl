@@ -53,7 +53,7 @@
           if (this.$refs.bar) {
             this.$refs.bar.stop()
           }
-        }, Math.random() * 3000 + 1000)
+        }, Math.random() * 30000 + 1000)
       },
       ...mapActions([
         'SetTabBarState'
