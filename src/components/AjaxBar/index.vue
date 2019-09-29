@@ -1,5 +1,5 @@
 <template>
-  <div class="ajax-loading-bar" :class="classes" :style="style"></div>
+  <div ref="bar" class="ajax-loading-bar" :class="classes" :style="style"></div>
 </template>
 
 <script>
