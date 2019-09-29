@@ -47,15 +47,13 @@
     },
     methods: {
       trigger() {
-        // const bar = this.$refs.bar
-        // bar.start()
-        // setTimeout(() => {
-        //   if (this.$refs.bar) {
-        //     this.$refs.bar.stop()
-        //   }
-        // }, Math.random() * 3000 + 1000)
-
-        this.$ajaxloadingbar.start()
+        const bar = this.$refs.bar
+        bar.start()
+        setTimeout(() => {
+          if (this.$refs.bar) {
+            this.$refs.bar.stop()
+          }
+        }, Math.random() * 3000 + 1000)
       },
       ...mapActions([
         'SetTabBarState'

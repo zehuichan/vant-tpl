@@ -35,13 +35,10 @@ import WechatPlugin from '@/plugins/wechat/index'
 import AmapPlugin from '@/plugins/amap/index'
 // 百度地图API
 import BmapPlugin from '@/plugins/bmap/index'
-// ajaxloadingbar
-import AjaxLoadingBar from '@/plugins/ajaxloadingbar/index'
 
 Vue.use(WechatPlugin)
 Vue.use(AmapPlugin)
 Vue.use(BmapPlugin)
-Vue.use(AjaxLoadingBar)
 
 import * as filters from './filters'
 

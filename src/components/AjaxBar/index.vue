@@ -181,6 +181,10 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
   .ajax-loading-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
     width: 100%;
     transition: transform .5s cubic-bezier(0, 0, .2, 1), opacity .5s;
 
