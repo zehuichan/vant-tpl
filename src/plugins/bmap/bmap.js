@@ -7,13 +7,13 @@ export default function bmap() {
       resolve(window.BMap)
     } else {
       const script = document.createElement('script')
-      script.type = 'text/javascript'
+      script.charset = 'utf-8'
       script.async = true
       script.src = url
       script.onerror = reject
       document.head.appendChild(script)
     }
-    window.initAMap = () => {
+    window.init = () => {
       resolve(window.BMap)
     }
   })

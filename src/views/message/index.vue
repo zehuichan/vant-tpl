@@ -51,17 +51,20 @@
       keyword: 'getResult'
     },
     created() {
-      this.getLocalCity()
-
-      this.$bmap().then((BMap) => {
-        const citySearch = new BMap.LocalCity()
-        citySearch.get((result) => {
-          console.log(result)
-        })
-      })
+      this.getAmapLocalCity()
+      this.getBmapLocalCity()
     },
     methods: {
-      getLocalCity() {
+      getBmapLocalCity() {
+        const self = this
+        this.$bmap().then((BMap) => {
+          const citySearch = new BMap.LocalCity()
+          citySearch.get((result) => {
+            console.log(result)
+          })
+        })
+      },
+      getAmapLocalCity() {
         const self = this
         this.$amap().then((AMap) => {
           AMap.plugin(['AMap.CitySearch'], function () {
@@ -69,7 +72,7 @@
             citySearch.getLocalCity((status, result) => {
               if (status === 'complete' && result.info === 'OK') {
                 // 查询成功，result即为当前所在城市信息
-                self.city = result
+                console.log(result)
               }
             })
           })
