@@ -225,11 +225,11 @@ export function toggleClass(element, className) {
 }
 
 export function getData(el, name, val) {
-  const prefix = 'data-';
+  const prefix = 'data-'
   if (val) {
     return el.setAttribute(prefix + name, val)
   } else {
-    return el.getAttribute(prefix + name);
+    return el.getAttribute(prefix + name)
   }
 }
 
@@ -243,12 +243,11 @@ export function loadFromLocal(key) {
 }
 
 export function readFile(file, resultType = 'dataUrl') {
-  return new Promise(resolve => {
+  return new Promise((resolve, reject) => {
     const reader = new FileReader()
 
-    reader.onload = event => {
-      resolve(event.target.result)
-    }
+    reader.onload = () => resolve(reader.result)
+    reader.onerror = error => reject(error)
 
     if (resultType === 'dataUrl') {
       reader.readAsDataURL(file)
