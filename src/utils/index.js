@@ -242,11 +242,11 @@ export function loadFromLocal(key) {
   return JSON.parse(ret)
 }
 
-export function readFile(file, resultType = 'dataUrl') {
+export function getBase64(file, resultType = 'dataUrl') {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
 
-    reader.onload = () => resolve(reader.result)
+    reader.onload = (e) => resolve(e.target.result)
     reader.onerror = error => reject(error)
 
     if (resultType === 'dataUrl') {

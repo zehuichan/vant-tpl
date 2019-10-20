@@ -12,11 +12,11 @@
       <div class="uploader-wrapper">
         <div class="upload-preview" v-for="(item, index) in fileList">
           <van-image class="upload-preview__image" fit="cover" :src="item.content || item.url"/>
-          <i class="van-icon van-icon-delete van-uploader__delete" @click="onDelete(item, index)"></i>
+          <i class="van-icon van-icon-clear van-uploader__delete" @click="onDelete(item, index)"></i>
         </div>
         <div class="uploader">
           <i class="van-icon van-icon-plus van-uploader__upload-icon"></i>
-          <input type="file" accept="image/*" multiple class="van-uploader__input" @change="onChange">
+          <input type="file" accept="image/*" multiple class="van-uploader__input" ref="input" @change="onChange">
         </div>
       </div>
     </div>
@@ -27,7 +27,7 @@
   // vuex
   import {mapActions} from 'vuex'
   // utils
-  import {readFile} from '@/utils'
+  import {getBase64} from '@/utils'
   // components
   import {NavBar, Image} from 'vant'
 
@@ -49,36 +49,38 @@
       onClickLeft() {
         this.$router.push({path: this.redirect || '/me'})
       },
-      readFile(files) {
+      async readFile(files) {
         if (Array.isArray(files)) {
-          Promise.all(files.map(file => readFile(file))).then(contents => {
-            const fileList = files.map((file, index) => ({
-              file,
-              content: contents[index]
-            }))
-
-            this.fileList = [...fileList]
-          })
-        } else {
-          readFile(files).then(content => {
-            const fileList = {
-              file: files,
-              content
+          const contents = await Promise.all(files.map(file => getBase64(file)))
+          const fileList = files.map((file, index) => {
+            const result = {file}
+            if (contents[index]) {
+              result.content = contents[index]
             }
-
-            this.fileList = [...fileList]
+            return result
           })
+          this.fileList = [...fileList]
+        } else {
+          const content = await getBase64(files)
+          const result = {file: files}
+          if (content) {
+            result.content = content
+          }
+          this.fileList = [result]
         }
       },
       onChange(event) {
         let {files} = event.target
-
         files = files.length === 1 ? files[0] : [].slice.call(files)
-
         this.readFile(files)
       },
       onDelete(file, index) {
         this.fileList.splice(index, 1)
+      },
+      resetInput() {
+        if (this.$refs.input) {
+          this.$refs.input.value = ''
+        }
       },
       ...mapActions([
         'SetTabBarState'
@@ -129,22 +131,23 @@
     height: 80px;
     margin-right: 8px;
 
-
     .upload-preview__image {
       display: block;
       box-sizing: border-box;
       width: 100%;
       height: 100%;
+      overflow: hidden;
+      border-radius: 4px;
     }
 
     .van-uploader__delete {
       position: absolute;
-      right: 0;
-      bottom: 0;
-      padding: 2px;
-      color: #fff;
-      background-color: rgba(0, 0, 0, 0.45);
-      font-size: 16px;
+      top: -8px;
+      right: -8px;
+      color: #969799;
+      font-size: 18px;
+      background-color: #fff;
+      border-radius: 100%;
     }
   }
 </style>
