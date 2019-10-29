@@ -7,8 +7,6 @@ export default function bmap() {
       resolve(window.BMap)
     } else {
       const script = document.createElement('script')
-      script.charset = 'utf-8'
-      script.async = true
       script.src = url
       script.onerror = reject
       document.head.appendChild(script)

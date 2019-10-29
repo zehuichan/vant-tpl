@@ -35,10 +35,13 @@ import WechatPlugin from '@/plugins/wechat/index'
 import AmapPlugin from '@/plugins/amap/index'
 // 百度地图API
 import BmapPlugin from '@/plugins/bmap/index'
+// 腾讯地图API
+import QmapPlugin from '@/plugins/qmap/index'
 
 Vue.use(WechatPlugin)
 Vue.use(AmapPlugin)
 Vue.use(BmapPlugin)
+Vue.use(QmapPlugin)
 
 import * as filters from './filters'
 

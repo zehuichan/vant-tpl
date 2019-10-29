@@ -53,8 +53,18 @@
     created() {
       this.getAmapLocalCity()
       this.getBmapLocalCity()
+      this.getQmapLocalCity()
     },
     methods: {
+      getQmapLocalCity() {
+        const self = this
+        this.$qmap().then((qq) => {
+          const cityService = new qq.maps.CityService()
+          cityService.complete((result) => {
+            console.log(result)
+          })
+        })
+      },
       getBmapLocalCity() {
         const self = this
         this.$bmap().then((BMap) => {
