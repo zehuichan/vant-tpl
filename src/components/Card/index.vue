@@ -1,6 +1,6 @@
 <template>
   <div class="card"
-       :class="shadow ? 'is-' + shadow + '-shadow' : 'is-always-shadow'"
+       :class="shadow ? 'is-' + shadow + '-show' : 'is-always-show'"
        @click="$emit('click', $event)">
     <div class="card__header" v-if="$slots.header || header">
       <slot name="header">{{ header }}</slot>
@@ -51,7 +51,9 @@
     }
 
     &.is-never-show {
+      border: 0;
       border-radius: 0;
+      box-shadow: none;
     }
 
     & + .card {

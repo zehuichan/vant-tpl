@@ -9,6 +9,9 @@
 
     <address-contact :data="chosen_address || default_address"></address-contact>
     <split></split>
+    <x-card shadow="never">
+      <img class="thumb" v-lazy="'https://img.yzcdn.cn/vant/cat.jpeg'" alt=""/>
+    </x-card>
     <van-cell title="顺丰速运" value="+￥18.00" :border="false"/>
     <split></split>
     <div class="desc">
@@ -26,7 +29,7 @@
         <span class="price">977.00</span>
       </div>
       <div class="fr">
-        <van-button type="primary">提交订单</van-button>
+        <van-button type="primary" loading loading-type="spinner" loading-text="提交订单">提交订单</van-button>
       </div>
     </div>
 
@@ -43,9 +46,10 @@
   // vuex
   import {mapActions, mapGetters} from 'vuex'
   // components
-  import {NavBar, Button, Cell} from 'vant'
+  import {NavBar, Button, Cell, Image} from 'vant'
   import AddressContact from './components/AddressContact'
   import Split from '@/components/Split'
+  import XCard from '@/components/Card'
 
   export default {
     name: 'confirmOrder',
@@ -78,8 +82,10 @@
       [NavBar.name]: NavBar,
       [Button.name]: Button,
       [Cell.name]: Cell,
+      [Image.name]: Image,
       AddressContact,
       Split,
+      XCard,
     }
   }
 </script>
