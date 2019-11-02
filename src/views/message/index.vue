@@ -60,9 +60,7 @@
         const self = this
         this.$qmap().then((qq) => {
           const cityService = new qq.maps.CityService()
-          cityService.complete((result) => {
-            console.log(result)
-          })
+          console.log(cityService)
         })
       },
       getBmapLocalCity() {
@@ -83,6 +81,7 @@
               if (status === 'complete' && result.info === 'OK') {
                 // 查询成功，result即为当前所在城市信息
                 console.log(result)
+                self.city = result
               }
             })
           })
@@ -94,9 +93,9 @@
         this.$amap().then((AMap) => {
           AMap.plugin(['AMap.Autocomplete'], function () {
             const autoComplete = new AMap.Autocomplete({
-              city: self.city.city,
+              city: self.city.adcode,
               datatype: 'poi',
-              citylimit: true
+              citylimit: false
             })
             autoComplete.search(self.keyword, function (status, result) {
               // 搜索成功时，result即是对应的匹配数据
@@ -113,7 +112,7 @@
         this.result = []
       },
       handleClick(val) {
-        this.$toast(val)
+        this.$toast(JSON.stringify(val))
       },
     }
   }

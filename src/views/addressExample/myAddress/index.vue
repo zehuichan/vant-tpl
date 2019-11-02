@@ -4,18 +4,26 @@
       left-text="管理收货地址"
       left-arrow
       @click-left="onClickLeft"
-      @click-right="handleAdd">
+    >
 
-      <a slot="right">添加新地址</a>
+      <van-button type="primary" size="mini" slot="right" @click="handleAdd">添加新地址</van-button>
     </van-nav-bar>
 
-    <address-list v-model="chosenAddress"
-                  :list="address_list"
-                  disabled
-                  @edit="handleEdit"
-                  @delete="handleDelete"></address-list>
+    <address-list
+      :source="address_list"
+      :disabled="$route.meta.disabled"
+      :switchable="$route.meta.switchable"
+      @edit="handleEdit"
+      @select="handleSelect"
+      @delete="handleDelete"
+    />
 
-    <handle v-model="show" :data="address" @update="handleUpdate"></handle>
+    <handle
+      v-model="show"
+      :data="address"
+      @update="handleUpdate"
+      @delete="handleUpdate"
+    />
 
     <div class="demo-block" style="display: none;">
       <code>{{default_address}}</code>
@@ -27,7 +35,7 @@
   // vuex
   import {mapActions, mapGetters} from 'vuex'
   // components
-  import {NavBar} from 'vant'
+  import {NavBar, Button} from 'vant'
   import Handle from './components/Handle'
   import AddressList from '@/components/AddressList'
 
@@ -60,22 +68,24 @@
     created() {
       this.SetTabBarState(false)
 
-      if (!this.address_list.length) {
-        this.$toast.loading('加载中...')
-        this.GetAddressList()
-      }
+      this.$toast.loading('加载中...')
+      this.GetAddressList()
     },
     methods: {
       onClickLeft() {
         this.$router.push({path: this.redirect || '/me'})
       },
       handleUpdate() {
-        this.getList()
+        this.GetAddressList()
       },
       handleAdd() {
         console.log('handleAdd', this.address)
         this.address = null
         this.show = true
+      },
+      handleSelect(address) {
+        this.ChosenAddress(address)
+        this.$router.push({path: `/confirmOrder`})
       },
       handleEdit(address, index) {
         console.log('handleEdit', address, index)
@@ -94,11 +104,13 @@
       },
       ...mapActions([
         'SetTabBarState',
-        'GetAddressList'
+        'GetAddressList',
+        'ChosenAddress'
       ])
     },
     components: {
       [NavBar.name]: NavBar,
+      [Button.name]: Button,
       Handle,
       AddressList
     }

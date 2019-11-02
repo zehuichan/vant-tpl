@@ -63,7 +63,7 @@
         this.$emit('input', val)
       },
       show(val) {
-        val ? this.getLocalCity() : void (0)
+        val ? this.getLocalCity() : null
       },
       keyword: 'getResult'
     },

@@ -41,6 +41,6 @@ export function toThousandslsFilter(num) {
   return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
 
-export function accountingFilter(val) {
-  return `￥${val.toFixed(2)}`
+export function format(price, fixed = 2) {
+  return (price / 100).toFixed(fixed)
 }

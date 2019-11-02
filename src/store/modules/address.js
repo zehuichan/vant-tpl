@@ -46,6 +46,7 @@ const address = {
     // 获取地址列表
     GetAddressList({commit, state}) {
       return new Promise((resolve, reject) => {
+        Toast.loading('加载中...')
         setTimeout(() => {
           commit('SET_ADDRESS_LIST', list)
           Toast.clear()

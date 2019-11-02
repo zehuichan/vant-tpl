@@ -11,7 +11,6 @@ const Me = () => import('@/views/me')
 
 // 业务组件-地址
 const MyAddress = () => import('@/views/addressExample/myAddress')
-const ChosenAddress = () => import('@/views/addressExample/chosenAddress')
 const ConfirmOrder = () => import('@/views/addressExample/confirmOrder')
 
 // 业务组件-卡券
@@ -73,7 +72,7 @@ export const routes = [
         path: '',
         component: MyAddress,
         name: 'myAddress',
-        meta: {title: '收货地址管理'}
+        meta: {title: '收货地址管理', disabled: true, switchable: true}
       }
     ]
   },
@@ -83,9 +82,9 @@ export const routes = [
     children: [
       {
         path: '',
-        component: ChosenAddress,
+        component: MyAddress,
         name: 'chosenAddress',
-        meta: {title: '选择收货地址'}
+        meta: {title: '选择收货地址', disabled: false, switchable: true}
       }
     ]
   },

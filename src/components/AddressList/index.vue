@@ -1,12 +1,14 @@
 <template>
   <div class="address-list">
     <van-radio-group v-model="currentValue">
-      <item v-for="(item, index) in list"
-            :key="item.id"
-            :data="item"
-            @select="onSelect(item, index)"
-            @edit="onEdit(item, index)"
-            @delete="onDelete(item, index)"></item>
+      <item
+        v-for="(item, index) in source"
+        :key="item.id"
+        :data="item"
+        @select="onSelect(item, index)"
+        @edit="onEdit(item, index)"
+        @delete="onDelete(item, index)"
+      />
     </van-radio-group>
   </div>
 </template>
@@ -20,7 +22,7 @@
     name: 'address-list',
     props: {
       value: [String, Object, Array],
-      list: {
+      source: {
         type: Array,
         default() {
           return []

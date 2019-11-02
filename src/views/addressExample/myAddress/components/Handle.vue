@@ -33,6 +33,15 @@
   import {NavBar, Popup, Button, Field, CellGroup} from 'vant'
   import PopupAreaPicker from '@/components/PopupAreaPicker'
 
+  const defaultForm = {
+    id: null,
+    name: '',
+    phone: '',
+    area: [],
+    address: '',
+  }
+
+
   export default {
     name: 'handle',
     props: {
@@ -41,14 +50,8 @@
     },
     data() {
       return {
-        showValue: false,
-        dataForm: {
-          id: '',
-          name: '',
-          phone: '',
-          area: [],
-          address: '',
-        },
+        showValue: this.value,
+        dataForm: Object.assign({}, defaultForm),
       }
     },
     watch: {
@@ -57,12 +60,16 @@
       },
       showValue(val) {
         this.$emit('input', val)
-      },
+        this.init()
+      }
     },
     computed: {
       title() {
         return this.data ? '编辑收货地址' : '添加收货地址'
       },
+      isEdit() {
+        return this.data
+      }
     },
     created() {
       if (typeof this.value !== 'undefined') {
@@ -73,10 +80,24 @@
       onClickLeft() {
         this.showValue = false
       },
+      init() {
+        if (!this.data) {
+          this.dataForm = Object.assign({}, defaultForm)
+        } else {
+          this.dataForm.id = this.data.id
+          this.dataForm.name = this.data.name
+          this.dataForm.phone = this.data.phone
+          this.dataForm.area = JSON.parse(this.data.area)
+          this.dataForm.address = this.data.address
+        }
+      },
       onDelete() {
         this.showValue = false
       },
       onSave() {
+        if (!this.isEdit) {
+        }
+
         if (!this.dataForm.name) {
           this.$toast('请填写收货人姓名')
           return false
@@ -104,14 +125,18 @@
 
         console.log(this.data)
         console.log(this.dataForm)
+        this._emit('update')
+      },
+      _emit(event_name) {
         this.$toast({
-          message: '保存',
+          message: '操作成功',
+          duration: 1000,
           onClose: () => {
             this.showValue = false
-            this.$emit('update')
+            this.$emit(event_name)
           }
         })
-      },
+      }
     },
     components: {
       [NavBar.name]: NavBar,
