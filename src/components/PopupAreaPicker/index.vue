@@ -2,7 +2,7 @@
   <div class="popup-area-picker van-cell">
     <van-field
       v-bind="$props"
-      :value="currentText"
+      :value="text"
       :right-icon="showIcon"
       readonly
       clickable
@@ -10,7 +10,7 @@
       @click-right-icon.stop="onClear">
     </van-field>
 
-    <van-popup v-model="show" position="bottom" get-container="body" style="width: 100%;">
+    <van-popup v-model="show" position="bottom" get-container="body">
       <van-area
         ref="area"
         :area-list="area"
@@ -29,6 +29,10 @@
 
   export default {
     name: 'popup-area-picker',
+    model: {
+      prop: 'value',
+      event: 'input'
+    },
     props: {
       // Field.props
       ...Field.props,
@@ -45,24 +49,16 @@
         default: ' '
       }
     },
-    watch: {
-      value(val) {
-        this.currentValue = val
-      },
-      currentValue(val) {
-        this.$emit('input', val)
-      }
-    },
     computed: {
       showIcon() {
-        return this.clearable && this.value.length ? 'clear' : 'arrow'
+        return this.clearable && this.value.length ? 'close' : 'arrow'
       },
-      currentText() {
-        const curr = Array.from(this.currentValue).map(v => v.name)
+      text() {
+        const curr = Array.from(this.value).map(v => v.name)
         return curr.join(this.separator)
       },
-      currentCode() {
-        return Array.from(this.currentValue).pop()
+      code() {
+        return Array.from(this.value).pop()
       },
       $area() {
         return this.$refs.area
@@ -72,7 +68,6 @@
       return {
         area,
         show: false,
-        currentValue: this.value
       }
     },
     methods: {
@@ -80,22 +75,21 @@
         if (!this.clearable) {
           return false
         }
-        this.currentValue = ''
+        this.$emit('input', '')
       },
       onCancel() {
         this.show = false
-        this.currentValue = this.value
       },
       onConfirm(value, index) {
         this.show = false
-        this.currentValue = value
 
-        this.$emit('change', value)
+        this.$emit('input', value)
+        this.$emit('change', value, index)
       },
       onClick() {
         this.show = true
         this.$nextTick(() => {
-          this.$area.reset(this.currentCode && this.currentCode.code)
+          this.$area.reset(this.code && this.code.code)
         })
       }
     },

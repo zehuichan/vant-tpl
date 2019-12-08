@@ -2,7 +2,7 @@
   <div class="popup-datetimePicker van-cell">
     <van-field
       v-bind="$props"
-      v-model="currentValue"
+      :value="value"
       :right-icon="showIcon"
       readonly
       clickable
@@ -10,10 +10,10 @@
       @click-right-icon.stop="onClear">
     </van-field>
 
-    <van-popup v-model="show" position="bottom" get-container="body" style="width: 100%;">
+    <van-popup v-model="show" position="bottom" get-container="body">
       <van-datetime-picker
         type="date"
-        :value="currentDate"
+        :value="date"
         @confirm="onConfirm"
         @cancel="onCancel">
       </van-datetime-picker>
@@ -29,6 +29,10 @@
 
   export default {
     name: 'popup-datetimePicker',
+    model: {
+      prop: 'value',
+      event: 'input'
+    },
     props: {
       // Field.props
       ...Field.props,
@@ -40,24 +44,15 @@
       placeholder: String,
       clearable: Boolean,
     },
-    watch: {
-      value(val) {
-        this.currentValue = val
-      },
-      currentValue(val) {
-        this.$emit('input', val)
-      }
-    },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'clear' : 'clock'
+        return this.clearable && this.value ? 'close' : 'clock-o'
       },
     },
     data() {
       return {
         show: false,
-        currentValue: this.value,
-        currentDate: new Date()
+        date: new Date()
       }
     },
     methods: {
@@ -65,23 +60,22 @@
         if (!this.clearable) {
           return false
         }
-        this.currentValue = null
-        this.currentDate = new Date()
+
+        this.date = new Date()
+        this.$emit('input', '')
       },
       onCancel() {
         this.show = false
-        this.currentValue = this.value
       },
       onConfirm(value) {
         this.show = false
-        this.currentValue = parseTime(value, '{y}-{m}-{d}')
-
+        this.$emit('input', parseTime(value, '{y}-{m}-{d}'))
         this.$emit('change', parseTime(value, '{y}-{m}-{d}'))
       },
       onClick() {
         this.show = true
-        if (this.currentValue) {
-          this.currentDate = new Date(this.currentValue)
+        if (this.value) {
+          this.date = new Date(this.value)
         }
       },
     },

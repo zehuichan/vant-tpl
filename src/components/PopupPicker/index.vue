@@ -2,7 +2,7 @@
   <div class="popup-picker van-cell">
     <van-field
       v-bind="$props"
-      :value="currentText"
+      :value="text"
       :right-icon="showIcon"
       readonly
       clickable
@@ -10,7 +10,7 @@
       @click-right-icon.stop="onClear">
     </van-field>
 
-    <van-popup v-model="show" position="bottom" get-container="body" style="width: 100%;">
+    <van-popup v-model="show" position="bottom" get-container="body">
       <van-picker
         ref="picker"
         show-toolbar
@@ -28,6 +28,10 @@
 
   export default {
     name: 'popup-picker',
+    model: {
+      prop: 'value',
+      event: 'input'
+    },
     props: {
       // Field.props
       ...Field.props,
@@ -35,29 +39,24 @@
       // Picker.props
       ...Picker.props,
 
-      columns: Array,
+      columns: {
+        type: Array,
+        default: () => []
+      },
       value: [String, Number, Object, Array],
       placeholder: String,
       disabled: Boolean,
       clearable: Boolean,
     },
-    watch: {
-      value(val) {
-        this.currentValue = val
-      },
-      currentValue(val) {
-        this.$emit('input', val)
-      }
-    },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'clear' : 'arrow'
+        return this.clearable && this.value ? 'close' : 'arrow'
       },
-      currentText() {
-        const curr = Array.from(this.columns).find(v => v.value === this.currentValue) || ''
+      text() {
+        const curr = Array.from(this.columns).find(v => v.value === this.value) || ''
         return curr.text
       },
-      currentIndex() {
+      index() {
         for (let i = 0; i < this.columns.length; i++) {
           const v = this.columns[i]
           if (v.value === this.value) {
@@ -73,7 +72,6 @@
     data() {
       return {
         show: false,
-        currentValue: this.value
       }
     },
     methods: {
@@ -81,21 +79,22 @@
         if (!this.clearable) {
           return false
         }
-        this.currentValue = ''
+
+        this.$emit('input', '')
       },
       onCancel() {
         this.show = false
       },
       onConfirm(value, index) {
         this.show = false
-        this.currentValue = value.value
 
-        this.$emit('change', value.value)
+        this.$emit('input', value.value)
+        this.$emit('change', value.value, index)
       },
       onClick() {
         this.show = true
         this.$nextTick(() => {
-          this.$picker.setIndexes([this.currentIndex])
+          this.$picker.setIndexes([this.index])
         })
       }
     },
