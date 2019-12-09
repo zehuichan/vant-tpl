@@ -51,7 +51,7 @@
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value.length ? 'close' : 'arrow'
+        return this.clearable && this.value.length ? 'clear' : 'arrow'
       },
       text() {
         const curr = Array.from(this.value).map(v => v.name)
@@ -106,5 +106,9 @@
 <style lang="less" rel="stylesheet/less" type="text/less">
   .popup-area-picker.van-cell {
     padding: 0;
+
+    .van-field__right-icon {
+      color: #c8c9cc;
+    }
   }
 </style>

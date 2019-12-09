@@ -2,8 +2,8 @@
   <div class="popup-map-Address-picker van-cell">
     <van-cell is-link @click.stop="onClick">
       <div slot="title">收货地址</div>
-      <div v-if="Object.keys(currentValue).length > 0">
-        <div class="tit">{{currentValue && currentValue.name}}</div>
+      <div v-if="Object.keys(value).length > 0">
+        <div class="tit">{{value && value.name}}</div>
       </div>
       <div v-else>
         <i class="van-icon van-icon-location-o"></i>
@@ -11,20 +11,25 @@
       </div>
     </van-cell>
 
-    <van-popup v-model="show" position="right" get-container="body"
-               style="width: 100%;height: 100%;background: #f0f2f5;">
+    <van-popup
+      v-model="show"
+      position="right"
+      get-container="body"
+      style="width: 100%;height: 100%;background: #f0f2f5;"
+    >
       <div class="popup-map-Address-picker__haeder">
         <van-nav-bar
           left-text="选择收货地址"
           left-arrow
-          @click-left="show = false">
-        </van-nav-bar>
+          @click-left="show = false"
+        />
         <van-search
           v-model="keyword"
           placeholder="请输入搜索关键词"
           :label="city.city || '加载中'"
-          @clear="handleClear"/>
-        <div class= "cell-group-title">搜索结果</div>
+          @clear="handleClear"
+        />
+        <div class="cell-group-title">搜索结果</div>
       </div>
       <div class="AMap-box__content">
         <van-cell-group>
@@ -52,16 +57,17 @@
 
   export default {
     name: 'popup-map-Address-picker',
+    model: {
+      props: 'value',
+      event: 'input'
+    },
     props: {
-      value: [String, Number, Object, Array]
+      value: {
+        type: Object,
+        default: () => ({})
+      }
     },
     watch: {
-      value(val) {
-        this.currentValue = val
-      },
-      currentValue(val) {
-        this.$emit('input', val)
-      },
       show(val) {
         val ? this.getLocalCity() : null
       },
@@ -70,7 +76,6 @@
     data() {
       return {
         show: false,
-        currentValue: this.value,
 
         keyword: '',
         city: {},
@@ -89,8 +94,8 @@
         this.result = []
       },
       handleClick(val) {
-        this.currentValue = val
         this.show = false
+        this.$emit('input', val)
       },
       getLocalCity() {
         const self = this
@@ -151,6 +156,10 @@
 
     .van-cell__value {
       text-align: left;
+
+      .van-icon-location-o {
+        vertical-align: -1px;
+      }
     }
   }
 

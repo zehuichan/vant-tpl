@@ -9,12 +9,13 @@ router.beforeEach(async (to, from, next) => {
   if (store.getters.username) {
     next()
   } else {
-    store.dispatch('GetUserInfo').then(() => {
-      store.dispatch('GetAddressList')
-      next()
-    }).catch(() => {
+    try {
+      await store.dispatch('GetUserInfo')
+      await store.dispatch('GetAddressList')
+      next({...to, replace: true})
+    } catch (e) {
       next('/500')
-    })
+    }
   }
 })
 

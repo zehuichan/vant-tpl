@@ -5,15 +5,15 @@ import {Toast} from 'vant'
 const list = [
   {
     id: 1,
-    name: 'aaa',
-    phone: '15811123456',
+    name: '张三',
+    phone: '15800066666',
     area: '[{"code":"330000","name":"浙江省"},{"code":"330100","name":"杭州市"},{"code":"330105","name":"拱墅区"}]',
     address: '莫干山路 50 号',
     default: 0
   },
   {
     id: 2,
-    name: 'bbb',
+    name: '李四',
     phone: '15000512312',
     area: '[{"code":"330000","name":"浙江省"},{"code":"330100","name":"杭州市"},{"code":"330105","name":"拱墅区"}]',
     address: '莫干山路 50 号',
@@ -21,8 +21,8 @@ const list = [
   },
   {
     id: 3,
-    name: 'ccc',
-    phone: '15xxx1234gd',
+    name: '王五',
+    phone: '13923202010',
     area: '[{"code":"330000","name":"浙江省"},{"code":"330100","name":"杭州市"},{"code":"330105","name":"拱墅区"}]',
     address: '莫干山路 50 号',
     default: 1
@@ -46,12 +46,8 @@ const address = {
     // 获取地址列表
     GetAddressList({commit, state}) {
       return new Promise((resolve, reject) => {
-        Toast.loading('加载中...')
-        setTimeout(() => {
-          commit('SET_ADDRESS_LIST', list)
-          Toast.clear()
-          resolve()
-        }, 1000)
+        commit('SET_ADDRESS_LIST', list)
+        resolve()
       })
     },
     ChosenAddress({commit, state}, address) {

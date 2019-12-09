@@ -50,7 +50,7 @@
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'close' : 'arrow'
+        return this.clearable && this.value ? 'clear' : 'arrow'
       },
       text() {
         const curr = Array.from(this.columns).find(v => v.value === this.value) || ''
@@ -58,8 +58,8 @@
       },
       index() {
         for (let i = 0; i < this.columns.length; i++) {
-          const v = this.columns[i]
-          if (v.value === this.value) {
+          const item = this.columns[i]
+          if (item.value === this.value) {
             return i
           }
         }
@@ -111,5 +111,9 @@
 <style lang="less" rel="stylesheet/less" type="text/less">
   .popup-picker.van-cell {
     padding: 0;
+
+    .van-field__right-icon {
+      color: #c8c9cc;
+    }
   }
 </style>

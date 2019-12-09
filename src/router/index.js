@@ -84,7 +84,7 @@ export const routes = [
         path: '',
         component: MyAddress,
         name: 'chosenAddress',
-        meta: {title: '选择收货地址', disabled: false, switchable: true}
+        meta: {title: '选择收货地址', disabled: false, switchable: false}
       }
     ]
   },

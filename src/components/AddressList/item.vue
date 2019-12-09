@@ -3,15 +3,15 @@
     <div :class="address.disabled ? '' : 'tap-active'" @click="$emit('select')">
       <div class="address-cell">
         <div class="address-cell__title">{{data.name}}</div>
-        <div class="address-cell__value">{{data.phone}}</div>
+        <div class="address-cell__value">{{data.phone | formatPhone}}</div>
       </div>
       <div class="address-item__address ellipsis-2">{{_address}}</div>
     </div>
-    <div class="address-edit van-hairline--top" v-if="address.switchable">
-      <div class="address-edit__radio">
-        <van-radio :name="data" :checked-color="address.checkedColor">默认地址</van-radio>
+    <div class="address-edit van-hairline--top">
+      <div class="address-edit__radio" v-if="data.default">
+        <van-tag type="primary">默认地址</van-tag>
       </div>
-      <div class="address-edit__handle">
+      <div class="address-edit__handle" v-if="address.switchable">
         <span class="edit" @click="$emit('edit')">编辑</span>
         <span class="delete" @click="$emit('delete')">删除</span>
       </div>
@@ -21,7 +21,7 @@
 
 <script>
   // components
-  import {Radio} from 'vant'
+  import {Tag} from 'vant'
 
   export default {
     name: 'address-item',
@@ -31,12 +31,12 @@
     },
     computed: {
       _address() {
-        const area = JSON.parse(this.data.area).map(item => item.name).join('')
-        return area + this.data.address
+        const area = JSON.parse(this.data.area).map(item => item.name).join(' ')
+        return `${area} ${this.data.address}`
       }
     },
     components: {
-      [Radio.name]: Radio
+      [Tag.name]: Tag
     }
   }
 </script>
@@ -67,10 +67,15 @@
 
       &__title {
         text-align: left;
+        font-size: 16px;
+        color: #333;
+        font-weight: 500;
       }
 
       &__value {
         text-align: right;
+        font-size: 12px;
+        color: #666;
       }
     }
 

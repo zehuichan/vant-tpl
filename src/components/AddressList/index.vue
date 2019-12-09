@@ -1,32 +1,26 @@
 <template>
   <div class="address-list">
-    <van-radio-group v-model="currentValue">
-      <item
-        v-for="(item, index) in source"
-        :key="item.id"
-        :data="item"
-        @select="onSelect(item, index)"
-        @edit="onEdit(item, index)"
-        @delete="onDelete(item, index)"
-      />
-    </van-radio-group>
+    <item
+      v-for="(item, index) in source"
+      :key="item.id"
+      :data="item"
+      @select="onSelect(item, index)"
+      @edit="onEdit(item, index)"
+      @delete="onDelete(item, index)"
+    />
   </div>
 </template>
 
 <script>
   // components
-  import {RadioGroup} from 'vant'
   import Item from './item'
 
   export default {
     name: 'address-list',
     props: {
-      value: [String, Object, Array],
       source: {
         type: Array,
-        default() {
-          return []
-        }
+        default: () => []
       },
       disabled: {
         type: Boolean,
@@ -35,10 +29,6 @@
       switchable: {
         type: Boolean,
         default: true
-      },
-      checkedColor: {
-        type: String,
-        default: '#01c2c3'
       }
     },
     provide() {
@@ -46,23 +36,7 @@
         address: this
       }
     },
-    watch: {
-      value(val) {
-        this.currentValue = val
-      },
-      currentValue(val) {
-        this.$emit('input', val)
-      },
-    },
-    data() {
-      return {
-        currentValue: this.value
-      }
-    },
     methods: {
-      onDefault(data) {
-        this.$emit('default', data)
-      },
       onSelect(data, index) {
         this.$emit(this.disabled ? 'select-disabled' : 'select', data, index)
       },
@@ -74,9 +48,8 @@
       },
     },
     components: {
-      [RadioGroup.name]: RadioGroup,
       Item
-    },
+    }
   }
 </script>
 

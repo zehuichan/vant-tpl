@@ -1,7 +1,8 @@
 <template>
   <div class="myAddress">
     <van-nav-bar
-      left-text="管理收货地址"
+      fixed
+      :left-text="$route.meta.title"
       left-arrow
       @click-left="onClickLeft"
     >
@@ -25,8 +26,13 @@
       @delete="handleUpdate"
     />
 
-    <div class="demo-block" style="display: none;">
-      <code>{{default_address}}</code>
+    <div class="demo-block">
+      <code>
+        {
+        show:{{show}}
+        default_address:{{default_address}}
+        }
+      </code>
     </div>
   </div>
 </template>
@@ -68,7 +74,6 @@
     created() {
       this.SetTabBarState(false)
 
-      this.$toast.loading('加载中...')
       this.GetAddressList()
     },
     methods: {
@@ -120,5 +125,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
-
+  .myAddress {
+    padding-top: 46px;
+  }
 </style>

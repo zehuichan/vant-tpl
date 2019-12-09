@@ -46,7 +46,7 @@
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'close' : 'clock-o'
+        return this.clearable && this.value ? 'clear' : 'clock-o'
       },
     },
     data() {
@@ -92,5 +92,9 @@
 <style lang="less" rel="stylesheet/less" type="text/less">
   .popup-datetimePicker.van-cell {
     padding: 0;
+
+    .van-field__right-icon {
+      color: #c8c9cc;
+    }
   }
 </style>

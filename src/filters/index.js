@@ -41,6 +41,22 @@ export function toThousandslsFilter(num) {
   return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 }
 
-export function format(price, fixed = 2) {
-  return (price / 100).toFixed(fixed)
+// 格式化金额,单位:分(eg:430分=4.30元)
+export function format(price, suffix = '') {
+  if (!price) {
+    return 0
+  }
+  return Number(price / 100).toFixed(2) + suffix
+}
+
+// 隐藏手机号中间4位
+export function formatPhone(phone) {
+  phone += ''
+  return phone.replace(/(\d{3})\d*(\d{4})/g, '$1***$2')
+}
+
+// 隐藏身份证号中11位
+export function formatIdentity(number) {
+  number += ''
+  return number.replace(/(\d{3})\d*(\d{4})/g, '$1***********$2')
 }

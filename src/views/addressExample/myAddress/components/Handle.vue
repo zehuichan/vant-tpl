@@ -1,5 +1,5 @@
 <template>
-  <van-popup :value="showValue" position="right" style="width: 100%; height: 100%; background-color: #f0f2f5;">
+  <van-popup :value="value" position="right" style="width: 100%; height: 100%; background-color: #f0f2f5;">
     <van-nav-bar
       :left-text="title"
       left-arrow
@@ -16,6 +16,17 @@
       <van-field v-model="dataForm.address" type="textarea" rows="4" placeholder="请填写详细地址" clearable/>
     </van-cell-group>
 
+    <split></split>
+
+    <van-cell-group>
+      <van-switch-cell
+        v-model="dataForm.default"
+        :active-value="1"
+        :inactive-value="0"
+        title="设为默认地址"
+      />
+    </van-cell-group>
+
     <div class="demo-block">
       <code>{{data}}</code>
     </div>
@@ -30,8 +41,9 @@
   // utils
   import {validatePhone} from '@/utils/validate'
   // components
-  import {NavBar, Popup, Button, Field, CellGroup} from 'vant'
+  import {NavBar, Popup, Button, Field, CellGroup, SwitchCell} from 'vant'
   import PopupAreaPicker from '@/components/PopupAreaPicker'
+  import Split from '@/components/Split'
 
   const defaultForm = {
     id: null,
@@ -39,29 +51,27 @@
     phone: '',
     area: [],
     address: '',
+    default: 0,
   }
 
 
   export default {
     name: 'handle',
+    model: {
+      props: 'value',
+      event: 'input'
+    },
     props: {
       value: Boolean,
       data: Object
     },
     data() {
       return {
-        showValue: this.value,
         dataForm: Object.assign({}, defaultForm),
       }
     },
     watch: {
-      value(val) {
-        this.showValue = val
-      },
-      showValue(val) {
-        this.$emit('input', val)
-        this.init()
-      }
+      value: 'init'
     },
     computed: {
       title() {
@@ -71,14 +81,9 @@
         return this.data
       }
     },
-    created() {
-      if (typeof this.value !== 'undefined') {
-        this.showValue = this.value
-      }
-    },
     methods: {
       onClickLeft() {
-        this.showValue = false
+        this.$emit('input', false)
       },
       init() {
         if (!this.data) {
@@ -89,13 +94,15 @@
           this.dataForm.phone = this.data.phone
           this.dataForm.area = JSON.parse(this.data.area)
           this.dataForm.address = this.data.address
+          this.dataForm.default = this.data.default
         }
       },
       onDelete() {
-        this.showValue = false
+        this.$emit('input', false)
       },
       onSave() {
         if (!this.isEdit) {
+
         }
 
         if (!this.dataForm.name) {
@@ -130,9 +137,8 @@
       _emit(event_name) {
         this.$toast({
           message: '操作成功',
-          duration: 1000,
           onClose: () => {
-            this.showValue = false
+            this.$emit('input', false)
             this.$emit(event_name)
           }
         })
@@ -144,7 +150,9 @@
       [Button.name]: Button,
       [Field.name]: Field,
       [CellGroup.name]: CellGroup,
+      [SwitchCell.name]: SwitchCell,
       PopupAreaPicker,
+      Split,
     }
   }
 </script>

@@ -79,11 +79,12 @@
 
       .address-contact-cell__name,
       .address-contact-cell__phone {
-        font-weight: 700;
+        font-weight: 500;
       }
 
       .address-contact-cell__phone {
         font-size: 12px;
+        color: #666;
       }
 
       .address-contact-cell__address {
