@@ -8,7 +8,7 @@
     </van-nav-bar>
 
     <address-contact :data="chosen_address || default_address"></address-contact>
-    <split></split>
+    <split/>
     <div class="page-container">
       <x-card>
         <div slot="header">商品信息</div>
@@ -29,8 +29,11 @@
         </div>
       </x-card>
     </div>
-    <van-cell title="顺丰速运" value="+￥18.00" :border="false"/>
-    <split></split>
+    <van-cell-group>
+      <van-cell title="顺丰速运" value="+￥18.00"/>
+      <van-cell title="优惠券" value="无优惠券可用" is-link/>
+    </van-cell-group>
+    <split/>
     <div class="desc">
       <ul>
         <li>1、若卖家未在36小时内发货，您将获得48元现金及170元优惠券补偿。</li>
@@ -38,8 +41,7 @@
         <li>提交订单即表示同意</li>
       </ul>
     </div>
-    <split></split>
-
+    <split/>
     <div class="btn-wrapper padded-mini fixed-bottom clearfix">
       <div class="fl">
         <span class="text">实付款：￥</span>
@@ -49,7 +51,6 @@
         <van-button type="primary" loading loading-type="spinner" loading-text="提交订单">提交订单</van-button>
       </div>
     </div>
-
     <div class="demo-block">
       <code>
         chosen_address {{chosen_address}}
@@ -63,7 +64,7 @@
   // vuex
   import {mapActions, mapGetters} from 'vuex'
   // components
-  import {NavBar, Button, Cell, Image} from 'vant'
+  import {NavBar, Button, Cell, CellGroup, Image} from 'vant'
   import AddressContact from './components/AddressContact'
   import Split from '@/components/Split'
   import XCard from '@/components/Card'
@@ -135,6 +136,7 @@
       [NavBar.name]: NavBar,
       [Button.name]: Button,
       [Cell.name]: Cell,
+      [CellGroup.name]: CellGroup,
       [Image.name]: Image,
       AddressContact,
       Split,

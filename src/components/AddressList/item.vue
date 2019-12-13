@@ -7,11 +7,11 @@
       </div>
       <div class="address-item__address ellipsis-2">{{_address}}</div>
     </div>
-    <div class="address-edit van-hairline--top">
+    <div class="address-edit van-hairline--top" v-if="address.switchable">
       <div class="address-edit__radio" v-if="data.default">
         <van-tag type="primary">默认地址</van-tag>
       </div>
-      <div class="address-edit__handle" v-if="address.switchable">
+      <div class="address-edit__handle">
         <span class="edit" @click="$emit('edit')">编辑</span>
         <span class="delete" @click="$emit('delete')">删除</span>
       </div>
