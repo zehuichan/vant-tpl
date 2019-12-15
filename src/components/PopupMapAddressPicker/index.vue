@@ -1,5 +1,5 @@
 <template>
-  <div class="popup-map-Address-picker van-cell">
+  <div class="popup-map-address-picker van-cell">
     <van-cell is-link @click.stop="onClick">
       <div slot="title">收货地址</div>
       <div v-if="Object.keys(value).length > 0">
@@ -17,7 +17,7 @@
       get-container="body"
       style="width: 100%;height: 100%;background: #f0f2f5;"
     >
-      <div class="popup-map-Address-picker__haeder">
+      <div class="popup-map-address-picker__header">
         <van-nav-bar
           left-text="选择收货地址"
           left-arrow
@@ -82,8 +82,6 @@
         result: []
       }
     },
-    created() {
-    },
     methods: {
       onClick() {
         this.keyword = ''
@@ -146,7 +144,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
-  .popup-map-Address-picker.van-cell {
+  .popup-map-address-picker.van-cell {
     padding: 0;
 
     .van-cell__title {
@@ -163,7 +161,7 @@
     }
   }
 
-  .popup-map-Address-picker__haeder {
+  .popup-map-address-picker__header {
     background-color: #fff;
   }
 </style>

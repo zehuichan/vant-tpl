@@ -34,11 +34,11 @@
       active: {
         get() {
           const map = {
-            '/home': 0,
-            '/message': 1,
-            '/me': 2,
+            'home': 0,
+            'message': 1,
+            'me': 2,
           }
-          return map[this.$route.path]
+          return map[this.$route.name]
         },
         set(val) {
         }

@@ -87,7 +87,7 @@
       },
       onConfirm(value, index) {
         this.show = false
-
+        console.log(value)
         this.$emit('input', value.value)
         this.$emit('change', value.value, index)
       },

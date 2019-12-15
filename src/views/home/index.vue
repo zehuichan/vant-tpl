@@ -5,6 +5,7 @@
       <van-field v-model="eee" label="用户名" placeholder="请输入用户名"/>
       <popup-picker v-model="aaa" label="奥师多456" :columns="columns1" clearable placeholder="请选择" @change="onChange1"/>
       <popup-picker v-model="bbb" label="奥师多123" :columns="columns2" clearable placeholder="请选择" @change="onChange2"/>
+      <popup-picker v-model="fff" label="自定义" :columns="columns3" clearable placeholder="自定义columns"/>
       <popup-datetime-picker v-model="time" label="日期" clearable placeholder="请选择" @change="onChange3"/>
       <popup-area-picker v-model="ccc" label="城市" clearable placeholder="请选择" separator="-" @change="onChange4"/>
       <popup-map-address-picker v-model="ddd" clearable/>
@@ -12,7 +13,7 @@
     <h3 class="demo-title">测试</h3>
     <div class="demo-block">
       <code>
-        {{ddd}}
+        {{fff}}
       </code>
     </div>
   </div>
@@ -46,9 +47,15 @@
           {text: '嘉兴4', value: 9},
           {text: '湖州5', value: 10},
         ],
+        columns3: [
+          {values: ['今天', '明天', '2019-12-16', '2019-12-17', '2019-12-18']},
+          {values: ['20点', '21点', '22点', '23点']},
+          {values: ['30', '35', '40', '45']},
+        ],
         aaa: 2,
         bbb: 6,
         eee: 6,
+        fff: '',
         ccc: [
           {code: '110000', name: '北京市'},
           {code: '110100', name: '北京市'},

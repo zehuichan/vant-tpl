@@ -7,7 +7,12 @@ export function parseTime(time, cFormat) {
   if (typeof time === 'object') {
     date = time
   } else {
-    if (('' + time).length === 10) time = parseInt(time) * 1000
+    if ((typeof time === 'string') && (/^[0-9]+$/.test(time))) {
+      time = parseInt(time)
+    }
+    if ((typeof time === 'number') && (time.toString().length === 10)) {
+      time = time * 1000
+    }
     date = new Date(time)
   }
   const formatObj = {
@@ -19,22 +24,23 @@ export function parseTime(time, cFormat) {
     s: date.getSeconds(),
     a: date.getDay()
   }
-  const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
-    let value = formatObj[key]
+  const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
+    const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
     if (key === 'a') {
       return ['日', '一', '二', '三', '四', '五', '六'][value]
     }
-    if (result.length > 0 && value < 10) {
-      value = '0' + value
-    }
-    return value || 0
+    return value.toString().padStart(2, '0')
   })
   return time_str
 }
 
 export function formatTime(time, option) {
-  time = +time * 1000
+  if (('' + time).length === 10) {
+    time = parseInt(time) * 1000
+  } else {
+    time = +time
+  }
   const d = new Date(time)
   const now = Date.now()
 
@@ -169,7 +175,7 @@ export function debounce(func, wait, immediate) {
     // 据上一次触发时间间隔
     const last = +new Date() - timestamp
 
-    // 上次被包装函数被调用时间间隔last小于设定时间间隔wait
+    // 上次被包装函数被调用时间间隔 last 小于设定时间间隔 wait
     if (last < wait && last > 0) {
       timeout = setTimeout(later, wait - last)
     } else {
