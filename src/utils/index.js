@@ -73,7 +73,6 @@ export function formatTime(time, option) {
   }
 }
 
-// 格式化时间
 export function getQueryObject(url) {
   url = url == null ? window.location.href : url
   const search = url.substring(url.lastIndexOf('?') + 1)
@@ -261,4 +260,38 @@ export function getBase64(file, resultType = 'dataUrl') {
       reader.readAsText(file)
     }
   })
+}
+
+export function days(lately = 3) {
+  let ret = []
+  let now = new Date().getTime()
+  let daytime = 3600 * 1000 * 24
+  let timestamp = 0
+  for (let i = 0; i < lately; i++) {
+    timestamp = now + daytime * i
+    ret.push(parseTime(timestamp, '{y}-{m}-{d}'))
+  }
+  return ret
+}
+
+export function hours() {
+  let ret = []
+  for (let i = 0; i < 24; i++) {
+    ret.push(padZero(i))
+  }
+  return ret
+}
+
+export function minutes() {
+  let ret = []
+  for (let i = 0; i < 60; i++) {
+    if (i % 5 === 0) {
+      ret.push(padZero(i))
+    }
+  }
+  return ret
+}
+
+function padZero(val) {
+  return `00${val}`.slice(-2)
 }

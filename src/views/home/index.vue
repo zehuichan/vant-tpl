@@ -5,8 +5,8 @@
       <van-field v-model="eee" label="用户名" placeholder="请输入用户名"/>
       <popup-picker v-model="aaa" label="奥师多456" :columns="columns1" clearable placeholder="请选择" @change="onChange1"/>
       <popup-picker v-model="bbb" label="奥师多123" :columns="columns2" clearable placeholder="请选择" @change="onChange2"/>
-      <popup-picker v-model="fff" label="自定义" :columns="columns3" clearable placeholder="自定义columns"/>
       <popup-datetime-picker v-model="time" label="日期" clearable placeholder="请选择" @change="onChange3"/>
+      <popup-timer-picker v-model="fff" label="时间" clearable placeholder="请选择"/>
       <popup-area-picker v-model="ccc" label="城市" clearable placeholder="请选择" separator="-" @change="onChange4"/>
       <popup-map-address-picker v-model="ddd" clearable/>
     </van-cell-group>
@@ -21,12 +21,13 @@
 
 <script>
   // utils
-  import {parseTime} from '@/utils'
+  import {parseTime,} from '@/utils'
   // components
   import {Field, CellGroup} from 'vant'
   import PopupPicker from '@/components/PopupPicker'
   import PopupAreaPicker from '@/components/PopupAreaPicker'
   import PopupDatetimePicker from '@/components/PopupDatetimePicker'
+  import PopupTimerPicker from '@/components/PopupTimerPicker'
   import PopupMapAddressPicker from '@/components/PopupMapAddressPicker'
 
   export default {
@@ -46,11 +47,6 @@
           {text: '温州3', value: 8},
           {text: '嘉兴4', value: 9},
           {text: '湖州5', value: 10},
-        ],
-        columns3: [
-          {values: ['今天', '明天', '2019-12-16', '2019-12-17', '2019-12-18']},
-          {values: ['20点', '21点', '22点', '23点']},
-          {values: ['30', '35', '40', '45']},
         ],
         aaa: 2,
         bbb: 6,
@@ -84,7 +80,7 @@
       },
       onChange4(val) {
         console.log(val)
-      }
+      },
     },
     components: {
       [Field.name]: Field,
@@ -92,6 +88,7 @@
       PopupPicker,
       PopupAreaPicker,
       PopupDatetimePicker,
+      PopupTimerPicker,
       PopupMapAddressPicker
     }
   }
