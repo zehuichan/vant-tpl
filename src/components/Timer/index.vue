@@ -27,11 +27,6 @@
         date: ''
       }
     },
-    watch: {
-      time() {
-        this.setTime()
-      }
-    },
     mounted() {
       this.setTime()
     },
