@@ -10,6 +10,11 @@
       <popup-area-picker v-model="ccc" label="城市" clearable placeholder="请选择" separator="-" @change="onChange4"/>
       <popup-map-address-picker v-model="ddd" clearable/>
     </van-cell-group>
+    <van-cell-group>
+      <van-cell title="Timer组件">
+        <timer :time="time2"></timer>
+      </van-cell>
+    </van-cell-group>
     <h3 class="demo-title">测试</h3>
     <div class="demo-block">
       <code>
@@ -23,12 +28,13 @@
   // utils
   import {parseTime,} from '@/utils'
   // components
-  import {Field, CellGroup} from 'vant'
+  import {Field, Cell, CellGroup} from 'vant'
   import PopupPicker from '@/components/PopupPicker'
   import PopupAreaPicker from '@/components/PopupAreaPicker'
   import PopupDatetimePicker from '@/components/PopupDatetimePicker'
   import PopupTimerPicker from '@/components/PopupTimerPicker'
   import PopupMapAddressPicker from '@/components/PopupMapAddressPicker'
+  import Timer from '@/components/Timer'
 
   export default {
     name: 'home',
@@ -59,7 +65,9 @@
         ],
         ddd: {},
 
-        time: parseTime(new Date(), '{y}-{m}-{d}')
+        time: parseTime(new Date(), '{y}-{m}-{d}'),
+
+        time2: new Date().getTime() - 3 * 86400000
       }
     },
     methods: {
@@ -84,12 +92,14 @@
     },
     components: {
       [Field.name]: Field,
+      [Cell.name]: Cell,
       [CellGroup.name]: CellGroup,
       PopupPicker,
       PopupAreaPicker,
       PopupDatetimePicker,
       PopupTimerPicker,
-      PopupMapAddressPicker
+      PopupMapAddressPicker,
+      Timer
     }
   }
 </script>

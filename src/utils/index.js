@@ -60,8 +60,7 @@ export function formatTime(time, option) {
     return parseTime(time, option)
   } else {
     return (
-      d.getMonth() +
-      1 +
+      d.getMonth() + 1 +
       '月' +
       d.getDate() +
       '日' +
@@ -294,4 +293,14 @@ export function minutes() {
 
 function padZero(val) {
   return `00${val}`.slice(-2)
+}
+
+// 判断参数是否是其中之一
+export function oneOf(value, validList) {
+  for (let i = 0; i < validList.length; i++) {
+    if (value === validList[i]) {
+      return true
+    }
+  }
+  return false
 }
