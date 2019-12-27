@@ -10,8 +10,8 @@ router.beforeEach(async (to, from, next) => {
     next()
   } else {
     try {
-      await store.dispatch('GetUserInfo')
-      await store.dispatch('GetAddressList')
+      await store.dispatch('user/GetUserInfo')
+      await store.dispatch('address/GetAddressList')
       next({...to, replace: true})
     } catch (e) {
       next('/500')

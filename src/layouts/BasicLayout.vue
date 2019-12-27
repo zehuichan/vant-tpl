@@ -1,7 +1,11 @@
 <template>
-  <div class="app-wrapper">
-    <app-main/>
-    <van-tabbar v-model="active" v-if="tabbar">
+  <div class="basic-layout app-wrapper">
+    <!--app-main-->
+    <div class="app-main has-padded">
+      <router-view/>
+    </div>
+    <!--tabbar-->
+    <van-tabbar v-model="active">
       <van-tabbar-item to="/home">
         <i slot="icon" class="iconfont icon-shouye"></i>
         {{$t('navbar.home')}}
@@ -19,14 +23,11 @@
 </template>
 
 <script>
-  // vuex
-  import {mapGetters} from 'vuex'
   // components
   import {Tabbar, TabbarItem} from 'vant'
-  import AppMain from './components/AppMain'
 
   export default {
-    name: 'layout',
+    name: 'basic-layout',
     data() {
       return {}
     },
@@ -42,15 +43,11 @@
         },
         set(val) {
         }
-      },
-      ...mapGetters([
-        'tabbar'
-      ])
+      }
     },
     components: {
       [Tabbar.name]: Tabbar,
-      [TabbarItem.name]: TabbarItem,
-      AppMain
+      [TabbarItem.name]: TabbarItem
     }
   }
 </script>
@@ -61,6 +58,16 @@
     position: relative;
     height: 100%;
     overflow: hidden;
+  }
+
+  .app-main {
+    height: 100%;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  .has-padded {
+    padding-bottom: 50px;
   }
 
   .van-tabbar-item__icon {

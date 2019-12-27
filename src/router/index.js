@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // basic components
-const Layout = () => import('@/layout')
+const BasicLayout = () => import('@/layouts/BasicLayout')
+const BlankLayout = () => import('@/layouts/BlankLayout')
 
 // view components
 const Home = () => import('@/views/home')
@@ -30,7 +31,7 @@ export const routes = [
   {path: '/500', component: () => import('@/views/errorPage/500')},
   {
     path: '/home',
-    component: Layout,
+    component: BasicLayout,
     children: [
       {
         path: '',
@@ -42,7 +43,7 @@ export const routes = [
   },
   {
     path: '/message',
-    component: Layout,
+    component: BasicLayout,
     children: [
       {
         path: '',
@@ -54,7 +55,7 @@ export const routes = [
   },
   {
     path: '/me',
-    component: Layout,
+    component: BasicLayout,
     children: [
       {
         path: '',
@@ -66,7 +67,7 @@ export const routes = [
   },
   {
     path: '/myAddress',
-    component: Layout,
+    component: BlankLayout,
     children: [
       {
         path: '',
@@ -78,7 +79,7 @@ export const routes = [
   },
   {
     path: '/chosenAddress',
-    component: Layout,
+    component: BlankLayout,
     children: [
       {
         path: '',
@@ -90,7 +91,7 @@ export const routes = [
   },
   {
     path: '/confirmOrder',
-    component: Layout,
+    component: BlankLayout,
     children: [
       {
         path: '',
@@ -102,7 +103,7 @@ export const routes = [
   },
   {
     path: '/myCoupon',
-    component: Layout,
+    component: BlankLayout,
     children: [
       {
         path: '',
@@ -115,7 +116,7 @@ export const routes = [
 
   {
     path: '/fePage',
-    component: Layout,
+    component: BlankLayout,
     children: [
       {
         path: '',
@@ -127,7 +128,7 @@ export const routes = [
   },
   {
     path: '/toBase64',
-    component: Layout,
+    component: BlankLayout,
     children: [
       {
         path: '',

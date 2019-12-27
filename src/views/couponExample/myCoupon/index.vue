@@ -17,8 +17,6 @@
 </template>
 
 <script>
-  // vuex
-  import {mapActions} from 'vuex'
   // components
   import {NavBar} from 'vant'
   import CouponList from '@/components/CouponList'
@@ -36,16 +34,10 @@
         ]
       }
     },
-    created() {
-      this.SetTabBarState(false)
-    },
     methods: {
       onClickLeft() {
         this.$router.push({path: this.redirect || '/me'})
-      },
-      ...mapActions([
-        'SetTabBarState'
-      ])
+      }
     },
     components: {
       [NavBar.name]: NavBar,

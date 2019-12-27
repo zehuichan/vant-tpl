@@ -62,7 +62,7 @@
 
 <script>
   // vuex
-  import {mapActions, mapGetters} from 'vuex'
+  import {mapGetters} from 'vuex'
   // components
   import {NavBar, Button, Cell, CellGroup, Image} from 'vant'
   import AddressContact from './components/AddressContact'
@@ -85,8 +85,6 @@
       ])
     },
     created() {
-      this.SetTabBarState(false)
-
       this.getOrderConfig()
     },
     methods: {
@@ -127,10 +125,7 @@
             v5_price: 3350,
           }
         ]
-      },
-      ...mapActions([
-        'SetTabBarState'
-      ])
+      }
     },
     components: {
       [NavBar.name]: NavBar,

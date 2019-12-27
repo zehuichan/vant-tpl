@@ -1,6 +1,6 @@
 <template>
-  <div>
-    blank-layout
+  <div class="blank-layout">
+    <router-view/>
   </div>
 </template>
 

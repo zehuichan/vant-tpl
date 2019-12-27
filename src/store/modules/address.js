@@ -29,31 +29,36 @@ const list = [
   },
 ]
 
-const address = {
-  state: {
-    address_list: [],
-    chosen_address: null
+const state = {
+  address_list: [],
+  chosen_address: null
+}
+
+const mutations = {
+  SET_ADDRESS_LIST(state, list) {
+    state.address_list = list
   },
-  mutations: {
-    SET_ADDRESS_LIST(state, list) {
-      state.address_list = list
-    },
-    SET_CHOSEN_ADDRESS(state, address) {
-      state.chosen_address = address
-    }
-  },
-  actions: {
-    // 获取地址列表
-    GetAddressList({commit, state}) {
-      return new Promise((resolve, reject) => {
-        commit('SET_ADDRESS_LIST', list)
-        resolve()
-      })
-    },
-    ChosenAddress({commit, state}, address) {
-      commit('SET_CHOSEN_ADDRESS', address)
-    }
+  SET_CHOSEN_ADDRESS(state, address) {
+    state.chosen_address = address
   }
 }
 
-export default address
+const actions = {
+  // 获取地址列表
+  GetAddressList({commit, state}) {
+    return new Promise((resolve, reject) => {
+      commit('SET_ADDRESS_LIST', list)
+      resolve()
+    })
+  },
+  ChosenAddress({commit, state}, address) {
+    commit('SET_CHOSEN_ADDRESS', address)
+  }
+}
+
+export default {
+  namespaced: 'address',
+  state,
+  mutations,
+  actions
+}

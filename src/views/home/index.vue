@@ -26,7 +26,7 @@
 
 <script>
   // utils
-  import {parseTime,} from '@/utils'
+  import {parseTime} from '@/utils'
   // components
   import {Field, Cell, CellGroup} from 'vant'
   import PopupPicker from '@/components/PopupPicker'

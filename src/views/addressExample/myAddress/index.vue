@@ -72,16 +72,14 @@
       ])
     },
     created() {
-      this.SetTabBarState(false)
-
-      this.GetAddressList()
+      this['address/GetAddressList']()
     },
     methods: {
       onClickLeft() {
         this.$router.push({path: this.redirect || '/me'})
       },
       handleUpdate() {
-        this.GetAddressList()
+        this['address/GetAddressList']()
       },
       handleAdd() {
         console.log('handleAdd', this.address)
@@ -89,7 +87,7 @@
         this.show = true
       },
       handleSelect(address) {
-        this.ChosenAddress(address)
+        this['address/ChosenAddress'](address)
         this.$router.push({path: `/confirmOrder`})
       },
       handleEdit(address, index) {
@@ -108,9 +106,8 @@
         })
       },
       ...mapActions([
-        'SetTabBarState',
-        'GetAddressList',
-        'ChosenAddress'
+        'address/GetAddressList',
+        'address/ChosenAddress'
       ])
     },
     components: {

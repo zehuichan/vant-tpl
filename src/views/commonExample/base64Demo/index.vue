@@ -24,8 +24,6 @@
 </template>
 
 <script>
-  // vuex
-  import {mapActions} from 'vuex'
   // utils
   import {getBase64} from '@/utils'
   // components
@@ -41,9 +39,6 @@
       return {
         fileList: []
       }
-    },
-    created() {
-      this.SetTabBarState(false)
     },
     methods: {
       onClickLeft() {
@@ -81,10 +76,7 @@
         if (this.$refs.input) {
           this.$refs.input.value = ''
         }
-      },
-      ...mapActions([
-        'SetTabBarState'
-      ])
+      }
     }
   }
 </script>

@@ -21,8 +21,6 @@
 <script>
   // data
   import {genList} from './data'
-  // vuex
-  import {mapActions} from 'vuex'
   // components
   import {NavBar, List, Cell} from 'vant'
 
@@ -49,9 +47,6 @@
         return Math.ceil(genList().length / this.dataForm.ps) || 1
       }
     },
-    created() {
-      this.SetTabBarState(false)
-    },
     methods: {
       onClickLeft() {
         this.$router.push({path: this.redirect || '/me'})
@@ -74,10 +69,7 @@
             this.dataForm.p += 1
           }
         }, 1.5 * 1000)
-      },
-      ...mapActions([
-        'SetTabBarState'
-      ])
+      }
     }
   }
 </script>
