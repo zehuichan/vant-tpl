@@ -20,7 +20,7 @@
           :label="`${item.district} ${item.address}`"
           @click="handleClick(item)"/>
       </van-cell-group>
-      <div class="no-more">没有更多记录了~</div>
+      <empty/>
     </div>
   </div>
 </template>
@@ -31,6 +31,7 @@
   // components
   import {Search, Cell, CellGroup} from 'vant'
   import Split from '@/components/Split'
+  import Empty from '@/components/Empty'
 
   export default {
     name: 'message',
@@ -38,7 +39,8 @@
       [Search.name]: Search,
       [Cell.name]: Cell,
       [CellGroup.name]: CellGroup,
-      Split
+      Split,
+      Empty
     },
     data() {
       return {

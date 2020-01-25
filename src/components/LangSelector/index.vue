@@ -25,11 +25,11 @@
     methods: {
       handleSetLanguage(lang) {
         this.$i18n.locale = lang
-        this.SetLanguage(lang)
+        this['app/SetLanguage'](lang)
         this.$toast('Switch Language Success')
       },
       ...mapActions([
-        'SetLanguage'
+        'app/SetLanguage'
       ])
     },
     components: {

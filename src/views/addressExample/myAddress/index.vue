@@ -72,14 +72,14 @@
       ])
     },
     created() {
-      this['address/GetAddressList']()
+      this['address/getAddressList']()
     },
     methods: {
       onClickLeft() {
         this.$router.push({path: this.redirect || '/me'})
       },
       handleUpdate() {
-        this['address/GetAddressList']()
+        this['address/getAddressList']()
       },
       handleAdd() {
         console.log('handleAdd', this.address)
@@ -87,7 +87,7 @@
         this.show = true
       },
       handleSelect(address) {
-        this['address/ChosenAddress'](address)
+        this['address/getAddressList'](address)
         this.$router.push({path: `/confirmOrder`})
       },
       handleEdit(address, index) {
@@ -106,8 +106,8 @@
         })
       },
       ...mapActions([
-        'address/GetAddressList',
-        'address/ChosenAddress'
+        'address/getAddressList',
+        'address/chosenAddress'
       ])
     },
     components: {

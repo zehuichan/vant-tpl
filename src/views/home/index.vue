@@ -1,16 +1,33 @@
 <template>
   <div class="home">
-    <h3 class="demo-title">首页-测试</h3>
-    <van-cell-group>
-      <van-field v-model="eee" label="用户名" placeholder="请输入用户名"/>
-      <popup-picker v-model="aaa" label="奥师多456" :columns="columns1" clearable placeholder="请选择" @change="onChange1"/>
-      <popup-picker v-model="bbb" label="奥师多123" :columns="columns2" clearable placeholder="请选择" @change="onChange2"/>
-      <popup-datetime-picker v-model="time" label="日期" clearable placeholder="请选择" @change="onChange3"/>
-      <popup-timer-picker v-model="fff" label="时间" clearable placeholder="请选择"/>
-      <popup-area-picker v-model="ccc" label="城市" clearable placeholder="请选择" separator="-" @change="onChange4"/>
-      <popup-map-address-picker v-model="ddd" clearable/>
+    <van-cell-group :border="false" title="picker相关">
+      <popup-picker
+        v-model="picker1"
+        label="picker1"
+        :columns="columns1"
+        clearable
+        placeholder="请选择"
+        @change="onChange1"
+      />
+      <popup-picker
+        v-model="picker2"
+        label="picker2"
+        :columns="columns2"
+        clearable
+        placeholder="请选择"
+        @change="onChange2"
+      />
+      <popup-area-picker v-model="area" label="省市区" clearable placeholder="请选择" separator="-"/>
+      <popup-map-address-picker v-model="address" clearable/>
     </van-cell-group>
-    <van-cell-group>
+
+    <van-cell-group :border="false" title="时间日期相关">
+      <popup-datetime-picker v-model="date" label="日期" clearable placeholder="请选择"/>
+      <popup-timer-picker v-model="time" label="时间" clearable placeholder="请选择"/>
+      <popup-calendar-picker v-model="calendar" label="选择日期" clearable placeholder="请选择"/>
+    </van-cell-group>
+
+    <van-cell-group :border="false" title="个性组件相关">
       <van-cell title="Timer组件">
         <timer :time="time2"></timer>
       </van-cell>
@@ -18,7 +35,7 @@
     <h3 class="demo-title">测试</h3>
     <div class="demo-block">
       <code>
-        {{fff}}
+
       </code>
     </div>
   </div>
@@ -34,6 +51,7 @@
   import PopupDatetimePicker from '@/components/PopupDatetimePicker'
   import PopupTimerPicker from '@/components/PopupTimerPicker'
   import PopupMapAddressPicker from '@/components/PopupMapAddressPicker'
+  import PopupCalendarPicker from '@/components/PopupCalendarPicker'
   import Timer from '@/components/Timer'
 
   export default {
@@ -54,20 +72,22 @@
           {text: '嘉兴4', value: 9},
           {text: '湖州5', value: 10},
         ],
-        aaa: 2,
-        bbb: 6,
-        eee: 6,
-        fff: '',
-        ccc: [
+        picker1: 2,
+        picker2: 6,
+
+        area: [
           {code: '110000', name: '北京市'},
           {code: '110100', name: '北京市'},
           {code: '110105', name: '朝阳区'}
         ],
-        ddd: {},
 
-        time: parseTime(new Date(), '{y}-{m}-{d}'),
+        address: {},
 
-        time2: new Date().getTime() - 3 * 86400000
+        date: parseTime(new Date(), '{y}-{m}-{d}'),
+        time: '',
+
+        time2: (new Date()).getTime() - 86400 * 3 * 1000,
+        calendar: parseTime(new Date(), '{y}-{m}-{d}')
       }
     },
     methods: {
@@ -83,12 +103,6 @@
           this.aaa = null
         }
       },
-      onChange3(val) {
-        console.log(val)
-      },
-      onChange4(val) {
-        console.log(val)
-      },
     },
     components: {
       [Field.name]: Field,
@@ -99,6 +113,7 @@
       PopupDatetimePicker,
       PopupTimerPicker,
       PopupMapAddressPicker,
+      PopupCalendarPicker,
       Timer
     }
   }

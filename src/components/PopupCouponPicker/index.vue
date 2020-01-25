@@ -2,29 +2,41 @@
   <div class="popup-coupon-picker van-cell">
     <van-field
       v-bind="$props"
-      :value="text"
-      :right-icon="showIcon"
+      :value="$options.filters.format(text, 2, '- ￥') || ''"
       readonly
       clickable
-      @click.stop="onClick"
-      @click-right-icon.stop="onClear">
+      @click.stop="onClick">
     </van-field>
 
-    <van-popup v-model="show" position="bottom" get-container="body">
-      <van-picker
-        ref="picker"
-        show-toolbar
-        :columns="columns"
-        @cancel="onCancel"
-        @confirm="onConfirm">
-      </van-picker>
+    <van-popup
+      class="popup-coupon bg-color"
+      v-model="show"
+      closeable
+      close-icon="close"
+      position="bottom"
+      get-container="body"
+      @closed="handleClose"
+    >
+      <van-nav-bar title="选择优惠券"/>
+      <div class="page-container padded">
+        <coupon-list
+          v-model="checks"
+          :source="source"
+          show-checkbox
+        />
+      </div>
+      <div class="btn-wrapper fixed-bottom padded">
+        <van-button type="primary" block @click="handleConfirm">确认{{checks}}</van-button>
+      </div>
     </van-popup>
+
   </div>
 </template>
 
 <script>
   // components
-  import {Field, Picker, Popup} from 'vant'
+  import {Field, Popup, NavBar, Button} from 'vant'
+  import CouponList from '@/components/CouponList'
 
   export default {
     name: 'popup-coupon-picker',
@@ -36,72 +48,42 @@
       // Field.props
       ...Field.props,
 
-      // Picker.props
-      ...Picker.props,
-
-      columns: {
+      source: {
         type: Array,
         default: () => []
       },
-      value: [String, Number, Object, Array],
+      value: {
+        type: Array,
+        default: () => []
+      },
       placeholder: String,
-      disabled: Boolean,
-      clearable: Boolean,
-    },
-    computed: {
-      showIcon() {
-        return this.clearable && this.value ? 'clear' : 'arrow'
-      },
-      text() {
-        const curr = Array.from(this.columns).find(v => v.value === this.value) || ''
-        return curr.text
-      },
-      index() {
-        for (let i = 0; i < this.columns.length; i++) {
-          const item = this.columns[i]
-          if (item.value === this.value) {
-            return i
-          }
-        }
-        return 0
-      },
-      $picker() {
-        return this.$refs.picker
-      }
     },
     data() {
       return {
         show: false,
+        text: '',
+        checks: []
       }
     },
     methods: {
-      onClear() {
-        if (!this.clearable) {
-          return false
-        }
-
-        this.$emit('input', '')
-      },
-      onCancel() {
+      handleClose() {
         this.show = false
-      },
-      onConfirm(value, index) {
-        this.show = false
-
-        this.$emit('input', value.value)
-        this.$emit('change', value.value, index)
       },
       onClick() {
         this.show = true
-        this.$nextTick(() => {
-          this.$picker.setIndexes([this.index])
-        })
-      }
+      },
+      handleConfirm() {
+        this.$emit('input', this.checks)
+        this.text = this.source.filter(item => this.checks.includes(item.id)).reduce((prev, curr) => curr.reduce_money + prev, 0)
+        this.show = false
+      },
     },
     components: {
       [Field.name]: Field,
-      [Picker.name]: Picker,
-      [Popup.name]: Popup
+      [Popup.name]: Popup,
+      [NavBar.name]: NavBar,
+      [Button.name]: Button,
+      CouponList
     }
   }
 </script>
@@ -111,5 +93,18 @@
 <style lang="less" rel="stylesheet/less" type="text/less">
   .popup-coupon-picker.van-cell {
     padding: 0;
+  }
+
+  .popup-coupon {
+    height: 80%;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 76px;
+
+    .page-container {
+      flex: 1;
+      overflow-y: scroll;
+    }
   }
 </style>

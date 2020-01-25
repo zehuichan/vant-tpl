@@ -43,14 +43,14 @@
     {
       "icon_id": "11072593",
       "name": "88-角标-未选中",
-      "font_class": "-weixuanzhong",
+      "font_class": "-inactive",
       "unicode": "e834",
       "unicode_decimal": 59444
     },
     {
       "icon_id": "11072597",
       "name": "89-角标-选中",
-      "font_class": "-xuanzhong",
+      "font_class": "-active",
       "unicode": "e835",
       "unicode_decimal": 59445
     }

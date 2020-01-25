@@ -1,8 +1,8 @@
 <template>
-  <div class="popup-datetimePicker van-cell">
+  <div class="popup-calendar-picker van-cell">
     <van-field
       v-bind="$props"
-      :value="value"
+      :value="text"
       :right-icon="showIcon"
       readonly
       clickable
@@ -10,14 +10,7 @@
       @click-right-icon.stop="onClear"
     />
 
-    <van-popup v-model="show" position="bottom" get-container="body">
-      <van-datetime-picker
-        type="date"
-        v-model="date"
-        @confirm="onConfirm"
-        @cancel="onCancel"
-      />
-    </van-popup>
+    <van-calendar v-model="show" get-container="body" @confirm="onConfirm"/>
   </div>
 </template>
 
@@ -25,10 +18,10 @@
   // utils
   import {parseTime} from '@/utils'
   // components
-  import {Field, DatetimePicker, Popup} from 'vant'
+  import {Field, Calendar} from 'vant'
 
   export default {
-    name: 'popup-datetimePicker',
+    name: 'popup-calendar-picker',
     model: {
       prop: 'value',
       event: 'input'
@@ -37,19 +30,26 @@
       // Field.props
       ...Field.props,
 
-      value: String,
+      value: [String, Array],
+      format: {
+        type: String,
+        default: '{y}-{m}-{d}'
+      },
       placeholder: String,
+      disabled: Boolean,
       clearable: Boolean,
     },
     data() {
       return {
-        show: false,
-        date: new Date()
+        show: false
       }
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'clear' : 'clock-o'
+        return this.clearable && this.value ? 'clear' : 'arrow'
+      },
+      text() {
+        return this.value
       },
     },
     methods: {
@@ -57,16 +57,7 @@
         if (!this.clearable) {
           return false
         }
-
         this.$emit('input', '')
-      },
-      onCancel() {
-        this.show = false
-      },
-      onConfirm(value) {
-        this.show = false
-        this.$emit('input', parseTime(value, '{y}-{m}-{d}'))
-        this.$emit('change', parseTime(value, '{y}-{m}-{d}'))
       },
       onClick() {
         this.show = true
@@ -76,19 +67,23 @@
           this.date = new Date()
         }
       },
+      onConfirm(date) {
+        this.show = false
+        const d = parseTime(date, this.format)
+        this.$emit('input', d)
+        this.$emit('change', d)
+      }
     },
     components: {
       [Field.name]: Field,
-      [DatetimePicker.name]: DatetimePicker,
-      [Popup.name]: Popup
+      [Calendar.name]: Calendar
     }
   }
 </script>
 
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
-  .popup-datetimePicker.van-cell {
+  .popup-calendar-picker.van-cell {
     padding: 0;
 
     .van-field__right-icon {

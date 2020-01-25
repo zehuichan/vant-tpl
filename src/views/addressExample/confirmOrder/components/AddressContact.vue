@@ -5,7 +5,7 @@
       <div class="van-cell__value van-cell__value--alone">
         <div class="clearfix">
           <div class="address-contact-cell__name fl">收货人：{{data&&data.name}}</div>
-          <div class="address-contact-cell__phone fr">{{data&&data.phone}}</div>
+          <div class="address-contact-cell__phone fr">{{data&&data.phone | formatPhone}}</div>
         </div>
         <div class="address-contact-cell__address ellipsis-2">
           {{address}} {{data&&data.address}}

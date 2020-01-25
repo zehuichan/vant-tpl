@@ -31,7 +31,13 @@
     </div>
     <van-cell-group>
       <van-cell title="顺丰速运" value="+￥18.00"/>
-      <van-cell title="优惠券" value="无优惠券可用" is-link/>
+      <popup-coupon-picker
+        v-model="coupons"
+        :source="coupon"
+        label="优惠券"
+        input-align="right"
+        :placeholder="coupon_placeholder"
+      />
     </van-cell-group>
     <split/>
     <div class="desc">
@@ -51,12 +57,6 @@
         <van-button type="primary" loading loading-type="spinner" loading-text="提交订单">提交订单</van-button>
       </div>
     </div>
-    <div class="demo-block">
-      <code>
-        chosen_address {{chosen_address}}
-        default_address {{default_address}}
-      </code>
-    </div>
   </div>
 </template>
 
@@ -66,6 +66,7 @@
   // components
   import {NavBar, Button, Cell, CellGroup, Image} from 'vant'
   import AddressContact from './components/AddressContact'
+  import PopupCouponPicker from '@/components/PopupCouponPicker'
   import Split from '@/components/Split'
   import XCard from '@/components/Card'
 
@@ -75,13 +76,18 @@
       return {
         config: {},
         level: 'v2',
-        goods_data_detail: []
+        goods_data_detail: [],
+        coupons: []
       }
     },
     computed: {
+      coupon_placeholder() {
+        return `${this.coupon.length}张可用` || '无优惠券可用'
+      },
       ...mapGetters([
         'chosen_address',
         'default_address',
+        'coupon',
       ])
     },
     created() {
@@ -134,6 +140,7 @@
       [CellGroup.name]: CellGroup,
       [Image.name]: Image,
       AddressContact,
+      PopupCouponPicker,
       Split,
       XCard,
     }

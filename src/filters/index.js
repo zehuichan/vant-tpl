@@ -42,11 +42,11 @@ export function toThousandslsFilter(num) {
 }
 
 // 格式化金额,单位:分(eg:430分=4.30元)
-export function format(price, suffix = '') {
+export function format(price, digits = 2, prefix = '', suffix = '') {
   if (!price) {
     return 0
   }
-  return Number(price / 100).toFixed(2) + suffix
+  return prefix + Number(price / 100).toFixed(digits) + suffix
 }
 
 // 隐藏手机号中间4位

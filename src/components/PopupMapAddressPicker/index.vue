@@ -42,7 +42,7 @@
             @click="handleClick(item)"
           />
         </van-cell-group>
-        <div class="no-more">没有更多记录了~</div>
+        <empty/>
       </div>
     </van-popup>
   </div>
@@ -54,11 +54,12 @@
   // components
   import {NavBar, Popup, Search, Cell, CellGroup} from 'vant'
   import Split from '@/components/Split'
+  import Empty from '@/components/Empty'
 
   export default {
     name: 'popup-map-Address-picker',
     model: {
-      props: 'value',
+      prop: 'value',
       event: 'input'
     },
     props: {
@@ -137,7 +138,8 @@
       [Search.name]: Search,
       [Cell.name]: Cell,
       [CellGroup.name]: CellGroup,
-      Split
+      Split,
+      Empty
     }
   }
 </script>

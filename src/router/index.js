@@ -18,6 +18,7 @@ const ConfirmOrder = () => import('@/views/addressExample/confirmOrder')
 const MyCoupon = () => import('@/views/couponExample/myCoupon')
 
 // 业务组件-公共
+const ShopCart = () => import('@/views/commonExample/shopCart')
 const FePage = () => import('@/views/commonExample/fePage')
 const Base64Demo = () => import('@/views/commonExample/base64Demo')
 
@@ -114,6 +115,18 @@ export const routes = [
     ]
   },
 
+  {
+    path: '/shopCart',
+    component: BlankLayout,
+    children: [
+      {
+        path: '',
+        component: ShopCart,
+        name: 'shopCart',
+        meta: {title: '购物车'}
+      }
+    ]
+  },
   {
     path: '/fePage',
     component: BlankLayout,

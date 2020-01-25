@@ -45,13 +45,13 @@ const mutations = {
 
 const actions = {
   // 获取地址列表
-  GetAddressList({commit, state}) {
+  getAddressList({commit, state}) {
     return new Promise((resolve, reject) => {
       commit('SET_ADDRESS_LIST', list)
       resolve()
     })
   },
-  ChosenAddress({commit, state}, address) {
+  chosenAddress({commit, state}, address) {
     commit('SET_CHOSEN_ADDRESS', address)
   }
 }

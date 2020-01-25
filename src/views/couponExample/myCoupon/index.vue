@@ -9,7 +9,7 @@
 
     <div class="page-container padded">
       <coupon-list
-        :source="coupon_list"
+        :source="coupon"
       />
     </div>
 
@@ -17,6 +17,8 @@
 </template>
 
 <script>
+  // vuex
+  import {mapGetters} from 'vuex'
   // components
   import {NavBar} from 'vant'
   import CouponList from '@/components/CouponList'
@@ -25,14 +27,13 @@
     name: 'myCoupon',
     data() {
       return {
-        coupon_list:[
-          {},
-          {},
-          {},
-          {},
-          {},
-        ]
+
       }
+    },
+    computed:{
+      ...mapGetters([
+        'coupon'
+      ])
     },
     methods: {
       onClickLeft() {
