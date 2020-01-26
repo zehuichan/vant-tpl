@@ -1,4 +1,4 @@
-import wx from './jweixin-1.4.0'
+import wx from './jweixin-1.6.0'
 
 const plugin = {
   install(Vue) {

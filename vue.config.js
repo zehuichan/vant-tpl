@@ -6,7 +6,7 @@ function resolve(dir) {
 
 const name = 'vue Vant Tpl' // page title
 
-const port = 9527 // dev port
+const port = 80 // dev port
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
@@ -16,24 +16,14 @@ module.exports = {
   filenameHashing: true,
   productionSourceMap: false,
   devServer: {
+    clientLogLevel: 'warning',
+    historyApiFallback: true,
+    hot: true,
+    compress: true,
+    host: '0.0.0.0',
     port: port,
-    open: false,
-    overlay: {
-      warnings: false,
-      errors: true
-    },
+    overlay: process.env.VUE_APP_ERROR_OVERLAY ? {warnings: false, errors: true} : false,
     // proxy: process.env.VUE_APP_BASE_API,
-    proxy: {
-      // change xxx-api/login => mock/login
-      // detail: https://cli.vuejs.org/config/#devserver-proxy
-      [process.env.VUE_APP_BASE_API]: {
-        target: `http://127.0.0.1:${port}/mock`,
-        changeOrigin: true,
-        pathRewrite: {
-          ['^' + process.env.VUE_APP_BASE_API]: ''
-        }
-      }
-    },
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

@@ -8,6 +8,9 @@ const getters = {
   // tabbar
   tabbar: state => state.app.tabbar,
 
+  // wechat
+  wechat_ready: state => state.wechat.wechat_ready,
+
   // userInfo
   avatar: state => state.user.avatar,
   cellphone: state => state.user.cellphone,

@@ -1,8 +1,5 @@
-import Vue from 'vue'
-import {Toast} from 'vant'
 import axios from 'axios'
-import store from '@/store'
-import {getWXToken} from '@/utils/auth'
+import {Toast} from 'vant'
 
 // create an axios instance
 const http = axios.create({
@@ -11,9 +8,6 @@ const http = axios.create({
 })
 
 http.interceptors.request.use(config => {
-  if (store.getters.token) {
-    config.headers['authorization'] = getWXToken()
-  }
   return config
 }, error => {
   console.log(`err,${error}`)
@@ -23,22 +17,16 @@ http.interceptors.request.use(config => {
 http.interceptors.response.use(
   (response) => {
     const res = response.data
-    if (res.res !== 1) {
-      Toast({
-        position: 'bottom',
-        message: res.resMsg
-      })
-      return Promise.reject(res.resMsg)
+    if (res.status !== 1) {
+      Toast(`status:${res.status},${res.msg}`)
+      return Promise.reject(res.msg)
     } else {
       return response.data
     }
   },
   (error) => {
     console.log(`err,${error}`)
-    Toast({
-      position: 'bottom',
-      message: error
-    })
+    Toast(`err,${error}`)
     return Promise.reject(error)
   }
 )

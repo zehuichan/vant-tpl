@@ -3,10 +3,13 @@ import store from './store'
 
 router.beforeEach(async (to, from, next) => {
   // store.commit('SET_LOADING_STATE', true)
+  // 初始化微信config
+  await store.dispatch('wechat/initWechatState')
   if (store.getters.username) {
     next()
   } else {
     try {
+      // 拉取基本信息
       await store.dispatch('user/getUserInfo')
       await store.dispatch('cart/getCartInfo')
       await store.dispatch('address/getAddressList')
