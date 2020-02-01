@@ -14,6 +14,7 @@
       <van-area
         ref="area"
         :area-list="area"
+        :columns-placeholder="['请选择', '请选择', '请选择']"
         @cancel="onCancel"
         @confirm="onConfirm">
       </van-area>
