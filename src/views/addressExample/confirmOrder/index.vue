@@ -19,7 +19,7 @@
             </div>
             <div class="goods__body">
               <div class="goods__body-title">{{item.name}}</div>
-              <div class="goods__body-toolbar">x {{item.stock}}</div>
+              <div class="goods__body-toolbar">x {{goods_data[item.id]}}</div>
             </div>
             <div class="goods__extra">
               <span class="price">￥ {{item[`${level}_price`] | format}}</span>
@@ -30,7 +30,7 @@
       </x-card>
     </div>
     <van-cell-group>
-      <van-cell title="顺丰速运" value="+￥18.00"/>
+      <van-field label="顺丰速运" :value="`+￥${$options.filters.format(freight_price)}`" readonly clickable input-align="right"/>
       <popup-coupon-picker
         v-model="coupons"
         :source="coupon"
@@ -44,14 +44,19 @@
       <ul>
         <li>1、若卖家未在36小时内发货，您将获得48元现金及170元优惠券补偿。</li>
         <li>2、每件交易商品均由平台针对实物进行鉴别，鉴于商品价格波动性，同时每个款式每个尺码的商品出售时仅有一件等情况，故不支持退换差价。</li>
-        <li>提交订单即表示同意</li>
+        <li>*提交订单即表示同意</li>
+        <li>卡券ID：{{coupons}}</li>
+        <li>(unit:fen)满减：{{reduce_money}}</li>
+        <li>(unit:fen)商品：{{goods_total_price}}</li>
+        <li>(unit:fen)邮费：{{freight_price}}</li>
+        <li>(unit:fen)最后价格 = 商品 + 邮费 - 满减 = {{order_total_price}}</li>
       </ul>
     </div>
     <split/>
     <div class="btn-wrapper padded-mini fixed-bottom clearfix">
       <div class="fl">
         <span class="text">实付款：￥</span>
-        <span class="price">977.00</span>
+        <span class="price">{{order_total_price | format}}</span>
       </div>
       <div class="fr">
         <van-button type="primary" loading loading-type="spinner" loading-text="提交订单">提交订单</van-button>
@@ -64,7 +69,7 @@
   // vuex
   import {mapGetters} from 'vuex'
   // components
-  import {NavBar, Button, Cell, CellGroup, Image} from 'vant'
+  import {NavBar, Button, Field, CellGroup, Image} from 'vant'
   import AddressContact from './components/AddressContact'
   import PopupCouponPicker from '@/components/PopupCouponPicker'
   import Split from '@/components/Split'
@@ -77,12 +82,23 @@
         config: {},
         level: 'v2',
         goods_data_detail: [],
-        coupons: []
+        coupons: [1, 2, 3, 4],
+        goods_data: {714: 10},
+        freight_price: 1800
       }
     },
     computed: {
       coupon_placeholder() {
         return `${this.coupon.length}张可用` || '无优惠券可用'
+      },
+      reduce_money() {
+        return this.coupon.filter(item => this.coupons.includes(item.id)).reduce((prev, curr) => curr.reduce_money + prev, 0)
+      },
+      goods_total_price() {
+        return this.goods_data_detail.reduce((prev, curr) => curr[`${this.level}_price`] * this.goods_data[curr.id] + prev, 0)
+      },
+      order_total_price() {
+        return this.goods_total_price + this.freight_price - this.reduce_money
       },
       ...mapGetters([
         'chosen_address',
@@ -136,7 +152,7 @@
     components: {
       [NavBar.name]: NavBar,
       [Button.name]: Button,
-      [Cell.name]: Cell,
+      [Field.name]: Field,
       [CellGroup.name]: CellGroup,
       [Image.name]: Image,
       AddressContact,

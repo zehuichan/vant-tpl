@@ -26,7 +26,14 @@
         />
       </div>
       <div class="btn-wrapper fixed-bottom padded">
-        <van-button type="primary" block @click="handleConfirm">确认{{checks}}</van-button>
+        <van-row>
+          <van-col span="12">
+            <van-button type="default" block @click="handleConfirm('empty')">不使用优惠券</van-button>
+          </van-col>
+          <van-col span="12">
+            <van-button type="primary" block @click="handleConfirm('checks')">确认</van-button>
+          </van-col>
+        </van-row>
       </div>
     </van-popup>
 
@@ -35,7 +42,7 @@
 
 <script>
   // components
-  import {Field, Popup, NavBar, Button} from 'vant'
+  import {Field, Popup, NavBar, Button, Col, Row} from 'vant'
   import CouponList from '@/components/CouponList'
 
   export default {
@@ -61,8 +68,12 @@
     data() {
       return {
         show: false,
-        text: '',
-        checks: []
+        checks: this.value
+      }
+    },
+    computed: {
+      text() {
+        return this.source.filter(item => this.value.includes(item.id)).reduce((prev, curr) => curr.reduce_money + prev, 0)
       }
     },
     methods: {
@@ -70,11 +81,12 @@
         this.show = false
       },
       onClick() {
+        this.checks = this.value
         this.show = true
       },
-      handleConfirm() {
-        this.$emit('input', this.checks)
-        this.text = this.source.filter(item => this.checks.includes(item.id)).reduce((prev, curr) => curr.reduce_money + prev, 0)
+      handleConfirm(type) {
+        this.$emit('input', type === 'checks' ? this.checks : [])
+        this.$emit('change', type === 'checks' ? this.checks : [])
         this.show = false
       },
     },
@@ -83,6 +95,8 @@
       [Popup.name]: Popup,
       [NavBar.name]: NavBar,
       [Button.name]: Button,
+      [Col.name]: Col,
+      [Row.name]: Row,
       CouponList
     }
   }

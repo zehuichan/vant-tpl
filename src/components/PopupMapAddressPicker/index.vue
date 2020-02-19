@@ -95,6 +95,7 @@
       handleClick(val) {
         this.show = false
         this.$emit('input', val)
+        this.$emit('change', val)
       },
       getLocalCity() {
         const self = this

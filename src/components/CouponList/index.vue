@@ -33,12 +33,16 @@
     },
     data() {
       return {
-        checks: []
+        checks: this.value
       }
     },
     watch: {
+      value(val) {
+        this.checks = val
+      },
       checks(val) {
         this.$emit('input', val)
+        this.$emit('change', val)
       }
     },
     components: {

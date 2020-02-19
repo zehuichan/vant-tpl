@@ -16,7 +16,7 @@
 
 <script>
   // components
-  import {Tag, Checkbox} from 'vant'
+  import {Checkbox} from 'vant'
 
   export default {
     name: 'coupon-item',
@@ -33,7 +33,6 @@
       }
     },
     components: {
-      [Tag.name]: Tag,
       [Checkbox.name]: Checkbox,
     }
   }

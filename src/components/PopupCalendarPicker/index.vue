@@ -1,16 +1,16 @@
 <template>
   <div class="popup-calendar-picker van-cell">
     <van-field
-      v-bind="$props"
       :value="text"
+      :label="label"
       :right-icon="showIcon"
+      :placeholder="placeholder"
       readonly
       clickable
       @click.stop="onClick"
       @click-right-icon.stop="onClear"
     />
-
-    <van-calendar v-model="show" get-container="body" @confirm="onConfirm"/>
+    <van-calendar v-model="show" :type="type" :default-date="date" get-container="body" @confirm="onConfirm"/>
   </div>
 </template>
 
@@ -27,10 +27,12 @@
       event: 'input'
     },
     props: {
-      // Field.props
-      ...Field.props,
-
       value: [String, Array],
+      label: String,
+      type: {
+        type: String,
+        default: 'single',
+      },
       format: {
         type: String,
         default: '{y}-{m}-{d}'
@@ -49,7 +51,17 @@
         return this.clearable && this.value ? 'clear' : 'arrow'
       },
       text() {
-        return this.value
+        return this.range ? this.value.join(' 至 ') : this.value
+      },
+      range() {
+        return this.type === 'range'
+      },
+      date() {
+        if (this.range) {
+          const [startDay, endDay] = this.value
+          return [new Date(startDay), new Date(endDay)]
+        }
+        return this.value ? new Date(this.value) : new Date()
       },
     },
     methods: {
@@ -57,22 +69,23 @@
         if (!this.clearable) {
           return false
         }
-        this.$emit('input', '')
+        this.$emit('input', this.range ? [] : '')
       },
       onClick() {
         this.show = true
-        if (this.value) {
-          this.date = new Date(this.value)
-        } else {
-          this.date = new Date()
-        }
       },
       onConfirm(date) {
         this.show = false
-        const d = parseTime(date, this.format)
+        let d
+        if (this.range) {
+          const [startDay, endDay] = date
+          d = [parseTime(startDay, this.format), parseTime(endDay, this.format)]
+        } else {
+          d = parseTime(date, this.format)
+        }
         this.$emit('input', d)
         this.$emit('change', d)
-      }
+      },
     },
     components: {
       [Field.name]: Field,

@@ -24,7 +24,8 @@
     <van-cell-group :border="false" title="时间日期相关">
       <popup-datetime-picker v-model="date" label="日期" clearable placeholder="请选择"/>
       <popup-timer-picker v-model="time" label="时间" clearable placeholder="请选择"/>
-      <popup-calendar-picker v-model="calendar" label="选择日期" clearable placeholder="请选择"/>
+      <popup-calendar-picker v-model="calendar" label="单个日期" clearable placeholder="请选择"/>
+      <popup-calendar-picker v-model="calendar_range" label="日期区间" type="range" clearable placeholder="请选择"/>
     </van-cell-group>
 
     <van-cell-group :border="false" title="个性组件相关">
@@ -35,7 +36,8 @@
     <h3 class="demo-title">测试</h3>
     <div class="demo-block">
       <code>
-
+        {{calendar}}
+        {{calendar_range}}
       </code>
     </div>
   </div>
@@ -87,7 +89,8 @@
         time: '',
 
         time2: (new Date()).getTime() - 86400 * 3 * 1000,
-        calendar: parseTime(new Date(), '{y}-{m}-{d}')
+        calendar: parseTime(new Date(), '{y}-{m}-{d}'),
+        calendar_range: ['2020-02-19', '2020-02-28']
       }
     },
     methods: {
