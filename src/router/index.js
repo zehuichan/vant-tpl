@@ -74,19 +74,7 @@ export const routes = [
         path: '',
         component: MyAddress,
         name: 'myAddress',
-        meta: {title: '收货地址管理', disabled: true, switchable: true}
-      }
-    ]
-  },
-  {
-    path: '/chosenAddress',
-    component: BlankLayout,
-    children: [
-      {
-        path: '',
-        component: MyAddress,
-        name: 'chosenAddress',
-        meta: {title: '选择收货地址', disabled: false, switchable: false}
+        meta: {title: '收货地址管理'}
       }
     ]
   },

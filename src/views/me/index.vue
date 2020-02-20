@@ -3,7 +3,6 @@
     <!--业务组件-地址-->
     <van-cell-group title="业务组件-地址">
       <van-cell title="地址管理" is-link to="/myAddress"/>
-      <van-cell title="选择地址" is-link to="/chosenAddress"/>
       <van-cell title="确认订单" is-link to="/confirmOrder"/>
     </van-cell-group>
     <!--业务组件-卡券-->

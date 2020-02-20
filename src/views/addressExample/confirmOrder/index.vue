@@ -4,10 +4,16 @@
       fixed
       left-text="确认订单"
       left-arrow
-      @click-left="onClickLeft">
-    </van-nav-bar>
+      @click-left="onClickLeft"
+    />
 
-    <address-contact :data="chosen_address || default_address"></address-contact>
+    <!--contact-->
+    <address-contact :data="current_address || default_address" @click.native="show_list = true"/>
+    <!--list-->
+    <address-list v-model="show_list" :list="address_list" :disabled="false" @add="onAdd" @edit="onEdit" @select="onSelect"/>
+    <!--edit-->
+    <address-edit v-model="show_edit" :data="current_address"/>
+
     <split/>
     <div class="page-container">
       <x-card>
@@ -30,7 +36,13 @@
       </x-card>
     </div>
     <van-cell-group>
-      <van-field label="顺丰速运" :value="`+￥${$options.filters.format(freight_price)}`" readonly clickable input-align="right"/>
+      <van-field
+        label="顺丰速运"
+        :value="`+￥${$options.filters.format(freight_price)}`"
+        readonly
+        clickable
+        input-align="right"
+      />
       <popup-coupon-picker
         v-model="coupons"
         :source="coupon"
@@ -70,7 +82,9 @@
   import {mapGetters} from 'vuex'
   // components
   import {NavBar, Button, Field, CellGroup, Image} from 'vant'
-  import AddressContact from './components/AddressContact'
+  import AddressContact from '@/components/AddressContact'
+  import AddressList from '@/components/AddressList'
+  import AddressEdit from '@/components/AddressEdit'
   import PopupCouponPicker from '@/components/PopupCouponPicker'
   import Split from '@/components/Split'
   import XCard from '@/components/Card'
@@ -84,23 +98,31 @@
         goods_data_detail: [],
         coupons: [1, 2, 3, 4],
         goods_data: {714: 10},
-        freight_price: 1800
+        freight_price: 1800,
+
+        current_address: null,
+        show_list: false,
+        show_edit: false
       }
     },
     computed: {
       coupon_placeholder() {
         return `${this.coupon.length}张可用` || '无优惠券可用'
       },
+      // 满减
       reduce_money() {
         return this.coupon.filter(item => this.coupons.includes(item.id)).reduce((prev, curr) => curr.reduce_money + prev, 0)
       },
+      // 商品
       goods_total_price() {
         return this.goods_data_detail.reduce((prev, curr) => curr[`${this.level}_price`] * this.goods_data[curr.id] + prev, 0)
       },
+      // 最后价格
       order_total_price() {
         return this.goods_total_price + this.freight_price - this.reduce_money
       },
       ...mapGetters([
+        'address_list',
         'chosen_address',
         'default_address',
         'coupon',
@@ -112,6 +134,24 @@
     methods: {
       onClickLeft() {
         this.$router.push('/me')
+      },
+      onAdd() {
+        this.current_address = null
+        this.$nextTick(() => {
+          this.show_edit = true
+        })
+      },
+      onEdit(address) {
+        this.current_address = address
+        this.$nextTick(() => {
+          this.show_edit = true
+        })
+      },
+      onSelect(address) {
+        this.current_address = address
+        this.$nextTick(() => {
+          this.show_list = false
+        })
       },
       getOrderConfig() {
         this.goods_data_detail = [
@@ -125,7 +165,7 @@
             goods_desc: null,
             goodscode: '1022406',
             id: 714,
-            image: '/weixin_manage/drugImage/6923872200924/formservice78B2WO9Z.png',
+            image: 'https://itmall-item.iteshop.com/4/product/IZXKNJ4153W9DPKX/IZXKNJ4153W9DPKX-plp-1.jpg?x-oss-process=image/resize,w_460,h_574,limit_0,m_pad/quality,Q_80',
             merchant: '福济药业',
             name: '银胡感冒散',
             pack_unit: '盒',
@@ -156,6 +196,8 @@
       [CellGroup.name]: CellGroup,
       [Image.name]: Image,
       AddressContact,
+      AddressList,
+      AddressEdit,
       PopupCouponPicker,
       Split,
       XCard,

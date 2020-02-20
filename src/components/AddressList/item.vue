@@ -1,13 +1,13 @@
 <template>
   <div class="address-item">
-    <div :class="address.disabled ? '' : 'tap-active'" @click="$emit('select')">
+    <div :class="disabled ? '' : 'tap-active'" @click="$emit('select')">
       <div class="address-cell">
         <div class="address-cell__title">{{data.name}}</div>
         <div class="address-cell__value">{{data.phone | formatPhone}}</div>
       </div>
       <div class="address-item__address ellipsis-2">{{_address}}</div>
     </div>
-    <div class="address-edit van-hairline--top" v-if="address.switchable">
+    <div class="address-edit van-hairline--top">
       <div class="address-edit__radio" v-if="data.default">
         <van-tag type="primary">默认地址</van-tag>
       </div>
@@ -25,9 +25,12 @@
 
   export default {
     name: 'address-item',
-    inject: ['address'],
     props: {
-      data: Object
+      data: Object,
+      disabled: {
+        type: Boolean,
+        default: true
+      },
     },
     computed: {
       _address() {

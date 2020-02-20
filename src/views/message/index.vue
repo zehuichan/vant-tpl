@@ -6,7 +6,7 @@
       <van-search
         v-model="keyword"
         placeholder="请输入搜索关键词"
-        :label="city.city || '加载中'"
+        :label="location"
         @clear="handleClear"/>
       <div class="cell-group-title">搜索结果</div>
     </div>
@@ -46,6 +46,7 @@
       return {
         keyword: '',
         city: {},
+        location: '定位中',
         result: []
       }
     },
@@ -54,8 +55,6 @@
     },
     created() {
       this.getAmapLocalCity()
-      this.getBmapLocalCity()
-      this.getQmapLocalCity()
     },
     methods: {
       getQmapLocalCity() {
@@ -77,13 +76,16 @@
       getAmapLocalCity() {
         const self = this
         this.$amap().then((AMap) => {
-          AMap.plugin(['AMap.CitySearch'], function () {
-            const citySearch = new AMap.CitySearch()
-            citySearch.getLocalCity((status, result) => {
-              if (status === 'complete' && result.info === 'OK') {
+          AMap.plugin('AMap.Geolocation', function () {
+            const geolocation = new AMap.Geolocation()
+            geolocation.getCityInfo((status, result) => {
+              if (status === 'complete') {
                 // 查询成功，result即为当前所在城市信息
                 console.log(result)
-                self.city = result
+                self.location = result.city
+              }else {
+                console.log(result)
+                self.city = '定位失败'
               }
             })
           })
@@ -95,7 +97,7 @@
         this.$amap().then((AMap) => {
           AMap.plugin(['AMap.Autocomplete'], function () {
             const autoComplete = new AMap.Autocomplete({
-              city: self.city.adcode,
+              city: self.location,
               datatype: 'poi',
               citylimit: false
             })

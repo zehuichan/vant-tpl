@@ -4,7 +4,8 @@
       :left-text="title"
       left-arrow
       @click-left="onClickLeft"
-      @click-right="onDelete">
+      @click-right="onClickRight"
+    >
 
       <van-button type="danger" size="mini" slot="right" v-if="data">删除</van-button>
     </van-nav-bar>
@@ -13,7 +14,15 @@
       <van-field v-model="dataForm.name" label="收货人" placeholder="填写姓名" clearable/>
       <van-field v-model="dataForm.phone" label="联系电话" placeholder="填写手机号" clearable/>
       <popup-area-picker v-model="dataForm.area" label="所在区域" placeholder="请选择" clearable separator="-"/>
-      <van-field v-model="dataForm.address" type="textarea" rows="4" placeholder="请填写详细地址" clearable/>
+      <van-field
+        v-model="dataForm.address"
+        type="textarea"
+        rows="4"
+        maxlength="32"
+        placeholder="请填写详细地址"
+        show-word-limit
+        clearable
+      />
     </van-cell-group>
 
     <split></split>
@@ -85,6 +94,9 @@
       onClickLeft() {
         this.$emit('input', false)
       },
+      onClickRight() {
+        this.$emit('delete', false)
+      },
       init() {
         if (!this.data) {
           this.dataForm = Object.assign({}, defaultForm)
@@ -96,9 +108,6 @@
           this.dataForm.address = this.data.address
           this.dataForm.default = this.data.default
         }
-      },
-      onDelete() {
-        this.$emit('input', false)
       },
       onSave() {
         if (!this.isEdit) {

@@ -1,6 +1,6 @@
 <template>
   <div class="address-contact">
-    <div class="address-contact-cell" @click="to">
+    <div class="address-contact-cell">
       <i class="iconfont icon-dingwei van-cell__left-icon"></i>
       <div class="van-cell__value van-cell__value--alone">
         <div class="clearfix">
@@ -23,22 +23,13 @@
   export default {
     name: 'address-contact',
     props: {
-      data: [Object]
-    },
-    data() {
-      return {}
+      data: Object
     },
     computed: {
       address() {
-        const area = this.data && JSON.parse(this.data.area) || []
+        const area = this.value && JSON.parse(this.value.area) || []
         return area.map(v => v.name).join(' ')
       }
-    },
-    methods: {
-      to() {
-        const {fullPath} = this.$route
-        this.$router.push({path: `/chosenAddress?redirect=${fullPath}`})
-      },
     },
     components: {
       [NavBar.name]: NavBar,

@@ -5,33 +5,20 @@
       :left-text="$route.meta.title"
       left-arrow
       @click-left="onClickLeft"
+      @click-right="onClickRight"
     >
 
-      <van-button type="primary" size="mini" slot="right" @click="handleAdd">添加新地址</van-button>
+      <span class="font12" slot="right">添加新地址</span>
     </van-nav-bar>
 
-    <address-list
-      :source="address_list"
-      :disabled="$route.meta.disabled"
-      :switchable="$route.meta.switchable"
-      @edit="handleEdit"
-      @select="handleSelect"
-      @delete="handleDelete"
-    />
-
-    <handle
-      v-model="show"
-      :data="address"
-      @update="handleUpdate"
-      @delete="handleUpdate"
-    />
+    <!--list-->
+    <address-list :poppable="false" :list="address_list" disabled @edit="onEdit" @delete="onDelete"/>
+    <!--edit-->
+    <address-edit v-model="show_edit" :data="current_address"/>
 
     <div class="demo-block">
       <code>
-        {
-        show:{{show}}
-        default_address:{{default_address}}
-        }
+        {{default_address}}
       </code>
     </div>
   </div>
@@ -42,27 +29,15 @@
   import {mapActions, mapGetters} from 'vuex'
   // components
   import {NavBar, Button} from 'vant'
-  import Handle from './components/Handle'
   import AddressList from '@/components/AddressList'
+  import AddressEdit from '@/components/AddressEdit'
 
   export default {
     name: 'myAddress',
     data() {
       return {
-        show: false,
-        address: null,
-        list: [],
-        chosenAddress: null,
-
-        redirect: undefined
-      }
-    },
-    watch: {
-      $route: {
-        handler: function (route) {
-          this.redirect = route.query && route.query.redirect
-        },
-        immediate: true
+        current_address: null,
+        show_edit: false
       }
     },
     computed: {
@@ -76,26 +51,21 @@
     },
     methods: {
       onClickLeft() {
-        this.$router.push({path: this.redirect || '/me'})
+        this.$router.go(-1)
       },
-      handleUpdate() {
-        this['address/getAddressList']()
-      },
-      handleAdd() {
+      onClickRight() {
         console.log('handleAdd', this.address)
-        this.address = null
-        this.show = true
+        this.current_address = null
+        this.$nextTick(() => {
+          this.show_edit = true
+        })
       },
-      handleSelect(address) {
-        this['address/getAddressList'](address)
-        this.$router.push({path: `/confirmOrder`})
-      },
-      handleEdit(address, index) {
+      onEdit(address, index) {
         console.log('handleEdit', address, index)
-        this.address = address
-        this.show = true
+        this.current_address = address
+        this.show_edit = true
       },
-      handleDelete(address, index) {
+      onDelete(address, index) {
         console.log('handleDelete', address, index)
         this.$dialog.confirm({
           message: '确定要删除该地址吗？'
@@ -113,8 +83,8 @@
     components: {
       [NavBar.name]: NavBar,
       [Button.name]: Button,
-      Handle,
-      AddressList
+      AddressList,
+      AddressEdit,
     }
   }
 </script>
