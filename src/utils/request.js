@@ -7,12 +7,15 @@ const http = axios.create({
   timeout: 5000 // request timeout
 })
 
-http.interceptors.request.use(config => {
-  return config
-}, error => {
-  console.log(`err,${error}`)
-  Promise.reject(error)
-})
+http.interceptors.request.use(
+  config => {
+    return config
+  },
+  error => {
+    console.log(`err,${error}`)
+    Promise.reject(error)
+  }
+)
 
 http.interceptors.response.use(
   (response) => {
