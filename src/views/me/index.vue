@@ -22,6 +22,7 @@
         <lang-selector/>
       </van-cell>
     </van-cell-group>
+    <divider>Text</divider>
   </div>
 </template>
 
@@ -29,6 +30,7 @@
   // components
   import {Cell, CellGroup, Button} from 'vant'
   import LangSelector from '@/components/LangSelector'
+  import Divider from '@/components/Divider'
   import Split from '@/components/Split'
 
   export default {
@@ -38,6 +40,7 @@
       [CellGroup.name]: CellGroup,
       [Button.name]: Button,
       LangSelector,
+      Divider,
       Split,
     }
   }
