@@ -2,13 +2,13 @@
   <div class="goods-card__items" :class="classes">
     <van-checkbox class="goods-card__checker" v-if="showCheckbox" :name="name"/>
     <van-card
-      class="goods-card__content"
-      :price="$options.filters.format(price)"
-      :origin-price="$options.filters.format(originPrice)"
-      :desc="desc"
-      :thumb="thumb"
-      centered
-      @click-thumb="$emit('click-thumb')"
+        class="goods-card__content"
+        :price="$options.filters.format(price)"
+        :origin-price="$options.filters.format(originPrice)"
+        :desc="desc"
+        :thumb="thumb"
+        centered
+        @click-thumb="$emit('click-thumb')"
     >
       <div class="van-card__title" slot="title">
         {{title}}id:{{name}}
@@ -17,16 +17,13 @@
         <van-tag :type="formatTag(tag&&tag.name)" plain>{{tag&&tag.name || '测试'}}</van-tag>
       </div>
       <van-stepper
-        slot="num"
-        :value="num"
-        async-change
-        :max="stock"
-        disable-input
-        input-width="25px"
-        button-size="25px"
-        @plus="onPlus"
-        @minus="onMinus"
-        @overlimit="onOverlimit"
+          slot="num"
+          :value="num"
+          :max="stock"
+          async-change
+          integer
+          @change="onChange"
+          @overlimit="onOverlimit"
       />
     </van-card>
   </div>
@@ -83,27 +80,28 @@
 
         return 'primary'
       },
-      onPlus() {
-        this['cart/updateGoodsQuantity']({id: this.name, num: this.num + 1})
+      onChange(val) {
+        this['cart/changeItems']({productId: this.name, num: val})
       },
-      onMinus() {
-        this['cart/updateGoodsQuantity']({id: this.name, num: this.num - 1})
-      },
-      onOverlimit(e) {
-        if (e === 'plus') {
+      onOverlimit(event) {
+        const self = this
+        if (event === 'plus') {
           this.$toast('亲，该宝贝不能购买更多哦~')
         } else {
-          this.$dialog.confirm({
-            message: '确定要删除这个商品吗？'
-          }).then(() => {
-            this['cart/deleteGoods'](this.name)
-          }).catch(() => {
-          })
+          this.$dialog
+            .confirm({
+              message: '确定要删除这个商品吗？'
+            })
+            .then(() => {
+              self['cart/deleteItems'](this.name)
+            })
+            .catch(() => {
+            })
         }
       },
       ...mapActions([
-        'cart/updateGoodsQuantity',
-        'cart/deleteGoods',
+        'cart/changeItems',
+        'cart/deleteItems',
       ])
     },
     components: {

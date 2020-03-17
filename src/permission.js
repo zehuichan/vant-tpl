@@ -11,7 +11,7 @@ router.beforeEach(async (to, from, next) => {
     try {
       // 拉取基本信息
       await store.dispatch('user/getUserInfo')
-      await store.dispatch('cart/getCartInfo')
+      await store.dispatch('cart/setItems')
       await store.dispatch('address/getAddressList')
       await store.dispatch('coupon/getCouponList')
       next()

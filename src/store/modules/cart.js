@@ -98,24 +98,21 @@ const mutations = {
 
 const actions = {
   // 获取购物车信息
-  getCartInfo({commit, state}) {
+  setItems({commit, state}) {
     return new Promise((resolve, reject) => {
       commit('SET_CART_ITEMS', data.cart_info)
       resolve()
     })
   },
-  // 修改商品数量
-  updateGoodsQuantity({commit, state}, {id, num}) {
-    return new Promise((resolve, reject) => {
-      const cartItem = state.items.find(item => item.id === id)
-      cartItem.num = num
-      resolve()
-    })
+  // 改变商品数量
+  changeItems({commit, state}, {productId, num}) {
+    const cartItem = state.items.find(item => item.id === productId)
+    cartItem.num = num
   },
   // 删除商品
-  deleteGoods({commit, state}, id) {
+  deleteItems({commit, state}, productId) {
     return new Promise((resolve, reject) => {
-      const _items = state.items.filter(item => item.id !== id)
+      const _items = state.items.filter(item => item.id !== productId)
       commit('SET_CART_ITEMS', _items)
       resolve()
     })
