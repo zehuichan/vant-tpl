@@ -10,10 +10,10 @@
         centered
         @click-thumb="$emit('click-thumb')"
     >
-      <div class="van-card__title" slot="title">
+      <div class="van-card__title van-multi-ellipsis--l2" slot="title">
         {{title}}id:{{name}}
       </div>
-      <div class="van-card__title" slot="tags">
+      <div slot="tags">
         <van-tag :type="formatTag(tag&&tag.name)" plain>{{tag&&tag.name || '测试'}}</van-tag>
       </div>
       <van-stepper

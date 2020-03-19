@@ -20,7 +20,7 @@
         :thumb="item.image"
         :stock="item.stock"
         show-checkbox
-        @click-thumb="onClick"
+        @click-thumb="onClickThumb"
       />
     </van-checkbox-group>
     <van-submit-bar
@@ -67,7 +67,7 @@
       onClickLeft() {
         this.$router.push({path: '/me'})
       },
-      onClick() {
+      onClickThumb() {
         const _products = this.products.map(item => item.name)
         this.$toast(JSON.stringify(_products))
       },
