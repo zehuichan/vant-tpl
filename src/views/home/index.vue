@@ -2,20 +2,20 @@
   <div class="home">
     <van-cell-group :border="false" title="picker相关">
       <popup-picker
-        v-model="picker1"
-        label="picker1"
-        :columns="columns1"
-        clearable
-        placeholder="请选择"
-        @change="onChange1"
+          v-model="picker1"
+          label="picker1"
+          :columns="columns1"
+          clearable
+          placeholder="请选择"
+          @change="onChange1"
       />
       <popup-picker
-        v-model="picker2"
-        label="picker2"
-        :columns="columns2"
-        clearable
-        placeholder="请选择"
-        @change="onChange2"
+          v-model="picker2"
+          label="picker2"
+          :columns="columns2"
+          clearable
+          placeholder="请选择"
+          @change="onChange2"
       />
       <popup-area-picker v-model="area" label="省市区" clearable placeholder="请选择" separator="-"/>
       <popup-map-address-picker v-model="address" clearable/>
@@ -25,6 +25,7 @@
       <popup-datetime-picker v-model="date" label="日期" clearable placeholder="请选择"/>
       <popup-timer-picker v-model="time" label="时间" clearable placeholder="请选择"/>
       <popup-calendar-picker v-model="calendar" label="单个日期" clearable placeholder="请选择"/>
+      <popup-calendar-picker v-model="calendar_multiple" label="多个日期" type="multiple" clearable placeholder="请选择"/>
       <popup-calendar-picker v-model="calendar_range" label="日期区间" type="range" clearable placeholder="请选择"/>
     </van-cell-group>
 
@@ -37,6 +38,7 @@
     <div class="demo-block">
       <code>
         {{calendar}}
+        {{calendar_multiple}}
         {{calendar_range}}
       </code>
     </div>
@@ -89,8 +91,10 @@
         time: '',
 
         time2: (new Date()).getTime() - 86400 * 3 * 1000,
-        calendar: parseTime(new Date(), '{y}-{m}-{d}'),
-        calendar_range: ['2020-02-19', '2020-02-28']
+
+        calendar: parseTime(new Date(Date.now() + 3 * 1000 * 3600 * 24), '{y}-{m}-{d}'),
+        calendar_multiple: ['2020-03-24', '2020-03-25'],
+        calendar_range: ['2020-03-25', '2020-03-28']
       }
     },
     methods: {

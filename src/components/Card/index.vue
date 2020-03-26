@@ -1,7 +1,5 @@
 <template>
-  <div class="card"
-       :class="shadow ? 'is-' + shadow + '-show' : 'is-always-show'"
-       @click="$emit('click', $event)">
+  <div class="card" :class="shadow ? 'is-' + shadow + '-shadow' : 'is-always-shadow'">
     <div class="card__header" v-if="$slots.header || header">
       <slot name="header">{{ header }}</slot>
     </div>
@@ -36,24 +34,20 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
   .card {
-    position: relative;
-    font-size: 12px;
-    line-height: 20px;
+    border-radius: 2px;
     border: 1px solid #ebeef5;
     background-color: #fff;
     overflow: hidden;
     color: #303133;
-    /*box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);*/
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: .3s;
+    font-size: 12px;
 
-    &.is-always-show {
-      border-radius: 4px;
+    &.is-always-shadow {
+      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
     }
 
-    &.is-never-show {
-      border: 0;
-      border-radius: 0;
-      box-shadow: none;
+    &.is-never-shadow {
+
     }
 
     & + .card {

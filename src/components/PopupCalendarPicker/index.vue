@@ -1,22 +1,25 @@
 <template>
   <div class="popup-calendar-picker van-cell">
     <van-field
-      :value="text"
-      :label="label"
-      :right-icon="showIcon"
-      :placeholder="placeholder"
-      readonly
-      clickable
-      @click.stop="onClick"
-      @click-right-icon.stop="onClear"
+        :value="text"
+        :label="label"
+        :right-icon="showIcon"
+        :placeholder="placeholder"
+        readonly
+        clickable
+        :autosize="autosize"
+        :type="fieldtype"
+        @click.stop="onClick"
+        @click-right-icon.stop="onClear"
     />
     <van-calendar v-model="show" :type="type" :default-date="date" get-container="body" @confirm="onConfirm"/>
+
   </div>
 </template>
 
 <script>
   // utils
-  import {parseTime} from '@/utils'
+  import {oneOf, parseTime} from '@/utils'
   // components
   import {Field, Calendar} from 'vant'
 
@@ -31,6 +34,9 @@
       label: String,
       type: {
         type: String,
+        validator(value) {
+          return oneOf(value, ['single', 'multiple', 'range'])
+        },
         default: 'single',
       },
       format: {
@@ -51,17 +57,35 @@
         return this.clearable && this.value ? 'clear' : 'arrow'
       },
       text() {
-        return this.range ? this.value.join(' 至 ') : this.value
-      },
-      range() {
-        return this.type === 'range'
+        if (this.type === 'range') {
+          return this.value.join(' 至 ')
+        }
+
+        if (this.type === 'multiple') {
+          return this.value.map(item => parseTime(item, this.format)).join(',')
+        }
+
+        return this.value
       },
       date() {
-        if (this.range) {
-          const [startDay, endDay] = this.value
-          return [new Date(startDay), new Date(endDay)]
+        const {value, type} = this
+
+        if (type === 'range') {
+          const [startDay, endDay] = value.map(item => new Date(item))
+          return [startDay, endDay]
         }
-        return this.value ? new Date(this.value) : new Date()
+
+        if (type === 'multiple') {
+          return value.map(item => new Date(item))
+        }
+
+        return value ? new Date(value) : new Date()
+      },
+      autosize() {
+        return this.type === 'multiple'
+      },
+      fieldtype() {
+        return this.type === 'multiple' ? 'textarea' : 'text'
       },
     },
     methods: {
@@ -69,22 +93,32 @@
         if (!this.clearable) {
           return false
         }
-        this.$emit('input', this.range ? [] : '')
+
+        this.$emit('input', this.type === 'single' ? '' : [])
       },
       onClick() {
         this.show = true
       },
       onConfirm(date) {
-        this.show = false
         let d
-        if (this.range) {
-          const [startDay, endDay] = date
-          d = [parseTime(startDay, this.format), parseTime(endDay, this.format)]
-        } else {
+
+        if (this.type === 'single') {
           d = parseTime(date, this.format)
         }
+
+        if (this.type === 'multiple') {
+          d = date.map(item => parseTime(item, this.format))
+        }
+
+        if (this.type === 'range') {
+          const [startDay, endDay] = date.map(item => parseTime(item, this.format))
+          d = [startDay, endDay]
+        }
+
         this.$emit('input', d)
         this.$emit('change', d)
+
+        this.show = false
       },
     },
     components: {

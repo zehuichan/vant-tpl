@@ -1,18 +1,18 @@
 <template>
   <div class="fePage">
     <van-nav-bar
-      left-text="前端分页"
-      left-arrow
-      fixed
-      @click-left="onClickLeft"
-      @click-right="onClickRight">
-    </van-nav-bar>
-    <div class="block"></div>
+        left-text="前端分页"
+        left-arrow
+        fixed
+        @click-left="onClickLeft"
+    />
 
-    <van-list v-model="loading"
-              :finished="finished"
-              finished-text="没有更多了"
-              @load="onLoad">
+    <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+    >
       <van-cell v-for="item in list" :key="item" :title="item"/>
     </van-list>
   </div>
@@ -51,9 +51,6 @@
       onClickLeft() {
         this.$router.push({path: this.redirect || '/me'})
       },
-      onClickRight() {
-
-      },
       onLoad() {
         let begin = (this.dataForm.p - 1) * this.dataForm.ps
         let end = this.dataForm.p * this.dataForm.ps
@@ -68,7 +65,7 @@
           } else {
             this.dataForm.p += 1
           }
-        }, 60 * 1000)
+        }, 800)
       }
     }
   }
@@ -76,5 +73,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
-
+  .fePage {
+    padding-top: 46px;
+  }
 </style>

@@ -1,54 +1,52 @@
 <template>
   <div class="confirmOrder">
     <van-nav-bar
-      fixed
-      left-text="确认订单"
-      left-arrow
-      @click-left="onClickLeft"
+        fixed
+        left-text="确认订单"
+        left-arrow
+        @click-left="onClickLeft"
     />
-
     <!--contact-->
     <address-contact :data="current_address || default_address" @click.native="show_list = true"/>
     <!--list-->
-    <address-list v-model="show_list" :list="address_list" :disabled="false" @add="onAdd" @edit="onEdit" @select="onSelect"/>
+    <address-list v-model="show_list" :list="address_list" :disabled="false" @add="onAdd" @edit="onEdit"
+                  @select="onSelect"/>
     <!--edit-->
     <address-edit v-model="show_edit" :data="current_address"/>
-
     <split/>
-    <div class="page-container">
-      <x-card>
-        <div slot="header">商品信息</div>
-        <div style="width: 100%;">
-          <div class="goods-item" v-for="item in goods_data_detail" :key="item.id">
-            <div class="goods__thumb">
-              <van-image lazy-load width="100%" height="100%" :src="item.image"/>
-            </div>
-            <div class="goods__body">
-              <div class="goods__body-title">{{item.name}}</div>
-              <div class="goods__body-toolbar">x {{goods_data[item.id]}}</div>
-            </div>
-            <div class="goods__extra">
-              <span class="price">￥ {{item[`${level}_price`] | format}}</span>
-              <span class="original-price">{{item.v1_price | format}}</span>
-            </div>
+    <x-card shadow="never">
+      <div slot="header">商品信息</div>
+      <div style="width: 100%;">
+        <div class="goods-item" v-for="item in goods_data_detail" :key="item.id">
+          <div class="goods__thumb">
+            <van-image lazy-load width="100%" height="100%" :src="item.image"/>
+          </div>
+          <div class="goods__body">
+            <div class="goods__body-title">{{item.name}}</div>
+            <div class="goods__body-toolbar">x {{goods_data[item.id]}}</div>
+          </div>
+          <div class="goods__extra">
+            <span class="price">￥ {{item[`${level}_price`] | format}}</span>
+            <span class="original-price">{{item.v1_price | format}}</span>
           </div>
         </div>
-      </x-card>
-    </div>
+      </div>
+    </x-card>
+    <split/>
     <van-cell-group>
       <van-field
-        label="顺丰速运"
-        :value="`+￥${$options.filters.format(freight_price)}`"
-        readonly
-        clickable
-        input-align="right"
+          label="顺丰速运"
+          :value="`+￥${$options.filters.format(freight_price)}`"
+          readonly
+          clickable
+          input-align="right"
       />
       <popup-coupon-picker
-        v-model="coupons"
-        :source="coupon"
-        label="优惠券"
-        input-align="right"
-        :placeholder="coupon_placeholder"
+          v-model="coupons"
+          :source="coupon"
+          label="优惠券"
+          input-align="right"
+          :placeholder="coupon_placeholder"
       />
     </van-cell-group>
     <split/>
@@ -165,7 +163,7 @@
             goods_desc: null,
             goodscode: '1022406',
             id: 714,
-            image: 'https://itmall-item.iteshop.com/4/product/IZXKNJ4153W9DPKX/IZXKNJ4153W9DPKX-plp-1.jpg?x-oss-process=image/resize,w_460,h_574,limit_0,m_pad/quality,Q_80',
+            image: 'https://mall.s.maizuo.com/609e772bde6adb0e090dacf5f2208550.png',
             merchant: '福济药业',
             name: '银胡感冒散',
             pack_unit: '盒',
@@ -261,11 +259,8 @@
         width: 60px;
         height: 60px;
 
-        img {
-          border: none;
-          max-width: 100%;
-          max-height: 100%;
-          border-radius: 4px;
+        .van-image {
+          background-color: #f4f4f4;
         }
       }
 
