@@ -12,8 +12,8 @@
         @click.stop="onClick"
         @click-right-icon.stop="onClear"
     />
-    <van-calendar v-model="show" :type="type" :default-date="date" get-container="body" @confirm="onConfirm"/>
 
+    <van-calendar v-model="show" :type="type" :default-date="date" get-container="body" @confirm="onConfirm"/>
   </div>
 </template>
 

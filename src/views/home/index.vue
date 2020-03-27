@@ -93,7 +93,7 @@
         time2: (new Date()).getTime() - 86400 * 3 * 1000,
 
         calendar: parseTime(new Date(Date.now() + 3 * 1000 * 3600 * 24), '{y}-{m}-{d}'),
-        calendar_multiple: ['2020-03-24', '2020-03-25'],
+        calendar_multiple: ['2020-03-29', '2020-03-30'],
         calendar_range: ['2020-03-25', '2020-03-28']
       }
     },
