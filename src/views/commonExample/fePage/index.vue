@@ -4,6 +4,7 @@
         left-text="前端分页"
         left-arrow
         fixed
+        placeholder
         @click-left="onClickLeft"
     />
 
@@ -74,6 +75,5 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
   .fePage {
-    padding-top: 46px;
   }
 </style>

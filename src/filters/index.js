@@ -1,5 +1,7 @@
 // set function parseTime,formatTime to filter
 export {parseTime, formatTime} from '@/utils'
+// vanilla-masker
+import mask from 'vanilla-masker'
 
 function pluralize(time, label) {
   if (time === 1) {
@@ -50,13 +52,16 @@ export function format(price, digits = 2, prefix = '', suffix = '') {
 }
 
 // 隐藏手机号中间4位
-export function formatPhone(phone) {
-  phone += ''
+export function formatPhone(phone = '') {
   return phone.replace(/(\d{3})\d*(\d{4})/g, '$1***$2')
 }
 
 // 隐藏身份证号中11位
-export function formatIdentity(number) {
-  number += ''
+export function formatIdentity(number = '') {
   return number.replace(/(\d{3})\d*(\d{4})/g, '$1***********$2')
+}
+
+// 15800066380 => 158 0006 6380
+export function maskerFilter(val = '', pattern) {
+  return mask.toPattern(val, pattern)
 }

@@ -1,9 +1,10 @@
 <template>
   <div class="myAddress">
     <van-nav-bar
-      fixed
       :left-text="$route.meta.title"
       left-arrow
+      fixed
+      placeholder
       @click-left="onClickLeft"
       @click-right="onClickRight"
     >
@@ -93,6 +94,5 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
   .myAddress {
-    padding-top: 46px;
   }
 </style>

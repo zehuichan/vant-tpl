@@ -6,7 +6,7 @@ function resolve(dir) {
 
 const name = 'vue Vant Tpl' // page title
 
-const port = 8080 // dev port
+const port = 9527 // dev port
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'development' ? '/' : './',

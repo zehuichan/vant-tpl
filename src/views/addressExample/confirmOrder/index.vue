@@ -1,9 +1,10 @@
 <template>
   <div class="confirmOrder">
     <van-nav-bar
-        fixed
         left-text="确认订单"
         left-arrow
+        fixed
+        placeholder
         @click-left="onClickLeft"
     />
     <!--contact-->
@@ -206,7 +207,6 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
   .confirmOrder {
-    padding-top: 46px;
     padding-bottom: 60px;
 
     .original-price {

@@ -4,6 +4,7 @@
       :left-text="$route.meta.title"
       left-arrow
       fixed
+      placeholder
       @click-left="onClickLeft"
     />
     <van-checkbox-group class="card-goods" v-model="checked" @change="handleCheckboxGroupChange">
@@ -106,7 +107,6 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
   .shop-cart {
-    padding-top: 46px;
     padding-bottom: 50px;
 
     .card-goods {
