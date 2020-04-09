@@ -1,9 +1,9 @@
 <template>
   <div class="address-contact">
     <div class="address-contact-cell">
-      <i class="iconfont icon-dingwei van-cell__left-icon"></i>
+      <i class="iconfont icon-dingwei van-cell__left-icon"/>
       <div class="van-cell__value van-cell__value--alone">
-        <div class="clearfix">
+        <div class="van-clearfix">
           <div class="address-contact-cell__name fl">收货人：{{data&&data.name}}</div>
           <div class="address-contact-cell__phone fr">{{data&&data.phone | formatPhone}}</div>
         </div>
@@ -11,7 +11,7 @@
           {{address}} {{data&&data.address}}
         </div>
       </div>
-      <i class="van-icon van-icon-arrow van-cell__right-icon"></i>
+      <i class="van-icon van-icon-arrow van-cell__right-icon"/>
     </div>
   </div>
 </template>
