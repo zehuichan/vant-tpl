@@ -12,6 +12,7 @@
     <!--业务组件-公共-->
     <van-cell-group title="业务组件-公共">
       <van-cell title="购物车" is-link to="/shopCart"/>
+      <van-cell title="支付密码" is-link to="/securityCode"/>
       <van-cell title="Ajaxbar" is-link v-if="false"/>
       <van-cell title="前端分页" is-link to="/fePage"/>
       <van-cell title="图片转base64" is-link to="/toBase64"/>
