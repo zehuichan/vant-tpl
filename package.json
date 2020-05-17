@@ -1,6 +1,6 @@
 {
   "name": "vant-tpl",
-  "version": "2.7.1",
+  "version": "2.8.1",
   "description": "vant-tpl",
   "author": "Chan <jasonchenzehui@gmail.com>",
   "private": true,
@@ -19,29 +19,32 @@
   ],
   "dependencies": {
     "axios": "^0.19.2",
-    "babel-polyfill": "^6.26.0",
     "better-scroll": "^1.15.2",
     "clipboard": "^2.0.6",
-    "core-js": "^2.6.11",
+    "core-js": "^3.6.5",
     "fastclick": "^1.0.6",
     "js-cookie": "^2.2.1",
     "nprogress": "^0.2.0",
     "vanilla-masker": "^1.2.0",
-    "vant": "^2.7.1",
+    "vant": "^2.8.1",
     "vue": "^2.6.11",
     "vue-count-to": "^1.0.13",
-    "vue-i18n": "^8.17.4",
+    "vue-i18n": "^8.17.6",
     "vue-router": "^3.1.6",
-    "vuex": "^3.3.0"
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^3.12.1",
-    "@vue/cli-service": "^3.12.1",
-    "autoprefixer": "^9.7.6",
+    "@vue/cli-plugin-babel": "~4.3.0",
+    "@vue/cli-plugin-router": "~4.3.0",
+    "@vue/cli-plugin-vuex": "~4.3.0",
+    "@vue/cli-service": "~4.3.0",
+    "autoprefixer": "^9.8.0",
     "babel-plugin-import": "^1.13.0",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "less": "^3.11.1",
     "less-loader": "^4.1.0",
     "postcss-px-to-viewport": "^1.1.1",
+    "regenerator-runtime": "^0.13.5",
     "script-ext-html-webpack-plugin": "^2.1.4",
     "vue-template-compiler": "^2.6.11"
   }

@@ -22,6 +22,7 @@ const ShopCart = () => import('@/views/commonExample/shopCart')
 const SecurityCode = () => import('@/views/commonExample/securityCode')
 const FePage = () => import('@/views/commonExample/fePage')
 const Base64Demo = () => import('@/views/commonExample/base64Demo')
+const DiscoverDetail = () => import('@/views/commonExample/discover/detailed')
 
 
 Vue.use(Router)
@@ -148,6 +149,18 @@ export const routes = [
         component: Base64Demo,
         name: 'base64Demo',
         meta: {title: '图片转base64'}
+      }
+    ]
+  },
+  {
+    path: '/discover',
+    component: BlankLayout,
+    children: [
+      {
+        path: 'detailed',
+        component: DiscoverDetail,
+        name: 'discoverDetail',
+        meta: {title: '发现文章详情'}
       }
     ]
   },

@@ -16,6 +16,7 @@
       <van-cell title="Ajaxbar" is-link v-if="false"/>
       <van-cell title="前端分页" is-link to="/fePage"/>
       <van-cell title="图片转base64" is-link to="/toBase64"/>
+      <van-cell title="发现文章详情" is-link to="/discover/detailed"/>
     </van-cell-group>
     <!--业务组件-国际化-->
     <van-cell-group title="业务组件-国际化">
