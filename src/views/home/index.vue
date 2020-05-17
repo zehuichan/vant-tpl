@@ -24,6 +24,9 @@
     <van-cell-group :border="false" title="时间日期相关">
       <popup-datetime-picker v-model="date" label="日期" clearable placeholder="请选择"/>
       <popup-timer-picker v-model="time" label="时间" clearable placeholder="请选择"/>
+    </van-cell-group>
+
+    <van-cell-group :border="false" title="日历相关">
       <popup-calendar-picker v-model="calendar" label="单个日期" clearable placeholder="请选择"/>
       <popup-calendar-picker v-model="calendar_multiple" label="多个日期" type="multiple" clearable placeholder="请选择"/>
       <popup-calendar-picker v-model="calendar_range" label="日期区间" type="range" clearable placeholder="请选择"/>
@@ -34,14 +37,6 @@
         <timer :time="time2"></timer>
       </van-cell>
     </van-cell-group>
-    <h3 class="demo-title">测试</h3>
-    <div class="demo-block">
-      <code>
-        {{calendar}}
-        {{calendar_multiple}}
-        {{calendar_range}}
-      </code>
-    </div>
   </div>
 </template>
 
@@ -93,8 +88,8 @@
         time2: (new Date()).getTime() - 86400 * 3 * 1000,
 
         calendar: parseTime(new Date(Date.now() + 3 * 1000 * 3600 * 24), '{y}-{m}-{d}'),
-        calendar_multiple: ['2020-03-29', '2020-03-30'],
-        calendar_range: ['2020-03-25', '2020-03-28']
+        calendar_multiple: [parseTime(new Date(), '{y}-{m}-{d}'), parseTime(new Date(Date.now() + 2 * 1000 * 3600 * 24), '{y}-{m}-{d}')],
+        calendar_range: [parseTime(new Date(), '{y}-{m}-{d}'), parseTime(new Date(Date.now() + 3 * 1000 * 3600 * 24), '{y}-{m}-{d}')]
       }
     },
     methods: {
