@@ -24,9 +24,6 @@ const FePage = () => import('@/views/commonExample/fePage')
 const Base64Demo = () => import('@/views/commonExample/base64Demo')
 const DiscoverDetail = () => import('@/views/commonExample/discover/detailed')
 
-
-Vue.use(Router)
-
 export const routes = [
   {path: '/', redirect: 'me'},
   {path: '/403', component: () => import('@/views/errorPage/403')},
@@ -169,8 +166,20 @@ export const routes = [
   {path: '*', redirect: '/404'}
 ]
 
-export default new Router({
-  // mode: 'history',
-  // base: process.env.BASE_URL,
-  routes
+Vue.use(Router)
+
+const createRouter = () => new Router({
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({y: 0}),
+  routes: routes
 })
+
+const router = createRouter()
+
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
+
+export default router

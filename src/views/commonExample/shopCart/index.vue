@@ -78,7 +78,7 @@
       handleCheckboxClick() {
         if (this.disabled) return
         this.checkAll = !this.checkAll
-        if (!this.checkAll) {
+        if (this.checkAll) {
           this.checked = []
         } else {
           this.checked = this.items.map(item => item.id)
