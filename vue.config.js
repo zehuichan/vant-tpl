@@ -10,7 +10,7 @@ const port = 9527 // dev port
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const assetsCDN = {
+const cdn = {
   // webpack build externals
   externals: {
     vue: 'Vue',
@@ -55,7 +55,7 @@ module.exports = {
       }
     },
     // if prod, add externals
-    externals: isProd ? assetsCDN.externals : {}
+    externals: isProd ? cdn.externals : {}
   },
   chainWebpack: (config) => {
     config.plugins.delete('preload')
@@ -65,7 +65,7 @@ module.exports = {
     // assets require on cdn
     if (isProd) {
       config.plugin('html').tap(args => {
-        args[0].cdn = assetsCDN
+        args[0].cdn = cdn
         return args
       })
     }
