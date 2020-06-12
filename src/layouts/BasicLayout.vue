@@ -27,15 +27,15 @@
 
   export default {
     name: 'basic-layout',
-    data() {
-      return {
-        active: this.$route.name
-      }
-    },
-    watch: {
-      '$route'(to, from) {
-        this.active = to.name
-      }
+    computed: {
+      active: {
+        get() {
+          return this.$route.name
+        },
+        set(val) {
+
+        }
+      },
     },
     components: {
       [Tabbar.name]: Tabbar,
