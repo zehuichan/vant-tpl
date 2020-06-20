@@ -35,13 +35,13 @@ Vue.use(Lazyload)
 import './permission'
 
 // 微信jssdk
-import WechatPlugin from '@/plugins/wechat/index'
+import WechatPlugin from '@/plugins/wechat'
 // 高德地图API
-import AmapPlugin from '@/plugins/amap/index'
+import AmapPlugin from '@/plugins/amap'
 // 百度地图API
-import BmapPlugin from '@/plugins/bmap/index'
+import BmapPlugin from '@/plugins/bmap'
 // 腾讯地图API
-import QmapPlugin from '@/plugins/qmap/index'
+import QmapPlugin from '@/plugins/qmap'
 
 Vue.use(WechatPlugin)
 Vue.use(AmapPlugin)
