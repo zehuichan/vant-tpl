@@ -1,6 +1,3 @@
-import {} from '@/api/address'
-import {Toast} from 'vant'
-
 // mock data
 const list = [
   {
@@ -35,10 +32,10 @@ const state = {
 }
 
 const mutations = {
-  SET_ADDRESS_LIST(state, list) {
+  SET_ADDRESS_LIST: (state, list) => {
     state.address_list = list
   },
-  SET_CHOSEN_ADDRESS(state, address) {
+  SET_CHOSEN_ADDRESS: (state, address) => {
     state.chosen_address = address
   }
 }

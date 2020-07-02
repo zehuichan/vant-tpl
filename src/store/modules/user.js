@@ -11,13 +11,13 @@ const mutations = {
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
   },
-  SET_CELL_PHONE(state, cellphone) {
+  SET_CELL_PHONE: (state, cellphone) => {
     state.cellphone = cellphone
   },
-  SET_USER_NAME(state, username) {
+  SET_USER_NAME: (state, username) => {
     state.username = username
   },
-  SET_LEVEL(state, level) {
+  SET_LEVEL: (state, level) => {
     state.level = level
   },
 }
