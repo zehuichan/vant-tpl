@@ -8,6 +8,7 @@
         @click-left="onClickLeft"
     />
 
+    <load-more :loading="loading" :finished="finished"/>
     <van-list
         v-model="loading"
         :finished="finished"
@@ -24,6 +25,7 @@
   import {genList} from './data'
   // components
   import {NavBar, List, Cell} from 'vant'
+  import LoadMore from '@/components/LoadMore'
 
   export default {
     name: 'fePage',
@@ -31,6 +33,7 @@
       [NavBar.name]: NavBar,
       [List.name]: List,
       [Cell.name]: Cell,
+      LoadMore
     },
     data() {
       return {
@@ -66,7 +69,7 @@
           } else {
             this.dataForm.p += 1
           }
-        }, 800)
+        }, 80000)
       }
     }
   }
