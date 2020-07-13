@@ -1,5 +1,5 @@
 // set function parseTime,formatTime to filter
-export {parseTime, formatTime} from '@/utils'
+export {parseTime, formatTime, formatIMTime, formatDayJs} from '@/utils'
 // vanilla-masker
 import mask from 'vanilla-masker'
 

@@ -1,3 +1,6 @@
+// dayjs
+import dayjs from 'dayjs'
+
 export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
     return null
@@ -28,7 +31,7 @@ export function parseTime(time, cFormat) {
     const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
     if (key === 'a') {
-      return ['日', '一', '二', '三', '四', '五', '六'][value]
+      return ['周日', '周一', '周二', '周三', '周四', '周五', '周六'][value]
     }
     return value.toString().padStart(2, '0')
   })
@@ -70,6 +73,34 @@ export function formatTime(time, option) {
       '分'
     )
   }
+}
+
+export function formatDayJs(time, cFormat = 'YYYY-MM-DD HH:mm:ss') {
+  return dayjs(time).format(cFormat)
+}
+
+export function formatIMTime(time) {
+  console.log(diff(time, 'second'))
+  if (diff(time, 'second') < 30) {
+    return '刚刚'
+  } else if (diff(time, 'day') === 0) {
+    return parseTime(time, '今天 {h}:{i}')
+  } else if (diff(time, 'day') === 1) {
+    return parseTime(time, '昨天 {h}:{i}')
+  } else if (diff(time, 'day') > 1 && diff(time, 'day') < 7) {
+    return parseTime(time, '{a} {h}:{i}')
+  } else if (diff(time, 'year')) {
+    return parseTime(time, '{y}年{m}月{d}日')
+  } else {
+    return parseTime(time, '{m}月{d}日')
+  }
+}
+
+function diff(time, unit) {
+  const format = unit === 'second' ? 'YYYY-MM-DD HH:mm:ss' : 'YYYY-MM-DD'
+  const d = dayjs(time).format(format)
+  const now = dayjs().format(format)
+  return dayjs(now).diff(dayjs(d), unit)
 }
 
 export function getQueryObject(url) {
