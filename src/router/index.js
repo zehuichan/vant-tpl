@@ -2,8 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // basic components
-const BasicLayout = () => import('@/layouts/BasicLayout')
-const BlankLayout = () => import('@/layouts/BlankLayout')
+import BasicLayout from '@/layouts/BasicLayout'
+import BlankLayout from '@/layouts/BlankLayout'
 
 // view components
 const Home = () => import('@/views/home')
@@ -22,7 +22,6 @@ const ShopCart = () => import('@/views/commonExample/shopCart')
 const SecurityCode = () => import('@/views/commonExample/securityCode')
 const FePage = () => import('@/views/commonExample/fePage')
 const Base64Demo = () => import('@/views/commonExample/base64Demo')
-const DiscoverDetail = () => import('@/views/commonExample/discover/detailed')
 
 export const routes = [
   {path: '/', redirect: 'me'},
@@ -149,19 +148,6 @@ export const routes = [
       }
     ]
   },
-  {
-    path: '/discover',
-    component: BlankLayout,
-    children: [
-      {
-        path: 'detailed',
-        component: DiscoverDetail,
-        name: 'discoverDetail',
-        meta: {title: '发现文章详情'}
-      }
-    ]
-  },
-
 
   {path: '*', redirect: '/404'}
 ]
