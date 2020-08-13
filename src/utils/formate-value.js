@@ -2,7 +2,7 @@ export function $_formatValue(curValue, oldValue, type, curPos = 0) {
   const isAdd = oldValue.length > curValue.length ? -1 : 1
   let formatValue = {value: curValue, range: curPos}
   // default format by component
-  const gap = ' '
+  let gap = ' '
   switch (type) {
     case 'bankCard':
       curValue = trimValue(curValue.replace(/\D/g, ''))
@@ -11,6 +11,25 @@ export function $_formatValue(curValue, oldValue, type, curPos = 0) {
     case 'phone':
       curValue = trimValue(curValue.replace(/\D/g, ''))
       formatValue = formatValueByGapRule('3|4|4', curValue, gap, curPos, isAdd)
+      break
+    case 'money':
+      gap = ','
+      curValue = trimValue(curValue.replace(/[^\d.]/g, ''))
+      const dotPos = curValue.indexOf('.')
+      // format if no dot or new add dot or insert before dot
+      const moneyCurValue = curValue.split('.')[0]
+      const moneyCurDecimal = ~dotPos ? `.${curValue.split('.')[1]}` : ''
+
+      formatValue = formatValueByGapStep(
+        3,
+        trimValue(moneyCurValue, gap),
+        gap,
+        'right',
+        curPos,
+        isAdd,
+        oldValue.split('.')[0],
+      )
+      formatValue.value += moneyCurDecimal
       break
     default:
       break
