@@ -4,7 +4,7 @@ import {Toast} from 'vant'
 // create an axios instance
 const http = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // api的base_url
-  timeout: 5000 // request timeout
+  timeout: 50 * 1000 // request timeout
 })
 
 http.interceptors.request.use(

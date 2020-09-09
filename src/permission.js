@@ -28,6 +28,12 @@ router.beforeEach(async (to, from, next) => {
   }
 })
 
+router.beforeResolve((to, from, next) => {
+  console.log('to', to)
+  console.log('from', from)
+  next()
+})
+
 router.afterEach(() => {
   NProgress.done()
 })
