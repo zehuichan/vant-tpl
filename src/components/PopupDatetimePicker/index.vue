@@ -1,5 +1,5 @@
 <template>
-  <div class="popup-datetimePicker van-cell">
+  <div class="popup-datetime-picker van-cell">
     <van-field
         v-bind="$props"
         :value="value"
@@ -11,8 +11,9 @@
     >
       <van-popup v-model="show" slot="extra" position="bottom" get-container="body">
         <van-datetime-picker
-            type="date"
+            v-bind="$props"
             v-model="date"
+            type="date"
             @confirm="onConfirm"
             @cancel="onCancel"
         />
@@ -28,14 +29,14 @@
   import {Field, DatetimePicker, Popup} from 'vant'
 
   export default {
-    name: 'popup-datetimePicker',
+    name: 'popup-datetime-picker',
     model: {
       prop: 'value',
       event: 'input'
     },
     props: {
-      // Field.props
       ...Field.props,
+      ...DatetimePicker.props,
 
       value: String,
       placeholder: String,
@@ -88,11 +89,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" rel="stylesheet/less" type="text/less">
-  .popup-datetimePicker.van-cell {
+  .popup-datetime-picker.van-cell {
     padding: 0;
 
     .van-field__right-icon {
-      color: #c8c9cc;
+      color: #969799;
     }
   }
 </style>

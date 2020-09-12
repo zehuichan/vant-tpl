@@ -43,7 +43,6 @@
         default: () => []
       },
       value: [String, Number, Object, Array],
-      placeholder: String,
       disabled: Boolean,
       clearable: Boolean,
     },
@@ -112,7 +111,7 @@
     padding: 0;
 
     .van-field__right-icon {
-      color: #c8c9cc;
+      color: #969799;
     }
   }
 </style>

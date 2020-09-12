@@ -52,6 +52,7 @@
           @change="onChange2"
       />
       <popup-area-picker v-model="area" label="省市区" clearable placeholder="请选择" separator="-"/>
+      <popup-action-sheet v-model="action" :actions="actions" label="动作面板" placeholder="动作面板"/>
       <popup-map-address-picker v-model="address" clearable/>
     </van-cell-group>
     <van-cell-group :border="false" title="时间日期相关">
@@ -80,6 +81,7 @@
   import {Field, Cell, CellGroup} from 'vant'
   import PopupPicker from '@/components/PopupPicker'
   import PopupAreaPicker from '@/components/PopupAreaPicker'
+  import PopupActionSheet from '@/components/PopupActionSheet'
   import PopupDatetimePicker from '@/components/PopupDatetimePicker'
   import PopupTimerPicker from '@/components/PopupTimerPicker'
   import PopupMapAddressPicker from '@/components/PopupMapAddressPicker'
@@ -116,6 +118,9 @@
           {code: '110100', name: '北京市'},
           {code: '110105', name: '朝阳区'}
         ],
+
+        actions: [{name: '选项一'}, {name: '选项二'}, {name: '选项三'}],
+        action:'',
 
         address: {},
 
@@ -169,6 +174,7 @@
       [CellGroup.name]: CellGroup,
       PopupPicker,
       PopupAreaPicker,
+      PopupActionSheet,
       PopupDatetimePicker,
       PopupTimerPicker,
       PopupMapAddressPicker,
