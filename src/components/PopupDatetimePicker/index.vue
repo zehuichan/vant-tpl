@@ -36,7 +36,6 @@
     },
     props: {
       ...Field.props,
-      ...DatetimePicker.props,
 
       value: String,
       placeholder: String,
