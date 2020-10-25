@@ -1,9 +1,9 @@
 <template>
   <div class="basic-layout app-wrapper">
     <!--app-main-->
-    <app-main has-padding/>
+    <app-main/>
     <!--tabbar-->
-    <van-tabbar v-model="active">
+    <van-tabbar v-model="active" fixed placeholder>
       <van-tabbar-item name="home" to="/home">
         <i slot="icon" class="iconfont icon-shouye"></i>
         {{$t('navbar.home')}}
@@ -50,7 +50,6 @@
   .app-wrapper {
     position: relative;
     height: 100%;
-    overflow: hidden;
   }
 
   .van-tabbar-item__icon {

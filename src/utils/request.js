@@ -13,7 +13,7 @@ http.interceptors.request.use(
   },
   error => {
     console.log(`err,${error}`)
-    Promise.reject(error)
+    return Promise.reject(error)
   }
 )
 

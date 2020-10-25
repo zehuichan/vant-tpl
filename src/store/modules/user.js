@@ -63,7 +63,18 @@ const actions = {
       commit('SET_LEVEL', 'v3')
       resolve()
     })
-  }
+  },
+
+  // 重置用户信息
+  resetUserInfo({commit, state}) {
+    return new Promise((resolve, reject) => {
+      commit('SET_AVATAR', '')
+      commit('SET_CELL_PHONE', '')
+      commit('SET_USER_NAME', '')
+      commit('SET_LEVEL', '')
+      resolve()
+    })
+  },
 }
 
 
