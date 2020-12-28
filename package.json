@@ -57,6 +57,9 @@
     "serve-static": "^1.14.1",
     "vue-template-compiler": "^2.6.12"
   },
+  "npm": {
+    "publish": false
+  },
   "git": {
     "commitMessage": "chore: release v${version}"
   },
