@@ -2,8 +2,10 @@
   "name": "vant-tpl",
   "version": "2.12.5",
   "description": "vant-tpl",
-  "author": "Chan <jasonchenzehui@gmail.com>",
+  "author": "Zehui Chan <jasonchenzehui@gmail.com>",
   "private": true,
+  "license": "MIT",
+  "repository": "https://github.com/zehuichan/vant-tpl.git",
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
