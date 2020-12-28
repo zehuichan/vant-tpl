@@ -10,7 +10,7 @@
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
-    "release": "release-it"
+    "release": "release-it --no-npm.publish"
   },
   "keywords": [
     "vue",
@@ -56,14 +56,5 @@
     "runjs": "^4.4.2",
     "serve-static": "^1.14.1",
     "vue-template-compiler": "^2.6.12"
-  },
-  "npm": {
-    "publish": false
-  },
-  "git": {
-    "commitMessage": "chore: release v${version}"
-  },
-  "github": {
-    "release": true
   }
 }
