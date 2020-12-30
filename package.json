@@ -3,7 +3,6 @@
   "version": "2.12.10",
   "description": "vant-tpl",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
-  "private": true,
   "license": "MIT",
   "repository": "https://github.com/zehuichan/vant-tpl.git",
   "scripts": {
