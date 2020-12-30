@@ -64,7 +64,7 @@
       "publish": false
     },
     "git": {
-      "tag": false,
+      "tagName": "v${version}",
       "commitMessage": "chore: release v${version}"
     }
   }
