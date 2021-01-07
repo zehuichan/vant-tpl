@@ -4,6 +4,10 @@ import Router from 'vue-router'
 // basic components
 import BasicLayout from '@/layouts/BasicLayout'
 import BlankLayout from '@/layouts/BlankLayout'
+const RouteView = {
+  name: 'RouteView',
+  render: (h) => h('router-view')
+}
 
 // view components
 const Home = () => import('@/views/home')
