@@ -20,6 +20,9 @@
     <van-cell-group title="格式化时间" :border="false">
       <van-cell title="dayjs" :value="$options.filters.formatDayJs(new Date())"/>
       <van-cell title="仿im时间" :value="$options.filters.formatIMTime('2020-07-11 17:23:06')"/>
+      <van-cell title="倒计时">
+        <van-count-down :time="time"/>
+      </van-cell>
     </van-cell-group>
     <!--业务组件-国际化-->
     <van-cell-group title="业务组件-国际化" :border="false">
@@ -33,17 +36,33 @@
 
 <script>
   // components
-  import {Cell, CellGroup, Button} from 'vant'
+  import {Cell, CellGroup, Button, CountDown} from 'vant'
   import LangSelector from '@/components/LangSelector'
   import Divider from '@/components/Divider'
   import Split from '@/components/Split'
 
   export default {
     name: 'me',
+    data() {
+      return {
+        time: 0,
+      }
+    },
+    created() {
+      this.init()
+    },
+    methods: {
+      init() {
+        setTimeout(() => {
+          this.time = 30 * 60 * 60 * 1000
+        }, 500)
+      }
+    },
     components: {
       [Cell.name]: Cell,
       [CellGroup.name]: CellGroup,
       [Button.name]: Button,
+      [CountDown.name]: CountDown,
       LangSelector,
       Divider,
       Split,
