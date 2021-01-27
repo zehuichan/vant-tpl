@@ -3,17 +3,21 @@
     <!--app-main-->
     <app-main/>
     <!--tabbar-->
-    <van-tabbar v-model="active" fixed placeholder>
+    <van-tabbar route fixed placeholder>
       <van-tabbar-item name="home" to="/home">
-        <i slot="icon" class="iconfont icon-shouye"></i>
+        <svg-icon slot="icon" name="icon-shouye"/>
         {{$t('navbar.home')}}
       </van-tabbar-item>
       <van-tabbar-item name="message" to="/message">
-        <i slot="icon" class="iconfont icon-xiaoxi"></i>
+        <svg-icon slot="icon" name="icon-xiaoxi"/>
         {{$t('navbar.message')}}
       </van-tabbar-item>
+      <van-tabbar-item name="components" to="/components">
+        <svg-icon slot="icon" name="icon-partner"/>
+        {{$t('navbar.components')}}
+      </van-tabbar-item>
       <van-tabbar-item name="me" to="/me">
-        <i slot="icon" class="iconfont icon-wode"></i>
+        <svg-icon slot="icon" name="icon-wode"/>
         {{$t('navbar.me')}}
       </van-tabbar-item>
     </van-tabbar>
@@ -24,23 +28,15 @@
   // components
   import {Tabbar, TabbarItem} from 'vant'
   import AppMain from './components/AppMain'
+  import SvgIcon from '@/components/SvgIcon'
 
   export default {
     name: 'basic-layout',
-    computed: {
-      active: {
-        get() {
-          return this.$route.name
-        },
-        set(val) {
-
-        }
-      },
-    },
     components: {
       [Tabbar.name]: Tabbar,
       [TabbarItem.name]: TabbarItem,
-      AppMain
+      AppMain,
+      SvgIcon,
     }
   }
 </script>
@@ -50,11 +46,5 @@
   .app-wrapper {
     position: relative;
     height: 100%;
-  }
-
-  .van-tabbar-item__icon {
-    .iconfont {
-      font-size: inherit;
-    }
   }
 </style>

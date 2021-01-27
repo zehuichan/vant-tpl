@@ -4,6 +4,7 @@ import Router from 'vue-router'
 // basic components
 import BasicLayout from '@/layouts/BasicLayout'
 import BlankLayout from '@/layouts/BlankLayout'
+
 const RouteView = {
   name: 'RouteView',
   render: (h) => h('router-view')
@@ -28,10 +29,10 @@ const FePage = () => import('@/views/commonExample/fePage')
 const Base64Demo = () => import('@/views/commonExample/base64Demo')
 
 export const routes = [
-  {path: '/', redirect: 'me'},
-  {path: '/403', component: () => import('@/views/errorPage/403')},
-  {path: '/404', component: () => import('@/views/errorPage/404')},
-  {path: '/500', component: () => import('@/views/errorPage/500')},
+  { path: '/', redirect: 'me' },
+  { path: '/403', component: () => import('@/views/errorPage/403') },
+  { path: '/404', component: () => import('@/views/errorPage/404') },
+  { path: '/500', component: () => import('@/views/errorPage/500') },
   {
     path: '/home',
     component: BasicLayout,
@@ -40,7 +41,7 @@ export const routes = [
         path: '',
         component: Home,
         name: 'home',
-        meta: {title: '首页'},
+        meta: { title: '首页' },
       }
     ]
   },
@@ -52,7 +53,7 @@ export const routes = [
         path: '',
         component: Message,
         name: 'message',
-        meta: {title: '消息'},
+        meta: { title: '消息' },
       }
     ]
   },
@@ -64,7 +65,7 @@ export const routes = [
         path: '',
         component: Me,
         name: 'me',
-        meta: {title: '我'}
+        meta: { title: '我' }
       }
     ]
   },
@@ -76,7 +77,7 @@ export const routes = [
         path: '',
         component: MyAddress,
         name: 'myAddress',
-        meta: {title: '收货地址管理'}
+        meta: { title: '收货地址管理' }
       }
     ]
   },
@@ -88,7 +89,7 @@ export const routes = [
         path: '',
         component: ConfirmOrder,
         name: 'confirmOrder',
-        meta: {title: '确认订单'}
+        meta: { title: '确认订单' }
       }
     ]
   },
@@ -100,7 +101,7 @@ export const routes = [
         path: '',
         component: MyCoupon,
         name: 'myCoupon',
-        meta: {title: '卡券管理'}
+        meta: { title: '卡券管理' }
       }
     ]
   },
@@ -112,7 +113,7 @@ export const routes = [
         path: '',
         component: ShopCart,
         name: 'shopCart',
-        meta: {title: '购物车'}
+        meta: { title: '购物车' }
       }
     ]
   },
@@ -124,7 +125,7 @@ export const routes = [
         path: '',
         component: SecurityCode,
         name: 'securityCode',
-        meta: {title: '购物车'}
+        meta: { title: '购物车' }
       }
     ]
   },
@@ -136,7 +137,7 @@ export const routes = [
         path: '',
         component: FePage,
         name: 'fePage',
-        meta: {title: '前端分页'}
+        meta: { title: '前端分页' }
       }
     ]
   },
@@ -148,19 +149,31 @@ export const routes = [
         path: '',
         component: Base64Demo,
         name: 'base64Demo',
-        meta: {title: '图片转base64'}
+        meta: { title: '图片转base64' }
+      }
+    ]
+  },
+  {
+    path: '/components',
+    component: BasicLayout,
+    children: [
+      {
+        path: 'v-nav-bar',
+        component: () => import('@/views/components/v-nav-bar'),
+        name: 'components',
+        meta: { title: '组件' }
       }
     ]
   },
 
-  {path: '*', redirect: '/404'}
+  { path: '*', redirect: '/404' }
 ]
 
 Vue.use(Router)
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({y: 0}),
+  scrollBehavior: () => ({ y: 0 }),
   routes: routes
 })
 
