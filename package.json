@@ -11,7 +11,7 @@
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
-    "release": "release-it && git push --follow-tags origin master"
+    "release": "release-it"
   },
   "keywords": [
     "vue",
@@ -64,7 +64,6 @@
       "publish": false
     },
     "git": {
-      "push": false,
       "tagName": "v${version}",
       "commitMessage": "chore: release v${version}"
     }
