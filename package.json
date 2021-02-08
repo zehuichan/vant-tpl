@@ -11,7 +11,7 @@
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
-    "release": "standard-version"
+    "release": "standard-version && git push --follow-tags origin master"
   },
   "keywords": [
     "vue",
