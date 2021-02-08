@@ -60,7 +60,7 @@
   },
   "standard-version": {
     "skip": {
-      "changelog": false
+      "changelog": true
     }
   }
 }
