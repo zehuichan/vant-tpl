@@ -1,6 +1,6 @@
 {
   "name": "vant-tpl",
-  "version": "2.12.17",
+  "version": "2.12.16",
   "description": "vant-tpl",
   "author": "Zehui Chan <jasonchenzehui@gmail.com>",
   "license": "MIT",
@@ -11,7 +11,7 @@
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
-    "release": "release-it"
+    "release": "release-it && git push --follow-tags origin master"
   },
   "keywords": [
     "vue",
@@ -64,6 +64,7 @@
       "publish": false
     },
     "git": {
+      "push": false,
       "tagName": "v${version}",
       "commitMessage": "chore: release v${version}"
     }
