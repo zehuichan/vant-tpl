@@ -6,6 +6,8 @@ import '@vant/touch-emulator'
 
 import Vue from 'vue'
 
+import Vant from 'vant'
+import 'vant/lib/index.css'
 import '@/assets/less/index.less'
 
 import App from './App.vue'
@@ -26,21 +28,9 @@ if ('addEventListener' in document && 'ontouchstart' in window) {
   }, false)
 }
 
-import {Toast, Dialog, Lazyload} from 'vant'
-
-Vue.use(Toast)
-Vue.use(Dialog)
-Vue.use(Lazyload)
+Vue.use(Vant)
 
 import './permission'
-
-// 微信jssdk
-import JWeixinPlugin from '@/plugins/jweixin'
-// 高德地图API
-import AmapPlugin from '@/plugins/amap'
-
-Vue.use(JWeixinPlugin)
-Vue.use(AmapPlugin)
 
 import * as filters from './filters'
 
@@ -49,7 +39,30 @@ Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
 
+// 跳转
+Vue.prototype.$navigateTo = function (url, json, target = '_self') {
+  if (target === '_self') {
+    router.push({ path: url, query: json })
+  } else {
+    const { href } = router.resolve({ path: url, query: json })
+    window.open(href, '_blank')
+  }
+}
+
+// 返回
+Vue.prototype.$navigateBack = function () {
+  router.back()
+}
+
 Vue.config.productionTip = false
+
+if (process.env.NODE_ENV === 'production') {
+  const vConsole = require('vconsole')
+  new vConsole()
+}
+
+console.log('vue', `v${Vue.version}`)
+console.log('vant', `v${Vant.version}`)
 
 new Vue({
   el: '#app',

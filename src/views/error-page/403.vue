@@ -11,12 +11,7 @@
 </template>
 
 <script>
-  import {Button} from 'vant'
-
   export default {
-    name: 'page403',
-    components: {
-      [Button.name]: Button
-    }
+    name: 'page403'
   }
 </script>

@@ -38,7 +38,6 @@
 
 <script>
   // components
-  import {Popup, NavBar, Button} from 'vant'
   import Item from './item'
 
   export default {
@@ -85,15 +84,12 @@
       },
     },
     components: {
-      [Popup.name]: Popup,
-      [NavBar.name]: NavBar,
-      [Button.name]: Button,
       Item
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
 
 </style>

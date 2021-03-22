@@ -15,7 +15,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .empty {
     color: #969799;
     font-size: 14px;

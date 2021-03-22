@@ -27,8 +27,6 @@
 <script>
   // data 可后端拿数据
   import area from './area'
-  // components
-  import {Field, Area, Popup} from 'vant'
 
   export default {
     name: 'popup-area-picker',
@@ -37,9 +35,6 @@
       event: 'input'
     },
     props: {
-      // Field.props
-      ...Field.props,
-
       value: {
         type: Array,
         default: () => []
@@ -96,18 +91,13 @@
           this.$area.reset(this.code)
         })
       }
-    },
-    components: {
-      [Field.name]: Field,
-      [Area.name]: Area,
-      [Popup.name]: Popup
     }
   }
 </script>
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .popup-area-picker.van-cell {
     padding: 0;
 

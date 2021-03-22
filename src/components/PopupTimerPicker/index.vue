@@ -24,8 +24,6 @@
 <script>
   // utils
   import {days, hours, minutes} from '@/utils'
-  // components
-  import {Field, Picker, Popup} from 'vant'
 
   export default {
     name: 'popup-timer-picker',
@@ -34,12 +32,6 @@
       event: 'input'
     },
     props: {
-      // Field.props
-      ...Field.props,
-
-      // Picker.props
-      ...Picker.props,
-
       value: String,
       placeholder: String,
       disabled: Boolean,
@@ -100,18 +92,13 @@
           }
         })
       }
-    },
-    components: {
-      [Field.name]: Field,
-      [Picker.name]: Picker,
-      [Popup.name]: Popup
     }
   }
 </script>
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .popup-timer-picker.van-cell {
     padding: 0;
 

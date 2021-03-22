@@ -5,8 +5,6 @@
 <script>
   // utils
   import {between} from './utils'
-  // components
-  import {Progress} from 'vant'
 
   const xhr = XMLHttpRequest
   const send = xhr.prototype.send
@@ -140,14 +138,11 @@
           xhr.prototype.send = send
         }
       }
-    },
-    components: {
-      [Progress.name]: Progress
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
 
 </style>

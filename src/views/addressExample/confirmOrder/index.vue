@@ -80,7 +80,6 @@
   // vuex
   import {mapGetters} from 'vuex'
   // components
-  import {NavBar, Button, Field, CellGroup, Image} from 'vant'
   import AddressContact from '@/components/AddressContact'
   import AddressList from '@/components/AddressList'
   import AddressEdit from '@/components/AddressEdit'
@@ -132,7 +131,7 @@
     },
     methods: {
       onClickLeft() {
-        this.$router.push('/me')
+        this.$router.push('/my')
       },
       onAdd() {
         this.current_address = null
@@ -189,11 +188,6 @@
       }
     },
     components: {
-      [NavBar.name]: NavBar,
-      [Button.name]: Button,
-      [Field.name]: Field,
-      [CellGroup.name]: CellGroup,
-      [Image.name]: Image,
       AddressContact,
       AddressList,
       AddressEdit,
@@ -205,7 +199,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .confirmOrder {
     padding-bottom: 60px;
 

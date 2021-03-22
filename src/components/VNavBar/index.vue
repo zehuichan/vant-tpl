@@ -12,13 +12,8 @@
 </template>
 
 <script>
-  import {NavBar} from 'vant'
-
   export default {
     name: 'VNavBar',
-    components: {
-      [NavBar.name]: NavBar
-    }
   }
 </script>
 

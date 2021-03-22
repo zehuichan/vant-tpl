@@ -29,16 +29,12 @@
   // utils
   import {debounce} from '@/utils'
   // components
-  import {Search, Cell, CellGroup} from 'vant'
   import Split from '@/components/Split'
   import Empty from '@/components/Empty'
 
   export default {
     name: 'message',
     components: {
-      [Search.name]: Search,
-      [Cell.name]: Cell,
-      [CellGroup.name]: CellGroup,
       Split,
       Empty
     },
@@ -123,7 +119,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .AMap-box__header {
     background-color: #fff;
   }

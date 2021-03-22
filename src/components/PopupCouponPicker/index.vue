@@ -41,7 +41,6 @@
 
 <script>
   // components
-  import {Field, Popup, NavBar, Button, Col, Row} from 'vant'
   import CouponList from '@/components/CouponList'
 
   export default {
@@ -51,9 +50,6 @@
       event: 'input'
     },
     props: {
-      // Field.props
-      ...Field.props,
-
       source: {
         type: Array,
         default: () => []
@@ -90,12 +86,6 @@
       },
     },
     components: {
-      [Field.name]: Field,
-      [Popup.name]: Popup,
-      [NavBar.name]: NavBar,
-      [Button.name]: Button,
-      [Col.name]: Col,
-      [Row.name]: Row,
       CouponList
     }
   }
@@ -103,7 +93,7 @@
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .popup-coupon-picker.van-cell {
     padding: 0;
   }

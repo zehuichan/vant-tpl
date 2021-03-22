@@ -1,6 +1,7 @@
 <template>
   <div class="divider"
-       :class="[_type, className, {'divider-dashed': dashed}, {'divider-with-text':$slots && $slots.default}]">
+       :class="[_type, className, {'divider-dashed': dashed}, {'divider-with-text':$slots && $slots.default}]"
+  >
     <div class="divider-inner-text" v-if="$slots && $slots.default">
       <slot></slot>
     </div>
@@ -33,7 +34,7 @@
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less" scoped>
+<style lang="less" scoped>
   .divider {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;

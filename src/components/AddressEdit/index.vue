@@ -6,7 +6,6 @@
       @click-left="onClickLeft"
       @click-right="onClickRight"
     >
-
       <van-button type="danger" size="mini" slot="right" v-if="data">删除</van-button>
     </van-nav-bar>
 
@@ -50,7 +49,6 @@
   // utils
   import {validatePhone} from '@/utils/validate'
   // components
-  import {NavBar, Popup, Button, Field, CellGroup, SwitchCell} from 'vant'
   import PopupAreaPicker from '@/components/PopupAreaPicker'
   import Split from '@/components/Split'
 
@@ -154,12 +152,6 @@
       }
     },
     components: {
-      [NavBar.name]: NavBar,
-      [Popup.name]: Popup,
-      [Button.name]: Button,
-      [Field.name]: Field,
-      [CellGroup.name]: CellGroup,
-      [SwitchCell.name]: SwitchCell,
       PopupAreaPicker,
       Split,
     }
@@ -167,6 +159,6 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
 
 </style>

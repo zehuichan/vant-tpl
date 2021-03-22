@@ -32,8 +32,6 @@
 <script>
   // vuex
   import {mapActions} from 'vuex'
-  // components
-  import {Checkbox, Card, Stepper, Tag} from 'vant'
 
   export default {
     name: 'goods-item',
@@ -103,19 +101,13 @@
         'cart/changeItems',
         'cart/deleteItems',
       ])
-    },
-    components: {
-      [Checkbox.name]: Checkbox,
-      [Card.name]: Card,
-      [Stepper.name]: Stepper,
-      [Tag.name]: Tag,
-    },
+    }
   }
 </script>
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .goods-card__items {
     position: relative;
     width: 100%;

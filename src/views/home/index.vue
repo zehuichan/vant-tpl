@@ -78,7 +78,6 @@
   import {$_formatValue, trimValue} from '@/utils/formate-value'
   import BIN from '@/utils/bankcardinfo'
   // components
-  import {Field, Cell, CellGroup} from 'vant'
   import PopupPicker from '@/components/PopupPicker'
   import PopupAreaPicker from '@/components/PopupAreaPicker'
   import PopupActionSheet from '@/components/PopupActionSheet'
@@ -169,9 +168,6 @@
       },
     },
     components: {
-      [Field.name]: Field,
-      [Cell.name]: Cell,
-      [CellGroup.name]: CellGroup,
       PopupPicker,
       PopupAreaPicker,
       PopupActionSheet,
@@ -185,6 +181,6 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
 
 </style>

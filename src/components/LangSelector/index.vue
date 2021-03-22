@@ -12,7 +12,6 @@
   // vuex
   import {mapGetters, mapActions} from 'vuex'
   // components
-  import {Button} from 'vant'
   import Divider from '@/components/Divider'
 
   export default {
@@ -33,13 +32,12 @@
       ])
     },
     components: {
-      [Button.name]: Button,
       Divider
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
 
 </style>

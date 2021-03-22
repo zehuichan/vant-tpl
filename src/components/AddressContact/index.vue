@@ -17,9 +17,6 @@
 </template>
 
 <script>
-  // components
-  import {NavBar} from 'vant'
-
   export default {
     name: 'address-contact',
     props: {
@@ -30,15 +27,12 @@
         const area = this.value && JSON.parse(this.value.area) || []
         return area.map(v => v.name).join(' ')
       }
-    },
-    components: {
-      [NavBar.name]: NavBar,
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .address-contact {
     .address-contact-cell {
       position: relative;

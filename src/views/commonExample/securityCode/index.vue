@@ -23,9 +23,6 @@
 </template>
 
 <script>
-  // components
-  import {PasswordInput, NumberKeyboard} from 'vant'
-
   export default {
     data() {
       return {
@@ -40,10 +37,6 @@
       onDelete() {
         this.value = this.value.slice(0, this.value.length - 1)
       },
-    },
-    components: {
-      [PasswordInput.name]: PasswordInput,
-      [NumberKeyboard.name]: NumberKeyboard
     }
   }
 </script>

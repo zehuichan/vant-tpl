@@ -1,33 +1,17 @@
 'use strict'
 const path = require('path')
+const defaultSettings = require('./src/settings.js')
+const CompressionPlugin = require('compression-webpack-plugin')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = 'vue Vant Tpl' // page title
-
-const port = 9527 // dev port
-
 const isProd = process.env.NODE_ENV === 'production'
 
-const cdn = {
-  // webpack build externals
-  externals: {
-    vue: 'Vue',
-    'vue-router': 'VueRouter',
-    vuex: 'Vuex',
-    axios: 'axios'
-  },
-  css: [],
-  // https://www.jsdelivr.com/
-  js: [
-    '//cdn.jsdelivr.net/npm/vue@2.6.11/dist/vue.min.js',
-    '//cdn.jsdelivr.net/npm/vue-router@3.1.6/dist/vue-router.min.js',
-    '//cdn.jsdelivr.net/npm/vuex@3.4.0/dist/vuex.min.js',
-    '//cdn.jsdelivr.net/npm/axios@0.19.2/dist/axios.min.js'
-  ]
-}
+const name = defaultSettings.title || 'vue Vant Tpl' // page title
+
+const port = 3000 // dev port
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
@@ -37,14 +21,12 @@ module.exports = {
   filenameHashing: true,
   productionSourceMap: false,
   devServer: {
-    clientLogLevel: 'warning',
-    historyApiFallback: true,
-    hot: true,
-    compress: true,
-    host: '0.0.0.0',
     port: port,
-    overlay: process.env.VUE_APP_ERROR_OVERLAY ? {warnings: false, errors: true} : false,
-    // proxy: process.env.VUE_APP_BASE_API,
+    open: false,
+    overlay: {
+      warnings: false,
+      errors: true
+    },
   },
   css: {
     loaderOptions: {
@@ -62,8 +44,15 @@ module.exports = {
         '@': resolve('src')
       }
     },
-    // if prod, add externals
-    externals: isProd ? cdn.externals : {}
+    plugins: isProd ? [
+      new CompressionPlugin({
+        algorithm: 'gzip',
+        test: /\.(js|css)(\?.*)?$/i,
+        threshold: 10240, // 对超过10k的数据进行压缩
+        minRatio: 0.8, // 只有压缩率小于这个值的资源才会被处理
+        deleteOriginalAssets: false, // 删除原文件
+      })
+    ] : []
   },
   chainWebpack: (config) => {
     // it can improve the speed of the first screen, it is recommended to turn on preload
@@ -81,30 +70,45 @@ module.exports = {
     // when there are many pages, it will cause too many meaningless requests
     config.plugins.delete('prefetch')
 
-    // if prod is on
-    // assets require on cdn
-    if (isProd) {
-      config.plugin('html').tap(args => {
-        args[0].cdn = cdn
-        return args
-      })
-    }
-
-    // set preserveWhitespace
-    config.module
-      .rule('vue')
-      .use('vue-loader')
-      .loader('vue-loader')
-      .tap(options => {
-        options.compilerOptions.preserveWhitespace = true
-        return options
-      })
-      .end()
-
     config
-      // https://webpack.js.org/configuration/devtool/#development
-      .when(process.env.NODE_ENV === 'development',
-        config => config.devtool('cheap-source-map')
+      .when(process.env.NODE_ENV !== 'development',
+        config => {
+          config
+            .plugin('ScriptExtHtmlWebpackPlugin')
+            .after('html')
+            .use('script-ext-html-webpack-plugin', [{
+              // `runtime` must same as runtimeChunk name. default is `runtime`
+              inline: /runtime\..*\.js$/
+            }])
+            .end()
+          config
+            .optimization.splitChunks(
+            {
+              chunks: 'all',
+              cacheGroups: {
+                libs: {
+                  name: 'chunk-libs',
+                  test: /[\\/]node_modules[\\/]/,
+                  priority: 10,
+                  chunks: 'initial' // only package third parties that are initially dependent
+                },
+                elementUI: {
+                  name: 'chunk-vantUI', // split elementUI into a single package
+                  priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
+                  test: /[\\/]node_modules[\\/]_?vant(.*)/ // in order to adapt to cnpm
+                },
+                commons: {
+                  name: 'chunk-commons',
+                  test: resolve('src/components'), // can customize your rules
+                  minChunks: 3, //  minimum common number
+                  priority: 5,
+                  reuseExistingChunk: true
+                }
+              }
+            }
+          )
+          config.optimization.runtimeChunk('single')
+        }
       )
   }
 }

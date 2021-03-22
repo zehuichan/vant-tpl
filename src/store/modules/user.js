@@ -4,6 +4,7 @@ const state = {
   avatar: '',
   cellphone: '',
   username: '',
+  github: '',
   level: 'v2',
 }
 
@@ -16,6 +17,9 @@ const mutations = {
   },
   SET_USER_NAME: (state, username) => {
     state.username = username
+  },
+  SET_GITHUB: (state, github) => {
+    state.github = github
   },
   SET_LEVEL: (state, level) => {
     state.level = level
@@ -55,18 +59,19 @@ const actions = {
   // },
 
   // 获取用户信息
-  getUserInfo({commit, state}) {
+  getUserInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       commit('SET_AVATAR', 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLYMVgaumib5h42GP4pAlLTQCpzFAmUZTVUg4MmH9eFyb4shrm6Ux2Ocic1ic0ekTWEYVfxibGcMMC3UQ/132')
       commit('SET_CELL_PHONE', '15800066380')
       commit('SET_USER_NAME', 'chan')
+      commit('SET_GITHUB', 'https://github.com/zehuichan')
       commit('SET_LEVEL', 'v3')
       resolve()
     })
   },
 
   // 重置用户信息
-  resetUserInfo({commit, state}) {
+  resetUserInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       commit('SET_AVATAR', '')
       commit('SET_CELL_PHONE', '')

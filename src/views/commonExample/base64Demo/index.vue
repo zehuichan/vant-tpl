@@ -26,15 +26,9 @@
 <script>
   // utils
   import {getBase64} from '@/utils'
-  // components
-  import {NavBar, Image} from 'vant'
 
   export default {
     name: 'base64-demo',
-    components: {
-      [NavBar.name]: NavBar,
-      [Image.name]: Image
-    },
     data() {
       return {
         fileList: []
@@ -42,7 +36,7 @@
     },
     methods: {
       onClickLeft() {
-        this.$router.push({path: this.redirect || '/me'})
+        this.$router.push({path: this.redirect || '/my'})
       },
       async readFile(files) {
         if (Array.isArray(files)) {
@@ -82,7 +76,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less" scoped>
+<style lang="less" scoped>
   .uploader-wrapper {
     display: flex;
     flex-wrap: wrap;

@@ -27,8 +27,6 @@
 <script>
   // utils
   import {oneOf, parseTime} from '@/utils'
-  // components
-  import {Field, Calendar} from 'vant'
 
   export default {
     name: 'popup-calendar-picker',
@@ -130,16 +128,12 @@
 
         this.show = false
       },
-    },
-    components: {
-      [Field.name]: Field,
-      [Calendar.name]: Calendar
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .popup-calendar-picker.van-cell {
     padding: 0;
 

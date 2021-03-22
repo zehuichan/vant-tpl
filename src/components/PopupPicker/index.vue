@@ -22,9 +22,6 @@
 </template>
 
 <script>
-  // components
-  import {Field, Picker, Popup} from 'vant'
-
   export default {
     name: 'popup-picker',
     model: {
@@ -32,12 +29,6 @@
       event: 'input'
     },
     props: {
-      // Field.props
-      ...Field.props,
-
-      // Picker.props
-      ...Picker.props,
-
       columns: {
         type: Array,
         default: () => []
@@ -95,18 +86,13 @@
           this.$picker.setIndexes([this.index])
         })
       }
-    },
-    components: {
-      [Field.name]: Field,
-      [Picker.name]: Picker,
-      [Popup.name]: Popup
     }
   }
 </script>
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .popup-picker.van-cell {
     padding: 0;
 

@@ -15,9 +15,6 @@
 </template>
 
 <script>
-  // components
-  import {Checkbox} from 'vant'
-
   export default {
     name: 'coupon-item',
     props: {
@@ -31,15 +28,12 @@
       classes() {
         return this.showCheckbox ? 'has-checkbox' : ''
       }
-    },
-    components: {
-      [Checkbox.name]: Checkbox,
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .coupon-item {
     position: relative;
     width: 100%;

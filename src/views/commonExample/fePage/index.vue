@@ -24,15 +24,11 @@
   // data
   import {genList} from './data'
   // components
-  import {NavBar, List, Cell} from 'vant'
   import LoadMore from '@/components/LoadMore'
 
   export default {
     name: 'fePage',
     components: {
-      [NavBar.name]: NavBar,
-      [List.name]: List,
-      [Cell.name]: Cell,
       LoadMore
     },
     data() {
@@ -53,7 +49,7 @@
     },
     methods: {
       onClickLeft() {
-        this.$router.push({path: this.redirect || '/me'})
+        this.$router.push({path: this.redirect || '/my'})
       },
       onLoad() {
         let begin = (this.dataForm.p - 1) * this.dataForm.ps
@@ -76,7 +72,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .fePage {
   }
 </style>

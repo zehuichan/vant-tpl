@@ -24,7 +24,7 @@
 
 <script>
   // filters
-  import {toThousandsFilter, maskerFilter} from '@/filters'
+  import {toThousandsFilter} from '@/filters'
   // utils
   import {$_formatValue, trimValue} from '@/utils/formate-value'
 
@@ -92,7 +92,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">.van-field__label {
+<style lang="less">.van-field__label {
   -webkit-box-flex: 0;
   -webkit-flex: none;
   flex: none;

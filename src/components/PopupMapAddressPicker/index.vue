@@ -52,7 +52,6 @@
   // utils
   import {debounce} from '@/utils'
   // components
-  import {NavBar, Popup, Search, Cell, CellGroup} from 'vant'
   import Split from '@/components/Split'
   import Empty from '@/components/Empty'
 
@@ -134,11 +133,6 @@
       }, 300),
     },
     components: {
-      [NavBar.name]: NavBar,
-      [Popup.name]: Popup,
-      [Search.name]: Search,
-      [Cell.name]: Cell,
-      [CellGroup.name]: CellGroup,
       Split,
       Empty
     }
@@ -146,7 +140,7 @@
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .popup-map-address-picker.van-cell {
     padding: 0;
 

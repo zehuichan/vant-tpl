@@ -26,9 +26,6 @@
 </template>
 
 <script>
-  // components
-  import {Field, ActionSheet} from 'vant'
-
   export default {
     name: 'popup-action-sheet',
     model: {
@@ -36,11 +33,6 @@
       event: 'input'
     },
     props: {
-      // Field.props
-      ...Field.props,
-      // ActionSheet.props
-      ...ActionSheet.props,
-
       value: String,
       disabled: Boolean,
       clearable: Boolean,
@@ -77,10 +69,6 @@
         this.show = false
         this.$emit('input', name)
       },
-    },
-    components: {
-      [Field.name]: Field,
-      [ActionSheet.name]: ActionSheet
     }
   }
 </script>

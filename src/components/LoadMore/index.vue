@@ -8,9 +8,6 @@
 </template>
 
 <script>
-  // components
-  import {Loading} from 'vant'
-
   export default {
     name: 'LoadMore',
     props: {
@@ -30,15 +27,12 @@
         type: String,
         default: '没有更多了'
       }
-    },
-    components: {
-      [Loading.name]: Loading
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .van-list__error-text, .van-list__finished-text, .van-list__loading {
     color: #969799;
     font-size: 14px;

@@ -21,7 +21,6 @@
   // vuex
   import {mapGetters} from 'vuex'
   // components
-  import {NavBar} from 'vant'
   import CouponList from '@/components/CouponList'
 
   export default {
@@ -38,18 +37,17 @@
     },
     methods: {
       onClickLeft() {
-        this.$router.push({path: this.redirect || '/me'})
+        this.$router.push({path: this.redirect || '/my'})
       }
     },
     components: {
-      [NavBar.name]: NavBar,
       CouponList
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .myCoupon {
   }
 </style>

@@ -29,7 +29,6 @@
   // vuex
   import {mapActions, mapGetters} from 'vuex'
   // components
-  import {NavBar, Button} from 'vant'
   import AddressList from '@/components/AddressList'
   import AddressEdit from '@/components/AddressEdit'
 
@@ -82,8 +81,6 @@
       ])
     },
     components: {
-      [NavBar.name]: NavBar,
-      [Button.name]: Button,
       AddressList,
       AddressEdit,
     }
@@ -92,7 +89,7 @@
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .myAddress {
   }
 </style>

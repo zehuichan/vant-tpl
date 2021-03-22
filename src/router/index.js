@@ -10,158 +10,32 @@ const RouteView = {
   render: (h) => h('router-view')
 }
 
-// view components
-const Home = () => import('@/views/home')
-const Message = () => import('@/views/message')
-const Me = () => import('@/views/me')
-
-// 业务组件-地址
-const MyAddress = () => import('@/views/addressExample/myAddress')
-const ConfirmOrder = () => import('@/views/addressExample/confirmOrder')
-
-// 业务组件-卡券
-const MyCoupon = () => import('@/views/couponExample/myCoupon')
-
-// 业务组件-公共
-const ShopCart = () => import('@/views/commonExample/shopCart')
-const SecurityCode = () => import('@/views/commonExample/securityCode')
-const FePage = () => import('@/views/commonExample/fePage')
-const Base64Demo = () => import('@/views/commonExample/base64Demo')
-
 export const routes = [
-  { path: '/', redirect: 'me' },
-  { path: '/403', component: () => import('@/views/errorPage/403') },
-  { path: '/404', component: () => import('@/views/errorPage/404') },
-  { path: '/500', component: () => import('@/views/errorPage/500') },
+  { path: '/', redirect: '/tabs/home' },
+  { path: '/403', component: () => import('@/views/error-page/403') },
+  { path: '/404', component: () => import('@/views/error-page/404') },
+  { path: '/500', component: () => import('@/views/error-page/500') },
   {
-    path: '/home',
+    path: '/tabs',
     component: BasicLayout,
     children: [
       {
-        path: '',
-        component: Home,
+        path: '/tabs/home',
+        component: () => import('@/views/home'),
         name: 'home',
-        meta: { title: '首页' },
-      }
-    ]
-  },
-  {
-    path: '/message',
-    component: BasicLayout,
-    children: [
+        meta: { title: '组件' },
+      },
       {
-        path: '',
-        component: Message,
-        name: 'message',
-        meta: { title: '消息' },
-      }
-    ]
-  },
-  {
-    path: '/me',
-    component: BasicLayout,
-    children: [
+        path: '/tabs/api',
+        component: () => import('@/views/home'),
+        name: 'api',
+        meta: { title: 'api' },
+      },
       {
-        path: '',
-        component: Me,
-        name: 'me',
-        meta: { title: '我' }
-      }
-    ]
-  },
-  {
-    path: '/myAddress',
-    component: BlankLayout,
-    children: [
-      {
-        path: '',
-        component: MyAddress,
-        name: 'myAddress',
-        meta: { title: '收货地址管理' }
-      }
-    ]
-  },
-  {
-    path: '/confirmOrder',
-    component: BlankLayout,
-    children: [
-      {
-        path: '',
-        component: ConfirmOrder,
-        name: 'confirmOrder',
-        meta: { title: '确认订单' }
-      }
-    ]
-  },
-  {
-    path: '/myCoupon',
-    component: BlankLayout,
-    children: [
-      {
-        path: '',
-        component: MyCoupon,
-        name: 'myCoupon',
-        meta: { title: '卡券管理' }
-      }
-    ]
-  },
-  {
-    path: '/shopCart',
-    component: BlankLayout,
-    children: [
-      {
-        path: '',
-        component: ShopCart,
-        name: 'shopCart',
-        meta: { title: '购物车' }
-      }
-    ]
-  },
-  {
-    path: '/securityCode',
-    component: BlankLayout,
-    children: [
-      {
-        path: '',
-        component: SecurityCode,
-        name: 'securityCode',
-        meta: { title: '购物车' }
-      }
-    ]
-  },
-  {
-    path: '/fePage',
-    component: BlankLayout,
-    children: [
-      {
-        path: '',
-        component: FePage,
-        name: 'fePage',
-        meta: { title: '前端分页' }
-      }
-    ]
-  },
-  {
-    path: '/toBase64',
-    component: BlankLayout,
-    children: [
-      {
-        path: '',
-        component: Base64Demo,
-        name: 'base64Demo',
-        meta: { title: '图片转base64' }
-      }
-    ]
-  },
-  {
-    path: '/components',
-    component: BasicLayout,
-    children: [
-      {
-        path: 'v-nav-bar',
-        component: () => import('@/views/components/v-nav-bar'),
-        name: 'components',
-        meta: { title: '组件' }
+        path: '/tabs/my',
+        component: () => import('@/views/my'),
+        name: 'my',
+        meta: { title: '关于我' },
       }
     ]
   },

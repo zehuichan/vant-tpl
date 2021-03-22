@@ -38,7 +38,6 @@
   // vuex
   import {mapGetters} from 'vuex'
   // components
-  import {NavBar, SubmitBar, Checkbox, CheckboxGroup} from 'vant'
   import GoodsCard from '@/components/GoodsCard'
 
   export default {
@@ -66,7 +65,7 @@
     },
     methods: {
       onClickLeft() {
-        this.$router.push({path: '/me'})
+        this.$router.push({path: '/my'})
       },
       onClickThumb() {
         const _products = this.products.map(item => item.name)
@@ -95,17 +94,13 @@
       }
     },
     components: {
-      [NavBar.name]: NavBar,
-      [SubmitBar.name]: SubmitBar,
-      [Checkbox.name]: Checkbox,
-      [CheckboxGroup.name]: CheckboxGroup,
       GoodsCard
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .shop-cart {
     padding-bottom: 50px;
 

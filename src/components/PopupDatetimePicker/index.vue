@@ -25,8 +25,6 @@
 <script>
   // utils
   import {parseTime} from '@/utils'
-  // components
-  import {Field, DatetimePicker, Popup} from 'vant'
 
   export default {
     name: 'popup-datetime-picker',
@@ -35,8 +33,6 @@
       event: 'input'
     },
     props: {
-      ...Field.props,
-
       value: String,
       placeholder: String,
       clearable: Boolean,
@@ -76,18 +72,13 @@
           this.date = new Date()
         }
       },
-    },
-    components: {
-      [Field.name]: Field,
-      [DatetimePicker.name]: DatetimePicker,
-      [Popup.name]: Popup
     }
   }
 </script>
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   .popup-datetime-picker.van-cell {
     padding: 0;
 

@@ -20,9 +20,6 @@
 </template>
 
 <script>
-  // components
-  import {Tag} from 'vant'
-
   export default {
     name: 'address-item',
     props: {
@@ -37,15 +34,12 @@
         const area = JSON.parse(this.data.area).map(item => item.name).join(' ')
         return `${area} ${this.data.address}`
       }
-    },
-    components: {
-      [Tag.name]: Tag
     }
   }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
+<style lang="less">
   @import "~@/assets/less/tap.less";
 
   .address-item {

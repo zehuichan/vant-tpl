@@ -11,17 +11,7 @@
 </template>
 
 <script>
-  import {Button} from 'vant'
-
   export default {
-    name: 'page404',
-    components: {
-      [Button.name]: Button
-    }
+    name: 'page404'
   }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" rel="stylesheet/less" type="text/less">
-
-</style>
