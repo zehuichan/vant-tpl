@@ -28,7 +28,7 @@
     data() {
       return {
         value: '',
-        github: 'https://github-readme-stats.vercel.app/api?username=zehuichan&show_icons=true&title_color=fff&icon_color=177ddc&text_color=ffffff&bg_color=141414&hide=["contribs"]'
+        github: 'https://github-readme-stats.vercel.app/api?username=zehuichan&show_icons=true&title_color=fff&icon_color=177ddc&text_color=ffffff&bg_color=141414&hide=["contribs"]',
       }
     },
     components: {
@@ -70,6 +70,7 @@
 
     .stats {
       padding: 10px;
+      min-height: 140px;
 
       .van-image {
         display: block;
