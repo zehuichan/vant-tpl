@@ -1,26 +1,25 @@
 <template>
   <div class="popup-area-picker van-cell">
     <van-field
-        v-bind="$props"
-        :value="text"
-        :right-icon="showIcon"
-        readonly
-        clickable
-        @click-input="onClick"
-        @click-right-icon="onClear"
-    >
-      <van-popup v-model="show" slot="extra" position="bottom" get-container="body">
-        <van-area
-            ref="area"
-            title="请选择"
-            :loading="loading"
-            :area-list="area"
-            :columns-placeholder="['请选择', '请选择', '请选择']"
-            @cancel="onCancel"
-            @confirm="onConfirm"
-        />
-      </van-popup>
-    </van-field>
+      v-bind="$attrs"
+      :value="text"
+      :right-icon="showIcon"
+      readonly
+      clickable
+      @click-input="onClick"
+      @click-right-icon="onClear"
+    />
+    <van-popup v-model="show" position="bottom" get-container="body">
+      <van-area
+        ref="area"
+        title="请选择"
+        :loading="loading"
+        :area-list="area"
+        :columns-placeholder="['请选择', '请选择', '请选择']"
+        @cancel="onCancel"
+        @confirm="onConfirm"
+      />
+    </van-popup>
   </div>
 </template>
 
@@ -39,9 +38,6 @@
         type: Array,
         default: () => []
       },
-      placeholder: String,
-      disabled: Boolean,
-      clearable: Boolean,
       separator: {
         type: String,
         default: ' '
@@ -49,7 +45,7 @@
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value.length ? 'clear' : 'arrow'
+        return this.$attrs.clearable && this.value.length ? 'clear' : 'arrow'
       },
       text() {
         const curr = Array.from(this.value).map(v => v.name)
@@ -72,10 +68,10 @@
     },
     methods: {
       onClear() {
-        if (!this.clearable) {
+        if (!this.$attrs.clearable) {
           return false
         }
-        this.$emit('input', '')
+        this.$emit('input', [])
       },
       onCancel() {
         this.show = false

@@ -5,8 +5,8 @@
         <van-image :src="$store.getters.avatar" width="100%" height="100%"/>
       </div>
       <div class="user">
-        <div class="name">{{$store.getters.username}}</div>
-        <div class="text">{{$store.getters.github}}</div>
+        <div class="name">{{ $store.getters.username }}</div>
+        <div class="text">{{ $store.getters.github }}</div>
       </div>
     </div>
     <div class="stats">
@@ -70,10 +70,10 @@
 
     .stats {
       padding: 10px;
-      min-height: 140px;
 
       .van-image {
         display: block;
+        height: 140px;
       }
     }
 

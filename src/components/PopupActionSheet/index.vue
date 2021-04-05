@@ -1,27 +1,24 @@
 <template>
   <div class="popup-action-sheet">
     <van-field
-        v-bind="$props"
-        :value="text"
-        :right-icon="showIcon"
-        readonly
-        clickable
-        @click-input="onClick"
-        @click-right-icon="onClear"
-    >
-      <van-action-sheet
-          slot="extra"
-          v-bind="$props"
-          v-model="show"
-          description="请选择"
-          :actions="actions"
-          :round="false"
-          cancel-text="取消"
-          close-on-click-action
-          @cancel="onCancel"
-          @select="onSelect"
-      />
-    </van-field>
+      v-bind="$attrs"
+      :value="text"
+      :right-icon="showIcon"
+      readonly
+      clickable
+      @click-input="onClick"
+      @click-right-icon="onClear"
+    />
+    <van-action-sheet
+      v-bind="$attrs"
+      v-model="show"
+      description="请选择"
+      :round="false"
+      cancel-text="取消"
+      close-on-click-action
+      @cancel="onCancel"
+      @select="onSelect"
+    />
   </div>
 </template>
 
@@ -64,7 +61,7 @@
       onCancel() {
 
       },
-      onSelect({name}) {
+      onSelect({ name }) {
         console.log(name)
         this.show = false
         this.$emit('input', name)

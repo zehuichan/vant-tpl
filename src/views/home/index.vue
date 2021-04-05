@@ -2,56 +2,56 @@
   <div class="home">
     <van-cell-group :border="false" title="field扩展">
       <van-field
-          v-model="phone"
-          label="手机号"
-          placeholder="ex: xxx xxxx xxxx"
-          :formatter="formatterPhone"
-          clearable
-          input-align="right"
+        v-model="phone"
+        label="手机号"
+        placeholder="ex: xxx xxxx xxxx"
+        :formatter="formatterPhone"
+        clearable
+        input-align="right"
       />
       <van-field
-          v-model="bankCard"
-          label="银行卡"
-          placeholder="ex: xxxx xxxx xxxx xxxx xxx"
-          :formatter="formatterBankCard"
-          clearable
-          input-align="right"
-          @blur="inputBlur"
+        v-model="bankCard"
+        label="银行卡"
+        placeholder="ex: xxxx xxxx xxxx xxxx xxx"
+        :formatter="formatterBankCard"
+        clearable
+        input-align="right"
+        @blur="inputBlur"
       />
       <van-field
-          :value="bankName"
-          label="银行"
-          placeholder="ex: xxx银行"
-          readonly
-          input-align="right"
+        :value="bankName"
+        label="银行"
+        placeholder="ex: xxx银行"
+        readonly
+        input-align="right"
       />
       <van-field
-          v-model="money"
-          label="金额"
-          placeholder="ex: xxx,xxx,xxx,xxx"
-          :formatter="formatterMoney"
-          clearable
-          input-align="right"
+        v-model="money"
+        label="金额"
+        placeholder="ex: xxx,xxx,xxx,xxx"
+        :formatter="formatterMoney"
+        clearable
+        input-align="right"
       />
     </van-cell-group>
     <van-cell-group :border="false" title="picker相关">
       <popup-picker
-          v-model="picker1"
-          label="picker1"
-          :columns="columns1"
-          clearable
-          placeholder="请选择"
-          @change="onChange1"
+        v-model="picker1"
+        label="picker1"
+        :columns="columns1"
+        clearable
+        placeholder="请选择"
+        @change="onChange1"
       />
       <popup-picker
-          v-model="picker2"
-          label="picker2"
-          :columns="columns2"
-          clearable
-          placeholder="请选择"
-          @change="onChange2"
+        v-model="picker2"
+        label="picker2"
+        :columns="columns2"
+        clearable
+        placeholder="请选择"
+        @change="onChange2"
       />
-      <popup-area-picker v-model="area" label="省市区" clearable placeholder="请选择" separator="-"/>
+      <popup-area-picker v-model="area" label="省市区" :clearable="true" placeholder="请选择" separator="-"/>
       <popup-action-sheet v-model="action" :actions="actions" label="动作面板" placeholder="动作面板"/>
       <popup-map-address-picker v-model="address" clearable/>
     </van-cell-group>
@@ -74,8 +74,8 @@
 
 <script>
   // utils
-  import {parseTime} from '@/utils'
-  import {$_formatValue, trimValue} from '@/utils/formate-value'
+  import { parseTime } from '@/utils'
+  import { $_formatValue, trimValue } from '@/utils/formate-value'
   import BIN from '@/utils/bankcardinfo'
   // components
   import PopupPicker from '@/components/PopupPicker'
@@ -96,30 +96,30 @@
         bankName: '',
         money: '',
         columns1: [
-          {text: '杭州', value: 1},
-          {text: '宁波', value: 2},
-          {text: '温州', value: 3},
-          {text: '嘉兴', value: 4},
-          {text: '湖州', value: 5},
+          { text: '杭州', value: 1 },
+          { text: '宁波', value: 2 },
+          { text: '温州', value: 3 },
+          { text: '嘉兴', value: 4 },
+          { text: '湖州', value: 5 },
         ],
         columns2: [
-          {text: '杭州1', value: 6},
-          {text: '宁波2', value: 7},
-          {text: '温州3', value: 8},
-          {text: '嘉兴4', value: 9},
-          {text: '湖州5', value: 10},
+          { text: '杭州1', value: 6 },
+          { text: '宁波2', value: 7 },
+          { text: '温州3', value: 8 },
+          { text: '嘉兴4', value: 9 },
+          { text: '湖州5', value: 10 },
         ],
         picker1: 2,
         picker2: 6,
 
         area: [
-          {code: '110000', name: '北京市'},
-          {code: '110100', name: '北京市'},
-          {code: '110105', name: '朝阳区'}
+          { code: '110000', name: '北京市' },
+          { code: '110100', name: '北京市' },
+          { code: '110105', name: '朝阳区' }
         ],
 
-        actions: [{name: '选项一'}, {name: '选项二'}, {name: '选项三'}],
-        action:'',
+        actions: [{ name: '选项一' }, { name: '选项二' }, { name: '选项三' }],
+        action: '',
 
         address: {},
 
@@ -148,7 +148,7 @@
       },
       async inputBlur() {
         try {
-          const {bankName} = await BIN.getBankBin(trimValue(this.bankCard))
+          const { bankName } = await BIN.getBankBin(trimValue(this.bankCard))
           this.bankName = bankName
         } catch (e) {
           this.bankName = ''

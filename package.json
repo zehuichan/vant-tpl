@@ -30,7 +30,7 @@
     "js-cookie": "^2.2.1",
     "mitt": "^2.1.0",
     "nprogress": "^0.2.0",
-    "vant": "^2.12.10",
+    "vant": "^2.12.11",
     "vconsole": "^3.4.0",
     "vue": "^2.6.12",
     "vue-count-to": "^1.0.13",
@@ -39,10 +39,10 @@
     "vuex": "^3.6.2"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.12",
-    "@vue/cli-plugin-router": "^4.5.12",
-    "@vue/cli-plugin-vuex": "^4.5.12",
-    "@vue/cli-service": "^4.5.12",
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
     "autoprefixer": "^9.8.6",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-transform-remove-console": "^6.9.4",
@@ -55,6 +55,7 @@
     "regenerator-runtime": "^0.13.7",
     "release-it": "^14.5.0",
     "runjs": "^4.4.2",
+    "script-ext-html-webpack-plugin": "^2.1.5",
     "serve-static": "^1.14.1",
     "vue-template-compiler": "^2.6.12"
   },

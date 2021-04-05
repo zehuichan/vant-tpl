@@ -1,30 +1,29 @@
 <template>
   <div class="popup-datetime-picker van-cell">
     <van-field
-        v-bind="$props"
-        :value="value"
-        :right-icon="showIcon"
-        readonly
-        clickable
-        @click-input="onClick"
-        @click-right-icon="onClear"
-    >
-      <van-popup v-model="show" slot="extra" position="bottom" get-container="body">
-        <van-datetime-picker
-            v-bind="$props"
-            v-model="date"
-            type="date"
-            @confirm="onConfirm"
-            @cancel="onCancel"
-        />
-      </van-popup>
-    </van-field>
+      v-bind="$attrs"
+      :value="value"
+      :right-icon="showIcon"
+      readonly
+      clickable
+      @click-input="onClick"
+      @click-right-icon="onClear"
+    />
+    <van-popup v-model="show" position="bottom" get-container="body">
+      <van-datetime-picker
+        v-bind="$attrs"
+        v-model="date"
+        type="date"
+        @confirm="onConfirm"
+        @cancel="onCancel"
+      />
+    </van-popup>
   </div>
 </template>
 
 <script>
   // utils
-  import {parseTime} from '@/utils'
+  import { parseTime } from '@/utils'
 
   export default {
     name: 'popup-datetime-picker',
@@ -33,9 +32,7 @@
       event: 'input'
     },
     props: {
-      value: String,
-      placeholder: String,
-      clearable: Boolean,
+      value: String
     },
     data() {
       return {
@@ -45,12 +42,12 @@
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'clear' : 'clock-o'
+        return this.$attrs.hasOwnProperty('clearable') && this.value ? 'clear' : 'clock-o'
       },
     },
     methods: {
       onClear() {
-        if (!this.clearable) {
+        if (!this.$attrs.hasOwnProperty('clearable')) {
           return false
         }
 
@@ -83,7 +80,7 @@
     padding: 0;
 
     .van-field__right-icon {
-      color: #969799;
+      color: #c8c9cc;
     }
   }
 </style>
