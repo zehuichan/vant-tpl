@@ -1,5 +1,5 @@
 <template>
-  <div class="popup-picker van-cell">
+  <div class="v-picker van-cell">
     <van-field
       v-bind="$attrs"
       :value="text"
@@ -23,32 +23,30 @@
 
 <script>
   export default {
-    name: 'popup-picker',
+    name: 'v-picker',
     model: {
       prop: 'value',
       event: 'input'
     },
     props: {
+      value: [String, Number],
       columns: {
         type: Array,
         default: () => []
-      },
-      value: [String, Number, Object, Array],
-      disabled: Boolean,
-      clearable: Boolean,
+      }
     },
     computed: {
       showIcon() {
-        return this.clearable && this.value ? 'clear' : 'arrow'
+        return this.$attrs.clearable && this.value ? 'clear' : 'arrow'
       },
       text() {
-        const curr = Array.from(this.columns).find(v => v.value === this.value) || ''
-        return curr.text
+        const curr = Array.from(this.columns).find(v => v.value === +this.value)
+        return curr?.text
       },
       index() {
         for (let i = 0; i < this.columns.length; i++) {
           const item = this.columns[i]
-          if (item.value === this.value) {
+          if (item.value === +this.value) {
             return i
           }
         }
@@ -65,19 +63,20 @@
     },
     methods: {
       onClear() {
-        if (!this.clearable) {
+        if (!this.$attrs.clearable) {
           return false
         }
 
         this.$emit('input', '')
+        this.$emit('change', '')
       },
       onCancel() {
         this.show = false
       },
       onConfirm(value, index) {
-        this.show = false
         console.log(value)
-        this.$emit('input', value.value)
+        this.show = false
+        this.$emit('input', value.value, index)
         this.$emit('change', value.value, index)
       },
       onClick() {
@@ -93,7 +92,7 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
-  .popup-picker.van-cell {
+  .v-picker.van-cell {
     padding: 0;
 
     .van-field__right-icon {

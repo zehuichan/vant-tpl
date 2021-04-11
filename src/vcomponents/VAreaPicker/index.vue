@@ -28,7 +28,7 @@
   import area from './area'
 
   export default {
-    name: 'popup-area-picker',
+    name: 'v-area-picker',
     model: {
       prop: 'value',
       event: 'input'

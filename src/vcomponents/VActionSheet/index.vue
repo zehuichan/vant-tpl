@@ -24,7 +24,7 @@
 
 <script>
   export default {
-    name: 'popup-action-sheet',
+    name: 'v-action-sheet',
     model: {
       prop: 'value',
       event: 'input'

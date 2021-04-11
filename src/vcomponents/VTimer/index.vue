@@ -8,7 +8,7 @@
   import Time from './time'
 
   export default {
-    name: 'timer',
+    name: 'v-timer',
     props: {
       time: {
         type: [Number, Date, String],

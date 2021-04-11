@@ -29,7 +29,7 @@
   import {oneOf, parseTime} from '@/utils'
 
   export default {
-    name: 'popup-calendar-picker',
+    name: 'v-calendar-picker',
     model: {
       prop: 'value',
       event: 'input'

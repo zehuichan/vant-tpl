@@ -56,7 +56,7 @@
   import Empty from '@/components/Empty'
 
   export default {
-    name: 'popup-map-Address-picker',
+    name: 'v-map-Address-picker',
     model: {
       prop: 'value',
       event: 'input'
