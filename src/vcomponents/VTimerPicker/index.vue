@@ -26,7 +26,7 @@
   import {days, hours, minutes} from '@/utils'
 
   export default {
-    name: 'popup-timer-picker',
+    name: 'v-timer-picker',
     model: {
       prop: 'value',
       event: 'input'

@@ -44,7 +44,7 @@
   import CouponList from '@/components/CouponList'
 
   export default {
-    name: 'popup-coupon-picker',
+    name: 'v-coupon-picker',
     model: {
       prop: 'value',
       event: 'input'

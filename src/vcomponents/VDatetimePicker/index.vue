@@ -1,9 +1,8 @@
 <template>
-  <div class="popup-datetime-picker van-cell">
+  <div class="v-datetime-picker van-cell">
     <van-field
       v-bind="$attrs"
       :value="value"
-      :right-icon="showIcon"
       readonly
       clickable
       @click-input="onClick"
@@ -11,7 +10,6 @@
     />
     <van-popup v-model="show" position="bottom" get-container="body">
       <van-datetime-picker
-        v-bind="$attrs"
         v-model="date"
         type="date"
         @confirm="onConfirm"
@@ -26,13 +24,13 @@
   import { parseTime } from '@/utils'
 
   export default {
-    name: 'popup-datetime-picker',
+    name: 'v-datetime-picker',
     model: {
       prop: 'value',
       event: 'input'
     },
     props: {
-      value: String
+      value: String,
     },
     data() {
       return {
@@ -40,18 +38,14 @@
         date: new Date()
       }
     },
-    computed: {
-      showIcon() {
-        return this.$attrs.hasOwnProperty('clearable') && this.value ? 'clear' : 'clock-o'
-      },
-    },
     methods: {
       onClear() {
-        if (!this.$attrs.hasOwnProperty('clearable')) {
+        if (!this.$attrs.clearable) {
           return false
         }
 
         this.$emit('input', '')
+        this.$emit('change', '')
       },
       onCancel() {
         this.show = false
@@ -76,11 +70,11 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
-  .popup-datetime-picker.van-cell {
+  .v-datetime-picker.van-cell {
     padding: 0;
 
     .van-field__right-icon {
-      color: #c8c9cc;
+      color: #969799;
     }
   }
 </style>
