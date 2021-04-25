@@ -27,7 +27,7 @@ export const routes = [
       },
       {
         path: '/tabs/api',
-        component: () => import('@/views/home'),
+        component: () => import('@/views/api'),
         name: 'api',
         meta: { title: 'api' },
       },
