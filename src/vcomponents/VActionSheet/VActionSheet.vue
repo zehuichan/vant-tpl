@@ -62,7 +62,6 @@
 
       },
       onSelect({ name }) {
-        console.log(name)
         this.show = false
         this.$emit('input', name)
       },

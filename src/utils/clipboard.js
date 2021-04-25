@@ -1,5 +1,5 @@
 import Clipboard from 'clipboard'
-import {Toast} from 'vant'
+import { Toast } from 'vant'
 
 function clipboardSuccess() {
   Toast.success({

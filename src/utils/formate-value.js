@@ -1,6 +1,6 @@
 export function $_formatValue(curValue, oldValue, type, curPos = 0) {
   const isAdd = oldValue.length > curValue.length ? -1 : 1
-  let formatValue = {value: curValue, range: curPos}
+  let formatValue = { value: curValue, range: curPos }
   // default format by component
   let gap = ' '
   switch (type) {
@@ -64,12 +64,12 @@ export function formatValueByGapRule(gapRule, value, gap = ' ', range, isAdd = 1
     }
   })
   range = typeof range !== 'undefined' ? (range === 0 ? 0 : range + adapt) : showValue.length
-  return {value: showValue, range: range}
+  return { value: showValue, range: range }
 }
 
 export function formatValueByGapStep(step, value, gap = ' ', direction = 'right', range, isAdd = 1, oldValue = '') {
   if (value.length === 0) {
-    return {value, range}
+    return { value, range }
   }
 
   const arr = value && value.split('')
@@ -104,7 +104,7 @@ export function formatValueByGapStep(step, value, gap = ' ', direction = 'right'
     _range = typeof range !== 'undefined' ? (range === 0 ? 0 : range + adapt) : showValue.length
   }
 
-  return {value: showValue, range: _range}
+  return { value: showValue, range: _range }
 }
 
 export function trimValue(value, gap = ' ') {

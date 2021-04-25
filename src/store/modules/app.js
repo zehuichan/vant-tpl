@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import {getLanguage} from '@/lang'
+import { getLanguage } from '@/lang'
 
 const state = {
   loading: false,
@@ -17,10 +17,10 @@ const mutations = {
 }
 
 const actions = {
-  SetTabBarState({commit, state}, flag) {
+  SetTabBarState({ commit, state }, flag) {
     commit('SET_TAB_BAR_STATE', flag)
   },
-  SetLanguage({commit, state}, lang) {
+  SetLanguage({ commit, state }, lang) {
     commit('SET_LANGUAGE', lang)
   }
 }
