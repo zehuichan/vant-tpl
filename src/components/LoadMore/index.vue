@@ -31,7 +31,6 @@
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
   .van-list__error-text, .van-list__finished-text, .van-list__loading {
     color: #969799;

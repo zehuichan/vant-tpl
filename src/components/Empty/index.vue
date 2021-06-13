@@ -14,7 +14,6 @@
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">
   .empty {
     color: #969799;

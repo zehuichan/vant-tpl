@@ -91,7 +91,6 @@
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less">.van-field__label {
   -webkit-box-flex: 0;
   -webkit-flex: none;
