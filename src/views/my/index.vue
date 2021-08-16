@@ -28,7 +28,7 @@
     data() {
       return {
         value: '',
-        github: 'https://github-readme-stats.vercel.app/api?username=zehuichan&show_icons=true&title_color=fff&icon_color=177ddc&text_color=ffffff&bg_color=141414&hide=["contribs"]',
+        github: 'https://github-readme-stats.vercel.app/api?username=zehuichan&count_private=true&show_icons=true&icon_color=222&title_color=0366d6&text_color=586069&bg_color=fff&hide=issues&hide_border=true&include_all_commits=true',
       }
     },
     components: {
