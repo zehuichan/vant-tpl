@@ -92,7 +92,6 @@ export default {
 </script>
 
 <style lang="less">
-
 .v-auto-complete--suggestion__item {
   line-height: 25px;
 }
