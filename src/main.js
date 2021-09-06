@@ -8,7 +8,7 @@ import Vue from 'vue'
 
 import Vant from 'vant'
 import 'vant/lib/index.css'
-import VComponents from './vcomponents'
+import VComponents from 'vantui-components'
 import '@/assets/less/index.less'
 
 import App from './App.vue'
@@ -63,8 +63,10 @@ if (process.env.NODE_ENV === 'production') {
   new vConsole()
 }
 
-console.log('vue', `v${Vue.version}`)
-console.log('vant', `v${Vant.version}`)
+console.info('vue', `v${Vue.version}`)
+console.info('vant', `v${Vant.version}`)
+console.info('@vcomponetns/vant-ui', VComponents.version)
+console.info('Version', require('../package.json').version)
 
 new Vue({
   el: '#app',
