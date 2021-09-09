@@ -10,8 +10,8 @@
         rows="1"
         :autosize="autosize"
         :type="fieldtype"
-        @click-input="onClick"
-        @click-right-icon="onClear">
+        @click="onClick"
+        @click-right-icon.stop="onClear">
       <van-calendar
           v-model="show"
           slot="extra"
@@ -74,7 +74,6 @@
         return this.value
       },
       autosize() {
-        console.log(this.type === 'multiple')
         return this.type === 'multiple'
       },
       fieldtype() {
