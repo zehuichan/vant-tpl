@@ -2,8 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // basic components
-import BasicLayout from '@/layouts/BasicLayout'
-import BlankLayout from '@/layouts/BlankLayout'
+import BasicLayout from '@/layout'
 
 const RouteView = {
   name: 'RouteView',
@@ -11,35 +10,34 @@ const RouteView = {
 }
 
 export const routes = [
-  { path: '/', redirect: '/tabs/home' },
   { path: '/403', component: () => import('@/views/error-page/403') },
   { path: '/404', component: () => import('@/views/error-page/404') },
   { path: '/500', component: () => import('@/views/error-page/500') },
   {
-    path: '/tabs',
+    path: '/',
+    redirect: '/tabs/home',
     component: BasicLayout,
     children: [
       {
         path: '/tabs/home',
         component: () => import('@/views/home'),
         name: 'home',
-        meta: { title: '组件' },
+        meta: { title: '组件', tabbar: true },
       },
       {
         path: '/tabs/api',
         component: () => import('@/views/api'),
         name: 'api',
-        meta: { title: 'api' },
+        meta: { title: 'api', tabbar: true },
       },
       {
         path: '/tabs/my',
         component: () => import('@/views/my'),
         name: 'my',
-        meta: { title: '关于我' },
+        meta: { title: '关于我', tabbar: true },
       }
     ]
   },
-
   { path: '*', redirect: '/404' }
 ]
 
@@ -47,7 +45,13 @@ Vue.use(Router)
 
 const createRouter = () => new Router({
   // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
+  scrollBehavior(to, from, savedPosition) {
+    console.log(to, from, savedPosition)
+    if (savedPosition) {
+      return Promise.resolve(savedPosition)
+    }
+    return { y: 0 }
+  },
   routes: routes
 })
 

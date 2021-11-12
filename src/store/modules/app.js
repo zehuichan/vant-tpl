@@ -1,26 +1,21 @@
-import Cookies from 'js-cookie'
-import { getLanguage } from '@/lang'
+import { getLanguage, initVantLocale } from '@/lang'
+// utils
+import cache from '@/utils/cache'
 
 const state = {
-  loading: false,
   language: getLanguage()
 }
 
 const mutations = {
-  SET_TAB_BAR_STATE: (state, tabbar) => {
-    state.tabbar = tabbar
-  },
   SET_LANGUAGE: (state, language) => {
     state.language = language
-    Cookies.set('language', language)
+    initVantLocale(language)
+    cache.setItem('language', language)
   }
 }
 
 const actions = {
-  SetTabBarState({ commit, state }, flag) {
-    commit('SET_TAB_BAR_STATE', flag)
-  },
-  SetLanguage({ commit, state }, lang) {
+  setLanguage({ commit, state }, lang) {
     commit('SET_LANGUAGE', lang)
   }
 }

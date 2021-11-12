@@ -63,7 +63,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       commit('SET_AVATAR', 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLYMVgaumib5h42GP4pAlLTQCpzFAmUZTVUg4MmH9eFyb4shrm6Ux2Ocic1ic0ekTWEYVfxibGcMMC3UQ/132')
       commit('SET_CELL_PHONE', '15800066380')
-      commit('SET_USER_NAME', 'chan')
+      commit('SET_USER_NAME', 'chan_')
       commit('SET_GITHUB', 'https://github.com/zehuichan')
       commit('SET_LEVEL', 'v3')
       resolve()

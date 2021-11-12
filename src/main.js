@@ -1,7 +1,6 @@
 // with polyfills
 import 'core-js/stable'
 import 'regenerator-runtime/runtime'
-
 import '@vant/touch-emulator'
 
 import Vue from 'vue'
