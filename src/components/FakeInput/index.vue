@@ -1,8 +1,8 @@
 <template>
   <div
-      class="van-cell van-field fake-input is-waiting"
-      :class="{'is-focus': showCursor}"
-      @touchstart="onTouchstart"
+    class="van-cell van-field fake-input is-waiting"
+    :class="{'is-focus': showCursor}"
+    @touchstart="onTouchstart"
   >
     <div class="van-field__left-icon" v-if="$slots['left-icon'] || leftIcon">
       <slot name="left-icon"/>
@@ -13,85 +13,86 @@
     <div class="van-cell__value van-cell__value--alone van-field__value">
       <div class="van-field__body" style="position:relative;">
         <div class="van-field__control" :class="`van-field__control--${inputAlign}`">
-          <span>{{value}}</span>
+          <span>{{ value }}</span>
         </div>
         <i class="van-icon van-icon-clear van-field__clear" v-if="showClear" @touchstart="onClear"/>
-        <div class="van-field__placeholder" v-if="value === '' && placeholder !== ''">{{placeholder}}</div>
+        <div class="van-field__placeholder" v-if="value === '' && placeholder !== ''">{{ placeholder }}</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  // filters
-  import {toThousandsFilter} from '@/filters'
-  // utils
-  import {$_formatValue, trimValue} from '@/utils/formate-value'
+// filters
+import { toThousandsFilter } from '@/filters'
+// utils
+import { $_formatValue, trimValue } from '@/utils/formate-value'
 
-  export default {
-    name: 'FakeInput',
-    model: {
-      prop: 'value',
-      event: 'input'
+export default {
+  name: 'FakeInput',
+  model: {
+    prop: 'value',
+    event: 'input'
+  },
+  props: {
+    value: {
+      type: [String, Number],
+      default: '',
     },
-    props: {
-      value: {
-        type: [String, Number],
-        default: '',
-      },
-      size: {
-        // large, normal
-        type: String,
-        default: 'normal',
-      },
-      type: {
-        // bankCard, money
-        type: String,
-        default: 'money',
-      },
-      focused: {
-        type: Boolean,
-        default: false,
-      },
-      clearable: {
-        type: Boolean,
-        default: false,
-      },
-      inputAlign: {
-        type: String,
-        default: 'left'
-      },
-      leftIcon: String,
-      label: String,
-      placeholder: String,
+    size: {
+      // large, normal
+      type: String,
+      default: 'normal',
     },
-    computed: {
-      showClear() {
-        return (
-          this.clearable &&
-          this.focused &&
-          this.value !== ''
-        )
-      },
-      showCursor() {
-        return this.focused && this.value.length !== -1
-      }
+    type: {
+      // bankCard, money
+      type: String,
+      default: 'money',
     },
-    methods: {
-      onTouchstart(event) {
-        event.stopPropagation()
-        this.$emit('focus', event)
-      },
-      onClear(event) {
-        event.stopPropagation()
-        this.$emit('input', '')
-        this.$emit('clear', event)
-      },
+    focused: {
+      type: Boolean,
+      default: false,
+    },
+    clearable: {
+      type: Boolean,
+      default: false,
+    },
+    inputAlign: {
+      type: String,
+      default: 'left'
+    },
+    leftIcon: String,
+    label: String,
+    placeholder: String,
+  },
+  computed: {
+    showClear() {
+      return (
+        this.clearable &&
+        this.focused &&
+        this.value !== ''
+      )
+    },
+    showCursor() {
+      return this.focused && this.value.length !== -1
     }
+  },
+  methods: {
+    onTouchstart(event) {
+      event.stopPropagation()
+      this.$emit('focus', event)
+    },
+    onClear(event) {
+      event.stopPropagation()
+      this.$emit('input', '')
+      this.$emit('clear', event)
+    },
   }
+}
 </script>
 
-<style lang="less">.van-field__label {
+<style lang="less">
+.van-field__label {
   -webkit-box-flex: 0;
   -webkit-flex: none;
   flex: none;
