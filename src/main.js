@@ -68,9 +68,8 @@ console.info('@vcomponetns/vant-ui', VComponents.version)
 console.info('Version', require('../package.json').version)
 
 new Vue({
-  el: '#app',
   router,
   store,
   i18n,
   render: h => h(App)
-})
+}).$mount('#app')
