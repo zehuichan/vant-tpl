@@ -55,17 +55,13 @@ Vue.prototype.$navigateBack = function () {
   router.back()
 }
 
-Vue.config.productionTip = false
-
 if (process.env.NODE_ENV === 'production') {
   const vConsole = require('vconsole')
   new vConsole()
 }
 
-console.info('vue', `v${Vue.version}`)
-console.info('vant', `v${Vant.version}`)
-console.info('@vcomponetns/vant-ui', VComponents.version)
-console.info('Version', require('../package.json').version)
+Vue.config.productionTip = false
+console.info('__APP_INFO__', __APP_INFO__)
 
 new Vue({
   router,
