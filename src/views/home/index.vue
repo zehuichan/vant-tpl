@@ -12,6 +12,15 @@
         <span class="addr">{{ item.address }}</span>
       </template>
     </v-auto-complete>
+    <van-popover
+      v-model="showPopover"
+      trigger="click"
+      :actions="actions"
+    >
+      <template #reference>
+        <van-button type="primary">浅色风格</van-button>
+      </template>
+    </van-popover>
   </div>
 </template>
 
@@ -22,6 +31,13 @@ export default {
     return {
       value: '',
       restaurants: [],
+      showPopover: false,
+      // 通过 actions 属性来定义菜单选项
+      actions: [
+        { text: '选项一', className: 'needsclick' },
+        { text: '选项二', className: 'needsclick' },
+        { text: '选项三', className: 'needsclick' }
+      ],
     }
   },
   created() {
