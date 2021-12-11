@@ -10,10 +10,9 @@ function resolve(dir) {
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const { dependencies, version } = pkg
+const { version } = pkg
 
 const __APP_INFO__ = {
-  dependencies,
   version,
   lastBuildTime: new Date(),
 }

@@ -5,28 +5,20 @@ import '@vant/touch-emulator'
 
 import Vue from 'vue'
 
+// vant
 import Vant from 'vant'
 import 'vant/lib/index.css'
+// vantui-components
 import VComponents from 'vantui-components'
+// global css
 import '@/assets/less/index.less'
 
 import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// internationalization
+// i18n
 import i18n from './lang'
-
-import FastClick from 'fastclick'
-
-if ('addEventListener' in document && 'ontouchstart' in window) {
-  FastClick.prototype.focus = function (targetElement) {
-    targetElement.focus()
-  }
-  document.addEventListener('DOMContentLoaded', function () {
-    FastClick.attach(document.body)
-  }, false)
-}
 
 Vue.use(Vant)
 Vue.use(VComponents)
@@ -55,13 +47,16 @@ Vue.prototype.$navigateBack = function () {
   router.back()
 }
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV !== 'production') {
   const vConsole = require('vconsole')
   new vConsole()
 }
 
 Vue.config.productionTip = false
-console.info('__APP_INFO__', __APP_INFO__)
+console.info('[INFO] ' + 'Vue', Vue.version)
+console.info('[INFO] ' + 'Vant', Vant.version)
+console.info('[INFO] ' + 'VComponents', VComponents.version)
+console.info('[INFO]', __APP_INFO__)
 
 new Vue({
   router,

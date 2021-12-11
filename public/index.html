@@ -43,7 +43,9 @@
     }
   </style>
 </head>
-<body>
+<!--在 iOS 上点击组件时，无法触发点击反馈效果？-->
+<!--https://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari/33681490#33681490-->
+<body ontouchstart="">
 <noscript>
   <strong>
     We're sorry but vant-tpl doesn't work properly without JavaScript enabled. Please enable it to continue.

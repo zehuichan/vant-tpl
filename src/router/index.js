@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Router from 'vue-router'
+import VueRouter from 'vue-router'
 
 // basic components
 import BasicLayout from '@/layout'
@@ -41,12 +41,11 @@ export const routes = [
   { path: '*', redirect: '/404' }
 ]
 
-Vue.use(Router)
+Vue.use(VueRouter)
 
-const createRouter = () => new Router({
+const createRouter = () => new VueRouter({
   // mode: 'history', // require service support
   scrollBehavior(to, from, savedPosition) {
-    console.log(to, from, savedPosition)
     if (savedPosition) {
       return Promise.resolve(savedPosition)
     }
@@ -63,4 +62,5 @@ export function resetRouter() {
   router.matcher = newRouter.matcher // reset router
 }
 
+console.info('[INFO] ' + 'VueRouter', VueRouter.version)
 export default router
