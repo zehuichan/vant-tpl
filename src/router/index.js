@@ -1,8 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+/**
+ * name:'router-name'            the name is used by <keep-alive> (must set!!!)
+ * meta : {
+    title: 'title'               the name show in sidebar and breadcrumb (recommend set)
+    navbar: object               detail see: https://vant-contrib.gitee.io/vant/#/zh-CN/nav-bar#api
+    tabbar: boolean              if set true, will always show the tabbar
+  }
+ */
+
 // basic components
-import BasicLayout from '@/layout'
+import Layout from '@/layout'
 
 const RouteView = {
   name: 'RouteView',
@@ -15,23 +24,29 @@ export const routes = [
   { path: '/500', component: () => import('@/views/error-page/500') },
   {
     path: '/',
-    redirect: '/tabs/home',
-    component: BasicLayout,
+    redirect: '/home',
+    component: Layout,
     children: [
       {
-        path: '/tabs/home',
+        path: '/home',
         component: () => import('@/views/home'),
         name: 'home',
-        meta: { title: '组件', tabbar: true },
+        meta: {
+          title: '组件',
+          navbar: {
+            'left-arrow': true
+          },
+          tabbar: true,
+        },
       },
       {
-        path: '/tabs/api',
+        path: '/api',
         component: () => import('@/views/api'),
         name: 'api',
         meta: { title: 'api', tabbar: true },
       },
       {
-        path: '/tabs/my',
+        path: '/my',
         component: () => import('@/views/my'),
         name: 'my',
         meta: { title: '关于我', tabbar: true },

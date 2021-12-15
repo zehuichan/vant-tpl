@@ -8,20 +8,19 @@
 </template>
 
 <script>
-  export default {
-    name: 'AppMain',
-    computed: {
-      key() {
-        return this.$route.path
-      },
+export default {
+  name: 'AppMain',
+  computed: {
+    key() {
+      return this.$route.path
     },
-  }
+  },
+}
 </script>
 
-
 <style lang="less">
-  .app-main {
-    position: relative;
-    -webkit-overflow-scrolling: touch;
-  }
+.app-main {
+  position: relative;
+  -webkit-overflow-scrolling: touch;
+}
 </style>

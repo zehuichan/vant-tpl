@@ -12,12 +12,13 @@ const isProd = process.env.NODE_ENV === 'production'
 
 const { version } = pkg
 
+const name = defaultSettings.title || 'vue Vant Tpl' // page title
+
 const __APP_INFO__ = {
+  name,
   version,
   lastBuildTime: new Date(),
 }
-
-const name = defaultSettings.title || 'vue Vant Tpl' // page title
 
 const port = 3000 // dev port
 
