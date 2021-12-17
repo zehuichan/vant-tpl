@@ -11,7 +11,7 @@ import 'vant/lib/index.css'
 // vantui-components
 import VComponents from 'vantui-components'
 // global css
-import '@/assets/less/index.less'
+import './assets/less/index.less'
 
 import App from './App.vue'
 import router from './router'
@@ -24,6 +24,7 @@ Vue.use(Vant)
 Vue.use(VComponents)
 
 import './permission'
+import './mixin'
 
 import * as filters from './filters'
 
@@ -31,21 +32,6 @@ import * as filters from './filters'
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
-
-// 跳转
-Vue.prototype.$navigateTo = function (url, json, target = '_self') {
-  if (target === '_self') {
-    router.push({ path: url, query: json })
-  } else {
-    const { href } = router.resolve({ path: url, query: json })
-    window.open(href, '_blank')
-  }
-}
-
-// 返回
-Vue.prototype.$navigateBack = function () {
-  router.back()
-}
 
 if (process.env.NODE_ENV !== 'production') {
   const vConsole = require('vconsole')

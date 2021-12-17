@@ -60,6 +60,7 @@ export const routes = [
 Vue.use(VueRouter)
 
 const createRouter = () => new VueRouter({
+  version: '1',
   // mode: 'history', // require service support
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

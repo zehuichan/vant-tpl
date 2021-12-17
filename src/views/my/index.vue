@@ -9,12 +9,19 @@
         <div class="text">{{ $store.getters.github }}</div>
       </div>
     </div>
-    <van-cell-group inset>
+    <van-cell-group title="info" inset>
       <van-field v-model="value" label="昵称" placeholder="昵称"/>
       <van-field v-model="value" label="手机" placeholder="手机"/>
+    </van-cell-group>
+    <van-cell-group title="setting" inset>
       <van-cell title="Language">
         <lang-selector/>
       </van-cell>
+    </van-cell-group>
+    <van-cell-group title="about" inset>
+      <van-field :value="appInfo.name" label="name" readonly/>
+      <van-field :value="appInfo.version" label="version" readonly/>
+      <van-field :value="appInfo.lastBuildTime" label="lastBuildTime" readonly/>
     </van-cell-group>
   </div>
 </template>
@@ -29,6 +36,7 @@ export default {
   data() {
     return {
       value: '',
+      appInfo: __APP_INFO__
     }
   },
   components: {
@@ -45,7 +53,6 @@ export default {
     display: flex;
     background-color: #fff;
     padding: 16px;
-    margin-bottom: 16px;
   }
 
   .avatar {
