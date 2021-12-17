@@ -34,7 +34,8 @@ export const routes = [
         meta: {
           title: '组件',
           navbar: {
-            'left-arrow': true
+            'left-arrow': true,
+            'left-text': '返回'
           },
           tabbar: true,
         },

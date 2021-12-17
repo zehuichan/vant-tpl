@@ -7,6 +7,9 @@
 </template>
 
 <script>
+// settings
+import defaultSettings from '@/settings'
+
 export default {
   name: 'AppNavBar',
   inheritAttrs: false,
@@ -14,7 +17,8 @@ export default {
     attrs() {
       return Object.assign(
         {},
-        { title: this.$route.meta.title },
+        { ...defaultSettings.navbar },
+        { [defaultSettings.navbar.showTitle ? 'title' : 'left-text']: this.$route.meta.title },
         { ...this.$route.meta.navbar }
       )
     },

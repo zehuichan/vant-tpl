@@ -1,9 +1,9 @@
-const prefix = process.env.VUE_APP_WECHAT_APPID
+const prefix = process.env.VUE_APP_APPID
 
 class Cache {
   setItem(key, value) {
     try {
-      window.localStorage.setItem(prefix + key, JSON.stringify(value))
+      localStorage.setItem(prefix + key, JSON.stringify(value))
     } catch (e) {
       console.log(e)
     }
@@ -11,19 +11,23 @@ class Cache {
 
   getItem(key) {
     try {
-      return JSON.parse(window.localStorage.getItem(prefix + key))
+      return JSON.parse(localStorage.getItem(prefix + key))
     } catch (e) {
       return ''
     }
   }
 
   removeItem(key) {
-    return window.localStorage.removeItem(prefix + key)
+    return localStorage.removeItem(prefix + key)
+  }
+
+  clearStorage() {
+    return localStorage.clear()
   }
 
   setSession(key, value) {
     try {
-      window.sessionStorage.setItem(prefix + key, JSON.stringify(value))
+      sessionStorage.setItem(prefix + key, JSON.stringify(value))
     } catch (e) {
       console.log(e)
     }
@@ -31,16 +35,19 @@ class Cache {
 
   getSession(key) {
     try {
-      return JSON.parse(window.sessionStorage.getItem(prefix + key))
+      return JSON.parse(sessionStorage.getItem(prefix + key))
     } catch (e) {
       return ''
     }
   }
 
   removeSession(key) {
-    return window.sessionStorage.removeItem(prefix + key)
+    return sessionStorage.removeItem(prefix + key)
+  }
+
+  clearSession() {
+    return sessionStorage.clear()
   }
 }
-
 
 export default new Cache()
