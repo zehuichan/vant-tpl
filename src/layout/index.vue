@@ -10,7 +10,7 @@
 
 <script>
 // components
-import { AppNavBar, AppMain, AppTabbar } from './components'
+import { AppMain, AppNavBar, AppTabbar } from './components'
 
 export default {
   name: 'basic-layout',

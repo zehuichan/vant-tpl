@@ -1,11 +1,3 @@
-<template>
-  <van-nav-bar
-    class="v-nav-bar"
-    v-bind="attrs"
-    @click-left="onClickLeft"
-  />
-</template>
-
 <script>
 // settings
 import defaultSettings from '@/settings'
@@ -18,7 +10,8 @@ export default {
       return Object.assign(
         {},
         { ...defaultSettings.navbar },
-        { [defaultSettings.navbar.showTitle ? 'title' : 'left-text']: this.$route.meta.title },
+        this.$route.meta.navbar.showTitle && { title: this.$route.meta.title },
+        !this.$route.meta.navbar.showTitle && { leftText: this.$route.meta.title },
         { ...this.$route.meta.navbar }
       )
     },
@@ -27,6 +20,20 @@ export default {
     onClickLeft() {
       this.$router.go(-1)
     }
+  },
+  render() {
+    const data = {
+      attrs: { ...this.attrs },
+      on: {
+        'click-left': this.onClickLeft
+      }
+    }
+    return (
+      <van-nav-bar
+        {...data}
+        class="v-nav-bar"
+      />
+    )
   }
 }
 </script>

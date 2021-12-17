@@ -34,8 +34,8 @@ export const routes = [
         meta: {
           title: '组件',
           navbar: {
-            'left-arrow': true,
-            'left-text': '返回'
+            showTitle: false,
+            leftArrow: false,
           },
           tabbar: true,
         },
@@ -44,7 +44,14 @@ export const routes = [
         path: '/api',
         component: () => import('@/views/api'),
         name: 'api',
-        meta: { title: 'api', tabbar: true },
+        meta: {
+          title: 'api',
+          navbar: {
+            showTitle: false,
+            leftArrow: false,
+          },
+          tabbar: true
+        },
       },
       {
         path: '/my',
