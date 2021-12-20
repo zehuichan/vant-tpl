@@ -20,7 +20,7 @@
 import LoadMore from '@/components/LoadMore'
 
 export default {
-  name: 'home',
+  name: 'Home',
   data() {
     return {
       value: '',

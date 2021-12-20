@@ -32,7 +32,7 @@ import LangSelector from '@/components/LangSelector'
 import Split from '@/components/Split'
 
 export default {
-  name: 'my',
+  name: 'Center',
   data() {
     return {
       value: '',

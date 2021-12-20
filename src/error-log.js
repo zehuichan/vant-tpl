@@ -4,32 +4,30 @@ import { is } from './utils'
 import settings from './settings'
 
 // you can set in settings.js
-// errorLog:'production' | ['production', 'development']
+// errorLog: 'production' | ['production', 'development']
 const { errorLog: needErrorLog } = settings
 
 function checkNeed() {
   const env = process.env.NODE_ENV
-  if (is(needErrorLog, 'string')) {
+  if (is(needErrorLog, 'String')) {
     return env === needErrorLog
   }
-  if (is(needErrorLog, 'array')) {
+  if (is(needErrorLog, 'Array')) {
     return needErrorLog.includes(env)
   }
   return false
 }
 
 if (checkNeed()) {
-  Vue.config.errorHandler = function (err, vm, info, a) {
+  Vue.config.errorHandler = (err, vm, info) => {
     // Don't ask me why I use Vue.nextTick, it just a hack.
     // detail see https://forum.vuejs.org/t/dispatch-in-vue-config-errorhandler-has-some-problem/23500
-    Vue.nextTick(() => {
-      void store.dispatch('logs/addErrorLog', {
-        err,
-        vm,
-        info,
-        url: window.location.href
-      })
-      console.error(err, info)
+    // todo 前端错误上报到收集报错的平台
+    void store.dispatch('errorLog/addErrorLog', {
+      err,
+      info,
+      url: location.href
     })
+    console.error(err, info)
   }
 }

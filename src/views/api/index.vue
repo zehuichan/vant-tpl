@@ -6,7 +6,7 @@
 
 <script>
   export default {
-    name: 'api'
+    name: 'Api'
   }
 </script>
 

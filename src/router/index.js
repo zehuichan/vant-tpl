@@ -30,7 +30,7 @@ export const routes = [
       {
         path: '/home',
         component: () => import('@/views/home'),
-        name: 'home',
+        name: 'Home',
         meta: {
           title: '组件',
           navbar: {
@@ -43,7 +43,7 @@ export const routes = [
       {
         path: '/api',
         component: () => import('@/views/api'),
-        name: 'api',
+        name: 'Api',
         meta: {
           title: 'api',
           navbar: {
@@ -54,9 +54,9 @@ export const routes = [
         },
       },
       {
-        path: '/my',
-        component: () => import('@/views/my'),
-        name: 'my',
+        path: '/center',
+        component: () => import('@/views/center'),
+        name: 'Center',
         meta: {
           title: '关于我',
           navbar: {
@@ -65,7 +65,15 @@ export const routes = [
           },
           tabbar: true
         },
-      }
+      },
+      {
+        path: '/error-log',
+        component: () => import('@/views/error-log'),
+        name: 'ErrorLog',
+        meta: {
+          title: 'Error Log'
+        }
+      },
     ]
   },
   { path: '*', redirect: '/404' }

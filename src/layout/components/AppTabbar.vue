@@ -8,7 +8,7 @@
       <v-svg-icon slot="icon" name="icon-lights"/>
       {{ $t('navbar.api') }}
     </van-tabbar-item>
-    <van-tabbar-item to="/my">
+    <van-tabbar-item to="/center">
       <v-svg-icon slot="icon" name="icon-agriculture"/>
       {{ $t('navbar.my') }}
     </van-tabbar-item>
