@@ -268,15 +268,6 @@ export function getData(el, name, val) {
   }
 }
 
-export function saveToLocal(key, value) {
-  window.localStorage.setItem(key, JSON.stringify(value))
-}
-
-export function loadFromLocal(key) {
-  const ret = window.localStorage.getItem(key)
-  return JSON.parse(ret)
-}
-
 export function getBase64(file, resultType = 'dataUrl') {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
@@ -334,4 +325,11 @@ export function oneOf(value, validList) {
     }
   }
   return false
+}
+
+// 判断类型
+export function is(val, type) {
+  const typeArr = Array.isArray(type) ? type : [type]
+  const valType = Object.prototype.toString.call(val)
+  return typeArr.some(type => `[object ${type}]` === valType)
 }

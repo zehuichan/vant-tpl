@@ -25,6 +25,7 @@ Vue.use(VComponents)
 
 import './permission'
 import './mixin'
+import './error-log'
 
 import * as filters from './filters'
 

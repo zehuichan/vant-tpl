@@ -14,7 +14,7 @@
       <van-field v-model="value" label="手机" placeholder="手机"/>
     </van-cell-group>
     <van-cell-group title="setting" inset>
-      <van-cell title="Language">
+      <van-cell title="language">
         <lang-selector/>
       </van-cell>
     </van-cell-group>
@@ -37,6 +37,11 @@ export default {
     return {
       value: '',
       appInfo: __APP_INFO__
+    }
+  },
+  computed: {
+    errorLogs() {
+      return this.$store.getters.errorLogs
     }
   },
   components: {

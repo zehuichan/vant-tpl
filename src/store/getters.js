@@ -8,6 +8,9 @@ const getters = {
   username: state => state.user.username,
   github: state => state.user.github,
   level: state => state.user.level,
+
+  // logs
+  errorLogs: state => state.errorLog.logs
 }
 
 export default getters
