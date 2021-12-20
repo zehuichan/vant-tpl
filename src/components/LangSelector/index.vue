@@ -11,17 +11,15 @@
 </template>
 
 <script>
-// vuex
-import { mapGetters } from 'vuex'
 // components
 import Divider from '@/components/Divider'
 
 export default {
   name: 'lang-selector',
   computed: {
-    ...mapGetters([
-      'language'
-    ])
+    language() {
+      return this.$store.getters.language
+    }
   },
   methods: {
     handleSetLanguage(lang) {
