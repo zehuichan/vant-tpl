@@ -37,5 +37,9 @@ export default {
 </script>
 
 <style lang="less">
-
+.lang-selector {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
 </style>
