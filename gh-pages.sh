@@ -7,7 +7,7 @@ set -e
 npm run build:stage
 
 # 进入生成的构建文件夹
-cd docs
+cd ./dist
 
 git init
 git add -A
