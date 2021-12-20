@@ -57,7 +57,14 @@ export const routes = [
         path: '/my',
         component: () => import('@/views/my'),
         name: 'my',
-        meta: { title: '关于我', tabbar: true },
+        meta: {
+          title: '关于我',
+          navbar: {
+            showTitle: false,
+            leftArrow: false,
+          },
+          tabbar: true
+        },
       }
     ]
   },
