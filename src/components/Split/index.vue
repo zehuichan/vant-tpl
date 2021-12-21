@@ -3,14 +3,14 @@
 </template>
 
 <script>
-  export default {
-    name: 'split',
-    props: {
-      splitStyle: {},
-      gutter: {
-        type: String,
-        default: '10'
-      }
+export default {
+  name: 'split',
+  props: {
+    splitStyle: {},
+    gutter: {
+      type: String,
+      default: '10'
     }
   }
+}
 </script>

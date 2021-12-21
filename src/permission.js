@@ -7,14 +7,14 @@ import 'nprogress/nprogress.css'
 // NProgress Configuration
 NProgress.configure({ showSpinner: false })
 // utils
-import setPageTitle from '@/utils/set-page-title'
+import getPageTitle from '@/utils/get-page-title'
 
 router.beforeEach(async (to, from, next) => {
   // start progress bar
   NProgress.start()
 
   // set page title
-  document.title = setPageTitle(to.meta.title)
+  document.title = getPageTitle(to.meta.title)
 
   if (store.getters.username) {
     next()

@@ -16,62 +16,62 @@
 </template>
 
 <script>
-  export default {
-    name: 'card',
-    props: {
-      header: {},
-      bodyStyle: {},
-      extraStyle: {},
-      extra: {},
-      footer: {},
-      shadow: {
-        type: String
-      }
+export default {
+  name: 'card',
+  props: {
+    header: {},
+    bodyStyle: {},
+    extraStyle: {},
+    extra: {},
+    footer: {},
+    shadow: {
+      type: String
     }
   }
+}
 </script>
 
 <style lang="less">
-  .card {
-    border-radius: 2px;
-    border: 1px solid #ebeef5;
-    background-color: #fff;
-    overflow: hidden;
-    color: #303133;
-    transition: .3s;
-    font-size: 12px;
+.card {
+  border-radius: 2px;
+  border: 1px solid #ebeef5;
+  background-color: #fff;
+  overflow: hidden;
+  color: #303133;
+  transition: .3s;
+  font-size: 12px;
 
-    &.is-always-shadow {
-      box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
-    }
-
-    &.is-never-shadow {
-
-    }
-
-    & + .card {
-      margin-top: 10px;
-    }
-
-    &:last-child {
-      margin-bottom: 10px;
-    }
+  &.is-always-shadow {
+    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, .1);
   }
 
-  .card__header {
-    padding: 11px 16px;
-    box-sizing: border-box;
+  &.is-never-shadow {
+
   }
 
-  .card__body {
-    display: flex;
-    padding: 16px;
+  & + .card {
+    margin-top: 10px;
   }
 
-  .card__extra,
-  .card__footer {
-    font-size: 12px;
-    padding: 11px 16px;
-    border-top: 1px solid #ebeef5;
+  &:last-child {
+    margin-bottom: 10px;
   }
+}
+
+.card__header {
+  padding: 11px 16px;
+  box-sizing: border-box;
+}
+
+.card__body {
+  display: flex;
+  padding: 16px;
+}
+
+.card__extra,
+.card__footer {
+  font-size: 12px;
+  padding: 11px 16px;
+  border-top: 1px solid #ebeef5;
+}
 </style>

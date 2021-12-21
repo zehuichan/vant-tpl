@@ -2,7 +2,7 @@ import defaultSettings from '@/settings'
 
 const title = defaultSettings.title || 'vant tpl'
 
-export default function setPageTitle(pageTitle) {
+export default function getPageTitle(pageTitle) {
   if (pageTitle) {
     return `${pageTitle} - ${title}`
   }
