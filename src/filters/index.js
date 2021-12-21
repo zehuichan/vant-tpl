@@ -44,7 +44,7 @@ export function toThousandsFilter(num) {
 // 格式化金额,单位:分(eg:430分=4.30元)
 export function format(price, digits = 2, prefix = '', suffix = '') {
   if (!price) {
-    return 0
+    return Number(0).toFixed(digits)
   }
   return prefix + Number(price / 100).toFixed(digits) + suffix
 }
