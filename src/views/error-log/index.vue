@@ -1,5 +1,9 @@
 <template>
   <div class="errPage-container">
+    <v-card v-for="i in 20" :key="i" class="box-card">
+      <div class="text">placeholder</div>
+    </v-card>
+    <v-backtop/>
   </div>
 </template>
 
@@ -22,6 +26,14 @@ export default {
 
 <style>
 .errPage-container {
-  padding: 30px;
+  padding: 16px;
+}
+
+.box-card + .box-card {
+  margin-top: 12px;
+}
+
+.text {
+  font-size: 12px;
 }
 </style>
