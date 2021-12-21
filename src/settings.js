@@ -13,6 +13,10 @@ module.exports = {
     placeholder: true,
     safeAreaInsetTop: true
   },
+
+  /**
+   * navbar default options
+   */
   tabbar: [],
 
   /**

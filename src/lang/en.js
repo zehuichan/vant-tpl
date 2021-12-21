@@ -1,5 +1,5 @@
 export default {
-  navbar: {
+  tabbar: {
     home: 'Home',
     api: 'Api',
     my: 'About',

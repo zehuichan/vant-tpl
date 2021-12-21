@@ -1,5 +1,5 @@
 export default {
-  navbar: {
+  tabbar: {
     home: '首页',
     api: 'api',
     my: '关于我',
