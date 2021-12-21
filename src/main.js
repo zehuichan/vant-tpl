@@ -34,7 +34,7 @@ Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'staging') {
   const vConsole = require('vconsole')
   new vConsole()
 }
