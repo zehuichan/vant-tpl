@@ -28,8 +28,7 @@
 
 <script>
 // components
-import LangSelector from '@/components/LangSelector'
-import Split from '@/components/Split'
+import { LangSelector, Split } from '@/components'
 
 export default {
   name: 'Center',

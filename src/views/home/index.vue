@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import LoadMore from '@/components/LoadMore'
+import { LoadMore } from '@/components'
 
 export default {
   name: 'Home',

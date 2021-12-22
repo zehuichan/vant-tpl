@@ -1,17 +1,22 @@
 import axios from 'axios'
 import { Toast } from 'vant'
 
+// request timeout
+const timeout = 50 * 1000
+// api的base_url
+const baseURL = process.env.VUE_APP_BASE_API
+
 // create an axios instance
 const http = axios.create({
-  baseURL: process.env.VUE_APP_BASE_API, // api的base_url
-  timeout: 50 * 1000 // request timeout
+  baseURL,
+  timeout
 })
 
 http.interceptors.request.use(
-  config => {
+  (config) => {
     return config
   },
-  error => {
+  (error) => {
     console.log(`err,${error}`)
     return Promise.reject(error)
   }
