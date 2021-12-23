@@ -9,7 +9,7 @@ import Vue from 'vue'
 import Vant from 'vant'
 import 'vant/lib/index.css'
 // vantui-components
-import VComponents from 'vantui-components'
+import VantuiComponents from 'vantui-components'
 // global css
 import './assets/less/index.less'
 
@@ -21,7 +21,7 @@ import store from './store'
 import i18n from './lang'
 
 Vue.use(Vant)
-Vue.use(VComponents)
+Vue.use(VantuiComponents)
 
 import './permission'
 import './mixin'
@@ -42,8 +42,8 @@ if (process.env.NODE_ENV === 'staging') {
 Vue.config.productionTip = false
 console.info('[INFO] ' + 'Vue', Vue.version)
 console.info('[INFO] ' + 'Vant', Vant.version)
-console.info('[INFO] ' + 'VComponents', VComponents.version)
-console.info('[INFO]', __APP_INFO__)
+console.info('[INFO] ' + 'VantuiComponents', VantuiComponents.version)
+console.info('[INFO] ' + 'AppInfo', __APP_INFO__)
 
 new Vue({
   router,

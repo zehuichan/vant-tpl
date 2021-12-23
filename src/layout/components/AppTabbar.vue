@@ -4,13 +4,13 @@
       <v-svg-icon slot="icon" name="icon-earth"/>
       {{ $t('tabbar.home') }}
     </van-tabbar-item>
-    <van-tabbar-item to="/api">
+    <van-tabbar-item to="/tpl">
       <v-svg-icon slot="icon" name="icon-lights"/>
-      {{ $t('tabbar.api') }}
+      {{ $t('tabbar.tpl') }}
     </van-tabbar-item>
     <van-tabbar-item to="/center">
       <v-svg-icon slot="icon" name="icon-agriculture"/>
-      {{ $t('tabbar.my') }}
+      {{ $t('tabbar.center') }}
     </van-tabbar-item>
   </van-tabbar>
 </template>

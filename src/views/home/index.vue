@@ -12,13 +12,10 @@
         <span class="addr">{{ item.address }}</span>
       </template>
     </v-auto-complete>
-    <load-more :loading="true"/>
   </div>
 </template>
 
 <script>
-import { LoadMore } from '@/components'
-
 export default {
   name: 'Home',
   data() {
@@ -90,9 +87,6 @@ export default {
         return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
       }
     },
-  },
-  components: {
-    LoadMore
   }
 }
 </script>

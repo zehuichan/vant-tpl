@@ -41,11 +41,11 @@ export const routes = [
         },
       },
       {
-        path: '/api',
-        component: () => import('@/views/api'),
-        name: 'Api',
+        path: '/tpl',
+        component: () => import('@/views/tpl'),
+        name: 'Tpl',
         meta: {
-          title: 'api',
+          title: 'Template',
           navbar: {
             showTitle: false,
             leftArrow: false,
@@ -67,11 +67,27 @@ export const routes = [
         },
       },
       {
-        path: '/error-log',
-        component: () => import('@/views/error-log'),
-        name: 'ErrorLog',
+        path: '/confirm',
+        component: () => import('@/views/tpl/confirm'),
+        name: 'Confirm',
         meta: {
-          title: 'Error Log'
+          title: '确认订单',
+          navbar: {
+            showTitle: false,
+          },
+          tabbar: false
+        }
+      },
+      {
+        path: '/checkout',
+        component: () => import('@/views/tpl/checkout'),
+        name: 'Checkout',
+        meta: {
+          title: '收银台',
+          navbar: {
+            showTitle: false,
+          },
+          tabbar: false
         }
       },
     ]

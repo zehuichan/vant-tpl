@@ -1,7 +1,7 @@
 export default {
   tabbar: {
     home: 'Home',
-    api: 'Api',
-    my: 'About',
+    tpl: 'Template',
+    center: 'Center',
   }
 }
