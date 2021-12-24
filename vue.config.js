@@ -59,7 +59,7 @@ module.exports = {
         __APP_INFO__: JSON.stringify(__APP_INFO__),
       }),
       // 依赖大小分析工具
-      new BundleAnalyzerPlugin(),
+      // new BundleAnalyzerPlugin(),
     ],
   },
   chainWebpack: (config) => {
