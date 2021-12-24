@@ -86,6 +86,18 @@ export const routes = [
           tabbar: false
         }
       },
+      {
+        path: '/bag',
+        component: () => import('@/views/tpl/bag'),
+        name: 'Bag',
+        meta: {
+          title: '购物袋',
+          navbar: {
+            showTitle: false,
+          },
+          tabbar: false
+        }
+      },
     ]
   },
   { path: '*', redirect: '/404' }
