@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const webpack = require('webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const pkg = require('./package.json')
 const defaultSettings = require('./src/settings.js')
 
@@ -57,6 +58,8 @@ module.exports = {
       new webpack.DefinePlugin({
         __APP_INFO__: JSON.stringify(__APP_INFO__),
       }),
+      // 依赖大小分析工具
+      new BundleAnalyzerPlugin(),
     ],
   },
   chainWebpack: (config) => {
@@ -99,11 +102,6 @@ module.exports = {
             name: 'chunk-vantUI', // split vantUI into a single package
             priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
             test: /[\\/]node_modules[\\/]_?vant(.*)/, // in order to adapt to cnpm
-          },
-          vcomponents: {
-            name: 'chunk-vcomponents', // split vantui-components into a single package
-            priority: 20, // the weight needs to be larger than libs and app or it will be packaged into libs or app
-            test: /[\\/]node_modules[\\/]_?vantui-components(.*)/, // in order to adapt to cnpm
           },
           commons: {
             name: 'chunk-commons',
