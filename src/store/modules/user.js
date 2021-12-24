@@ -1,28 +1,17 @@
 // import {getUserInfo, loginByTel} from '@/api/user'
 
 const state = {
-  avatar: '',
-  cellphone: '',
-  username: '',
-  github: '',
-  level: 'v2',
+  userinfo: {
+    avatar: '',
+    cellphone: '',
+    username: '',
+    github: ''
+  }
 }
 
 const mutations = {
-  SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
-  },
-  SET_CELL_PHONE: (state, cellphone) => {
-    state.cellphone = cellphone
-  },
-  SET_USER_NAME: (state, username) => {
-    state.username = username
-  },
-  SET_GITHUB: (state, github) => {
-    state.github = github
-  },
-  SET_LEVEL: (state, level) => {
-    state.level = level
+  SET_USERINFO: (state, userinfo) => {
+    state.userinfo = userinfo
   },
 }
 
@@ -61,11 +50,14 @@ const actions = {
   // 获取用户信息
   getUserInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      commit('SET_AVATAR', 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLYMVgaumib5h42GP4pAlLTQCpzFAmUZTVUg4MmH9eFyb4shrm6Ux2Ocic1ic0ekTWEYVfxibGcMMC3UQ/132')
-      commit('SET_CELL_PHONE', '15800066380')
-      commit('SET_USER_NAME', 'chan_')
-      commit('SET_GITHUB', 'https://github.com/zehuichan')
-      commit('SET_LEVEL', 'v3')
+      const userinfo = {
+        avatar: 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLYMVgaumib5h42GP4pAlLTQCpzFAmUZTVUg4MmH9eFyb4shrm6Ux2Ocic1ic0ekTWEYVfxibGcMMC3UQ/132',
+        cellphone: '15800066380',
+        username: 'chan_',
+        realname: '陈泽辉',
+        github: 'https://github.com/zehuichan'
+      }
+      commit('SET_USERINFO', userinfo)
       resolve()
     })
   },
@@ -73,10 +65,7 @@ const actions = {
   // 重置用户信息
   resetUserInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      commit('SET_AVATAR', '')
-      commit('SET_CELL_PHONE', '')
-      commit('SET_USER_NAME', '')
-      commit('SET_LEVEL', '')
+      commit('SET_USERINFO', Object.assign(state, {}))
       resolve()
     })
   },

@@ -3,11 +3,7 @@ const getters = {
   language: state => state.app.language,
 
   // userInfo
-  avatar: state => state.user.avatar,
-  cellphone: state => state.user.cellphone,
-  username: state => state.user.username,
-  github: state => state.user.github,
-  level: state => state.user.level,
+  userinfo: state => state.user.userinfo,
 
   // logs
   errorLogs: state => state.errorLog.logs
