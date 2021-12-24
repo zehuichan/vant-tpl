@@ -59,10 +59,6 @@ export const routes = [
         name: 'Center',
         meta: {
           title: '关于我',
-          navbar: {
-            showTitle: false,
-            leftArrow: false,
-          },
           tabbar: true
         },
       },

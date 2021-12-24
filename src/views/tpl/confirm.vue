@@ -1,10 +1,17 @@
 <template>
-  <div class="confirm"></div>
+  <div class="confirm">
+    <split/>
+  </div>
 </template>
 
 <script>
+import { Split } from '@/components'
+
 export default {
-  name: 'Confirm'
+  name: 'Confirm',
+  components: {
+    Split
+  }
 }
 </script>
 

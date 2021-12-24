@@ -9,12 +9,15 @@ export default {
     attrs() {
       return Object.assign(
         {},
-        { ...defaultSettings.navbar },
+        defaultSettings.navbar,
         this.$route.meta.navbar.showTitle && { title: this.$route.meta.title },
         !this.$route.meta.navbar.showTitle && { leftText: this.$route.meta.title },
-        { ...this.$route.meta.navbar }
+        this.$route.meta.navbar
       )
     },
+    classname() {
+      return this.$route.meta.navbar.classname
+    }
   },
   methods: {
     onClickLeft() {
@@ -31,7 +34,7 @@ export default {
     return (
       <van-nav-bar
         {...data}
-        class="v-nav-bar"
+        class={['v-nav-bar', this.classname]}
       />
     )
   }
