@@ -4,7 +4,7 @@
 set -e
 
 # 构建
-npm run build:stage
+npm run build:prod
 
 # 进入生成的构建文件夹
 cd ./dist
