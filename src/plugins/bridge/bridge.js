@@ -1,40 +1,22 @@
-const isIOS = !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/)
-
 function setupWebViewJavascriptBridge(callback) {
-  //Android使用
-  if (!isIOS) {
-    if (window.WebViewJavascriptBridge) {
+  if (window.WebViewJavascriptBridge) {
+    return callback(window.WebViewJavascriptBridge)
+  } else {
+    document.addEventListener('WebViewJavascriptBridgeReady', function (event) {
       callback(window.WebViewJavascriptBridge)
-    } else {
-      document.addEventListener(
-        'WebViewJavascriptBridgeReady',
-        function () {
-          callback(window.WebViewJavascriptBridge)
-        },
-        false
-      )
-    }
-    sessionStorage.phoneType = 'android'
+    }, false)
   }
-
-  //iOS使用
-  if (isIOS) {
-    if (window.WebViewJavascriptBridge) {
-      return callback(window.WebViewJavascriptBridge)
-    }
-    if (window.WVJBCallbacks) {
-      return window.WVJBCallbacks.push(callback)
-    }
-    window.WVJBCallbacks = [callback]
-    let WVJBIframe = document.createElement('iframe')
-    WVJBIframe.style.display = 'none'
-    WVJBIframe.src = 'https://__bridge_loaded__'
-    document.documentElement.appendChild(WVJBIframe)
-    setTimeout(() => {
-      document.documentElement.removeChild(WVJBIframe)
-    }, 0)
-    sessionStorage.phoneType = 'ios'
+  if (window.WVJBCallbacks) {
+    return window.WVJBCallbacks.push(callback)
   }
+  window.WVJBCallbacks = [callback]
+  let WVJBIframe = document.createElement('iframe')
+  WVJBIframe.style.display = 'none'
+  WVJBIframe.src = 'https://__bridge_loaded__'
+  document.documentElement.appendChild(WVJBIframe)
+  setTimeout(() => {
+    document.documentElement.removeChild(WVJBIframe)
+  }, 0)
 }
 
 export default {
