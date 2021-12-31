@@ -1,9 +1,11 @@
 'use strict'
 const path = require('path')
 const webpack = require('webpack')
+const CompressionPlugin = require('compression-webpack-plugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const pkg = require('./package.json')
 const defaultSettings = require('./src/settings.js')
+const dayjs = require('dayjs')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -18,10 +20,26 @@ const name = defaultSettings.title || 'vue Vant Tpl' // page title
 const __APP_INFO__ = {
   name,
   version,
-  lastBuildTime: new Date(),
+  lastBuildTime: dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss'),
 }
 
 const port = 3000 // dev port
+
+const plugins = [
+  new webpack.DefinePlugin({
+    __APP_INFO__: JSON.stringify(__APP_INFO__)
+  })
+]
+
+if (isProd) {
+  plugins.push(new CompressionPlugin({
+    algorithm: 'gzip',
+    test: /\.(js|css)(\?.*)?$/i,
+    threshold: 10240, // 对超过10k的数据进行压缩
+    minRatio: 0.8, // 只有压缩率小于这个值的资源才会被处理
+    deleteOriginalAssets: false, // 删除原文件
+  }))
+}
 
 module.exports = {
   publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
@@ -54,13 +72,7 @@ module.exports = {
         '@': resolve('src'),
       },
     },
-    plugins: [
-      new webpack.DefinePlugin({
-        __APP_INFO__: JSON.stringify(__APP_INFO__),
-      }),
-      // 依赖大小分析工具
-      // new BundleAnalyzerPlugin(),
-    ],
+    plugins: plugins
   },
   chainWebpack: (config) => {
     // it can improve the speed of the first screen, it is recommended to turn on preload
