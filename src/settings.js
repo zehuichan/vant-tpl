@@ -1,6 +1,6 @@
 module.exports = {
   title: 'vant tpl',
-  copyright: '2018 - present Zehui Chan',
+  copyright: '2018 - present Zehui Chan_',
 
   /**
    * navbar default options
