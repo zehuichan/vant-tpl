@@ -1,3 +1,12 @@
+<template>
+  <van-nav-bar
+    :fixed="false"
+    v-bind="attrs"
+    :class="['v-nav-bar', classname]"
+    @click-left="onClickLeft"
+  />
+</template>
+
 <script>
 // settings
 import defaultSettings from '@/settings'
@@ -23,20 +32,6 @@ export default {
     onClickLeft() {
       this.$router.go(-1)
     }
-  },
-  render() {
-    const data = {
-      attrs: { ...this.attrs },
-      on: {
-        'click-left': this.onClickLeft
-      }
-    }
-    return (
-      <van-nav-bar
-        {...data}
-        class={['v-nav-bar', this.classname]}
-      />
-    )
   }
 }
 </script>
