@@ -1,4 +1,4 @@
-#!/bin/sh
+#! /bin/sh
 
 # 终止一个错误
 set -e
@@ -16,6 +16,6 @@ git commit -m 'deploy'
 # 如果你想要部署到 https://<USERNAME>.github.io
 git push -f https://github.com/zehuichan/vant-tpl.git master:gh-pages
 
-cd -
-
 echo "✅ Publish completed"
+
+exit 0
