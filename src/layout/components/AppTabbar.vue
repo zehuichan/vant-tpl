@@ -1,5 +1,5 @@
 <template>
-  <van-tabbar route fixed placeholder>
+  <van-tabbar route fixed placeholder safe-area-inset-bottom>
     <van-tabbar-item to="/home">
       <v-svg-icon slot="icon" name="icon-earth"/>
       {{ $t('tabbar.home') }}
