@@ -20,7 +20,7 @@ const name = defaultSettings.title || 'vue Vant Tpl' // page title
 const __APP_INFO__ = {
   name,
   version,
-  lastBuildTime: dayjs(new Date()).format('YYYY-MM-DD HH:mm:ss'),
+  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
 }
 
 const port = 3000 // dev port

@@ -86,7 +86,7 @@ export default {
       return (state) => {
         return (state.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0)
       }
-    },
+    }
   }
 }
 </script>

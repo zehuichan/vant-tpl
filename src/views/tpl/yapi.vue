@@ -1,0 +1,40 @@
+<template>
+  <div class="yapi">
+    <van-cell-group>
+      <van-cell title="mock 400" is-link @click="fetchData('mock400')"/>
+      <van-cell title="mock 401" is-link @click="fetchData('mock401')"/>
+      <van-cell title="mock 404" is-link @click="fetchData('mock404')"/>
+      <van-cell title="mock 500" is-link @click="fetchData('mock500')"/>
+    </van-cell-group>
+    <v-tool-bar>
+      <van-button size="small" type="default">
+        <v-svg-icon slot="icon" name="icon-bug"/>
+        <van-badge v-if="errorLogs.length" :content="errorLogs.length"/>
+      </van-button>
+    </v-tool-bar>
+  </div>
+</template>
+
+<script>
+// api
+import { mockData } from '@/api/test'
+
+export default {
+  name: 'Yapi',
+  computed: {
+    errorLogs() {
+      return this.$store.getters.errorLogs
+    }
+  },
+  methods: {
+    fetchData(url) {
+      mockData(url).then((res) => {
+      })
+    }
+  }
+}
+</script>
+
+<style lang="less">
+
+</style>

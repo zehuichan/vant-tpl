@@ -98,6 +98,18 @@ export const routes = [
           tabbar: false
         }
       },
+      {
+        path: '/yapi',
+        component: () => import('@/views/tpl/yapi'),
+        name: 'Yapi',
+        meta: {
+          title: 'Yapi',
+          navbar: {
+            showTitle: false,
+          },
+          tabbar: false
+        }
+      },
     ]
   },
   { path: '*', redirect: '/404' }

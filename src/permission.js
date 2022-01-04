@@ -16,7 +16,7 @@ router.beforeEach(async (to, from, next) => {
   // set page title
   document.title = getPageTitle(to.meta.title)
 
-  if (store.getters.username) {
+  if (store.getters.userinfo) {
     next()
   } else {
     try {

@@ -1,4 +1,4 @@
-import { getLanguage, initVantLocale } from '@/lang'
+import { getLanguage } from '@/lang'
 // utils
 import cache from '@/utils/cache'
 
@@ -9,7 +9,6 @@ const state = {
 const mutations = {
   SET_LANGUAGE: (state, language) => {
     state.language = language
-    initVantLocale(language)
     cache.setItem('language', language)
   }
 }
@@ -21,7 +20,7 @@ const actions = {
 }
 
 export default {
-  namespaced: 'app',
+  namespaced: true,
   state,
   mutations,
   actions
