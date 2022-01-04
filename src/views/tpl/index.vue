@@ -5,6 +5,9 @@
       <van-cell title="收银台" is-link to="/checkout"/>
       <van-cell title="购物袋" is-link to="/bag"/>
     </van-cell-group>
+    <div v-for="i in 20" :key="i" class="box-card">
+      <div class="text">placeholder</div>
+    </div>
   </div>
 </template>
 
@@ -15,5 +18,7 @@ export default {
 </script>
 
 <style lang="less">
-
+.box-card {
+  padding: 16px;
+}
 </style>
