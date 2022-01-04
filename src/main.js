@@ -39,6 +39,19 @@ if (process.env.NODE_ENV === 'staging') {
   new vConsole()
 }
 
+/**
+ * If you don't want to use mock-server
+ * you want to use MockJs for mock api
+ * you can execute: mockXHR()
+ *
+ * Currently MockJs will be used in the production environment,
+ * please remove it before going online ! ! !
+ */
+if (['development', 'staging', 'production'].includes(process.env.NODE_ENV)) {
+  const { mockXHR } = require('../mock')
+  mockXHR()
+}
+
 Vue.config.productionTip = false
 console.info('[INFO] ' + 'Vue', Vue.version)
 console.info('[INFO] ' + 'Vant', Vant.version)

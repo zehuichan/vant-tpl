@@ -51,6 +51,7 @@
     "connect": "^3.7.0",
     "less": "^3.0.4",
     "less-loader": "^7.3.0",
+    "mockjs": "^1.1.0",
     "plop": "^3.0.2",
     "postcss-px-to-viewport": "^1.1.1",
     "regenerator-runtime": "^0.13.9",
