@@ -99,11 +99,11 @@ export const routes = [
         }
       },
       {
-        path: '/yapi',
-        component: () => import('@/views/tpl/yapi'),
-        name: 'Yapi',
+        path: '/mockjs',
+        component: () => import('@/views/tpl/mockjs'),
+        name: 'Mockjs',
         meta: {
-          title: 'Yapi',
+          title: 'Mockjs',
           navbar: {
             showTitle: false,
           },

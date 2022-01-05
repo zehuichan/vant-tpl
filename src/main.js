@@ -25,7 +25,7 @@ Vue.use(VantuiComponents)
 
 import './permission'
 import './mixin'
-import './error-log'
+import './help'
 
 import * as filters from './filters'
 
@@ -33,24 +33,6 @@ import * as filters from './filters'
 Object.keys(filters).forEach((key) => {
   Vue.filter(key, filters[key])
 })
-
-if (process.env.NODE_ENV === 'staging') {
-  const vConsole = require('vconsole')
-  new vConsole()
-}
-
-/**
- * If you don't want to use mock-server
- * you want to use MockJs for mock api
- * you can execute: mockXHR()
- *
- * Currently MockJs will be used in the production environment,
- * please remove it before going online ! ! !
- */
-if (['development', 'staging', 'production'].includes(process.env.NODE_ENV)) {
-  const { mockXHR } = require('../mock')
-  mockXHR()
-}
 
 Vue.config.productionTip = false
 console.info('[INFO] ' + 'Vue', Vue.version)

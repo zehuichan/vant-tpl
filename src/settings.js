@@ -24,9 +24,21 @@ module.exports = {
 
   /**
    * @type {string | array} 'production' | ['production', 'development']
+   * @description Need mock data
+   */
+  mockjs: ['production', 'staging', 'development'],
+
+  /**
+   * @type {string | array} 'production' | ['production', 'development']
+   * @description Need vconsole
+   */
+  vconsole: ['production', 'staging'],
+
+  /**
+   * @type {string | array} 'production' | ['production', 'development']
    * @description Need show err logs component.
    * The default is only used in the production env
    * If you want to also use it in dev, you can pass ['production', 'development']
    */
-  errorLog: ['production', 'staging']
+  errorLog: ['production', 'staging', 'development']
 }

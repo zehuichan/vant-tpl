@@ -3,8 +3,7 @@ const token = {
   'uid': '310000197907162505'
 }
 
-
-const users = {
+const user = {
   'avatar': 'http://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTLYMVgaumib5h42GP4pAlLTQCpzFAmUZTVUg4MmH9eFyb4shrm6Ux2Ocic1ic0ekTWEYVfxibGcMMC3UQ/132',
   'cellphone': '15800066380',
   'username': 'chan_',
@@ -21,7 +20,7 @@ module.exports = [
       return {
         code: 200,
         data: token,
-        meg: '成功'
+        msg: '成功'
       }
     }
   },
@@ -33,8 +32,8 @@ module.exports = [
     response: config => {
       return {
         code: 200,
-        data: users,
-        meg: '成功'
+        data: user,
+        msg: '成功'
       }
     }
   }

@@ -1,5 +1,5 @@
 <template>
-  <div class="yapi">
+  <div class="mockjs">
     <van-cell-group>
       <van-cell title="mock 400" is-link @click="fetchData('mock400')"/>
       <van-cell title="mock 401" is-link @click="fetchData('mock401')"/>
@@ -20,7 +20,7 @@
 import { mockData } from '@/api/test'
 
 export default {
-  name: 'Yapi',
+  name: 'Mockjs',
   computed: {
     errorLogs() {
       return this.$store.getters.errorLogs

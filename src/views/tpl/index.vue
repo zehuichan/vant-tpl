@@ -4,7 +4,7 @@
       <van-cell title="确认订单" is-link to="/confirm"/>
       <van-cell title="收银台" is-link to="/checkout"/>
       <van-cell title="购物袋" is-link to="/bag"/>
-      <van-cell title="Yapi" is-link to="/yapi"/>
+      <van-cell title="Mockjs" is-link to="/mockjs"/>
     </van-cell-group>
     <div v-for="i in 20" :key="i" class="box-card">
       <div class="text">placeholder</div>
