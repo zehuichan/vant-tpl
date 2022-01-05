@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '@/store'
 import { Toast } from 'vant'
 
-let message = ' -_- !~~ 服务器开小差了，稍后重试'
+let message = ' (-。-)!!! 服务器开小差了，请稍后重试。'
 
 // create an axios instance
 const http = axios.create({
@@ -26,25 +26,13 @@ http.interceptors.response.use(
     if (res.code === 200) {
       return res
     } else {
-      Toast(`status: ${res.code}, ${res.msg}`)
-      void store.dispatch('errorLog/addErrorLog', {
-        message: message,
-        name: 'httpRequestError',
-        response,
-        url: location.href
-      })
+      Toast(`status: ${res.code}, ${message}`)
       return Promise.reject({ message: message, name: 'httpRequestError', response })
     }
   },
   (error) => {
     console.log(`err,${error}`)
     Toast(`err, ${error}`)
-    void store.dispatch('errorLog/addErrorLog', {
-      message: message,
-      name: 'httpRequestError',
-      response: error.response,
-      url: location.href
-    })
     return Promise.reject(error)
   }
 )

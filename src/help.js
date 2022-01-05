@@ -18,23 +18,18 @@ function checkNeed(target) {
   return false
 }
 
-console.log('mockjs', needMockjs, checkNeed(needMockjs))
 if (checkNeed(needMockjs)) {
   const { mockXHR } = require('../mock')
   mockXHR()
 }
 
-console.log('vconsole', needVconsole, checkNeed(needVconsole))
 if (checkNeed(needVconsole)) {
   const vConsole = require('vconsole')
   new vConsole()
 }
 
-console.log('error-log', needErrorLog, checkNeed(needErrorLog))
 if (checkNeed(needErrorLog)) {
   Vue.config.errorHandler = (err, vm, info) => {
-    // Don't ask me why I use Vue.nextTick, it just a hack.
-    // detail see https://forum.vuejs.org/t/dispatch-in-vue-config-errorhandler-has-some-problem/23500
     // todo 前端错误上报到收集报错的平台
     void store.dispatch('errorLog/addErrorLog', {
       err,
