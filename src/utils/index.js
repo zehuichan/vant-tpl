@@ -27,7 +27,7 @@ export function parseTime(time, cFormat) {
     s: date.getSeconds(),
     a: date.getDay()
   }
-  const time_str = format.replace(/{([ymdhisa])+}/g, (result, key) => {
+  return format.replace(/{([ymdhisa])+}/g, (result, key) => {
     const value = formatObj[key]
     // Note: getDay() returns 0 on Sunday
     if (key === 'a') {
@@ -35,7 +35,6 @@ export function parseTime(time, cFormat) {
     }
     return value.toString().padStart(2, '0')
   })
-  return time_str
 }
 
 export function formatTime(time, option) {
@@ -80,7 +79,6 @@ export function formatDayJs(time, cFormat = 'YYYY-MM-DD HH:mm:ss') {
 }
 
 export function formatIMTime(time) {
-  console.log(diff(time, 'second'))
   if (diff(time, 'second') < 30) {
     return '刚刚'
   } else if (diff(time, 'day') === 0) {
@@ -120,7 +118,7 @@ export function getQueryObject(url) {
 
 /**
  *get getByteLen
- * @param {Sting} val input value
+ * @param {string} val input value
  * @returns {number} output value
  */
 export function getByteLen(val) {
@@ -155,6 +153,11 @@ export function param(json) {
   ).join('&')
 }
 
+/**
+ * param2Obj
+ * @param url
+ * @returns {{}|any}
+ */
 export function param2Obj(url) {
   const search = url.split('?')[1]
   if (!search) {
@@ -170,12 +173,23 @@ export function param2Obj(url) {
   )
 }
 
+/**
+ * html2Text
+ * @param val
+ * @returns {string}
+ */
 export function html2Text(val) {
   const div = document.createElement('div')
   div.innerHTML = val
   return div.textContent || div.innerText
 }
 
+/**
+ * objectMerge
+ * @param target
+ * @param source
+ * @returns {{}|*}
+ */
 export function objectMerge(target, source) {
   /* Merges two  objects,
      giving the last one precedence */
@@ -197,6 +211,13 @@ export function objectMerge(target, source) {
   return target
 }
 
+/**
+ * debounce
+ * @param func
+ * @param wait
+ * @param immediate
+ * @returns {function(...[*]): *}
+ */
 export function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result
 
@@ -232,6 +253,12 @@ export function debounce(func, wait, immediate) {
   }
 }
 
+/**
+ * scrollTo
+ * @param element
+ * @param to
+ * @param duration
+ */
 export function scrollTo(element, to, duration) {
   if (duration <= 0) return
   const difference = to - element.scrollTop
@@ -243,6 +270,11 @@ export function scrollTo(element, to, duration) {
   }, 10)
 }
 
+/**
+ * toggleClass
+ * @param element
+ * @param className
+ */
 export function toggleClass(element, className) {
   if (!element || !className) {
     return
@@ -259,6 +291,13 @@ export function toggleClass(element, className) {
   element.className = classString
 }
 
+/**
+ * getData
+ * @param el
+ * @param name
+ * @param val
+ * @returns {string|*}
+ */
 export function getData(el, name, val) {
   const prefix = 'data-'
   if (val) {
@@ -268,6 +307,12 @@ export function getData(el, name, val) {
   }
 }
 
+/**
+ * getBase64
+ * @param file
+ * @param resultType
+ * @returns {Promise<unknown>}
+ */
 export function getBase64(file, resultType = 'dataUrl') {
   return new Promise((resolve, reject) => {
     const reader = new FileReader()
@@ -283,6 +328,11 @@ export function getBase64(file, resultType = 'dataUrl') {
   })
 }
 
+/**
+ * days
+ * @param lately
+ * @returns {*[]}
+ */
 export function days(lately = 3) {
   let ret = []
   let now = new Date().getTime()
