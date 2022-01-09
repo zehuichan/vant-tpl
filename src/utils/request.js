@@ -27,12 +27,24 @@ http.interceptors.response.use(
       return res
     } else {
       Toast(`status: ${res.code}, ${message}`)
+      void store.dispatch('errorLog/addErrorLog', {
+        message: message,
+        name: 'httpRequestError',
+        response,
+        url: location.href
+      })
       return Promise.reject({ message: message, name: 'httpRequestError', response })
     }
   },
   (error) => {
     console.log(`err,${error}`)
     Toast(`err, ${error}`)
+    void store.dispatch('errorLog/addErrorLog', {
+      message: message,
+      name: 'httpRequestError',
+      response: error.response,
+      url: location.href
+    })
     return Promise.reject(error)
   }
 )
