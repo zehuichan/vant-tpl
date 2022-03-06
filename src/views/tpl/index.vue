@@ -21,7 +21,7 @@
 
 <script>
 // api
-import { userInfo } from '@/api/user'
+import { get } from '@/api/dict'
 // decorator
 import { loading, alert, confirm, toggle } from '@/decorator'
 
@@ -38,7 +38,9 @@ export default {
   methods: {
     @loading()
     getData() {
-
+      get('order_status').then((res) => {
+        console.log(res)
+      })
     },
     @alert('这是通过装饰器添加的确认信息', '提示')
     onAlert() {

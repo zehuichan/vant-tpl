@@ -1,20 +1,19 @@
 import { Toast, Dialog } from 'vant'
 
-export function loading(message = '加载中...', cb) {
+export function loading(message = '加载中...', options = {}, cb) {
   return function (target, name, descriptor) {
-    const fn = descriptor.value
-    descriptor.value = async function (...rest) {
-      const loading = await Toast.loading({
+    const original = descriptor.value
+    descriptor.value = function (...args) {
+      const loading = Toast.loading({
         message,
-        forbidClick: true
+        forbidClick: true,
+        ...options
       })
-      try {
-        return await fn.call(this, ...rest)
-      } catch (error) {
-        cb && cb.call(this, error, ...rest)
-      } finally {
-        loading.clear()
-      }
+      const returnValue = original.apply(this, args)
+
+      loading.clear()
+
+      return returnValue
     }
   }
 }

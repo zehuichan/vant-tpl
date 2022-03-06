@@ -55,6 +55,12 @@ module.exports = {
       warnings: false,
       errors: true,
     },
+    proxy: {
+      '/': {
+        target: 'http://wx.holen.com.cn/hlwxapi',
+        changeOrigin: true
+      }
+    },
     before: require('./mock/mock-server.js')
   },
   css: {
