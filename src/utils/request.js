@@ -22,24 +22,28 @@ http.interceptors.request.use(
 
 http.interceptors.response.use(
   (response) => {
-    const res = response.data
-    if (res.code === 200) {
-      return res
-    } else {
+    const code = response.status
+    if (code < 200 || code > 300) {
       Toast(`status: ${res.code}, ${message}`)
-      void store.dispatch('errorLog/addErrorLog', {
+      store.dispatch('errorLog/addErrorLog', {
         message: message,
         name: 'httpRequestError',
         response,
         url: location.href
       })
-      return Promise.reject({ message: message, name: 'httpRequestError', response })
+      return Promise.reject({
+        message: message,
+        name: 'httpRequestError',
+        response
+      })
+    } else {
+      return response.data
     }
   },
   (error) => {
     console.log(`err,${error}`)
     Toast(`err, ${error}`)
-    void store.dispatch('errorLog/addErrorLog', {
+    store.dispatch('errorLog/addErrorLog', {
       message: message,
       name: 'httpRequestError',
       response: error.response,
