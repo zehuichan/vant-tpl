@@ -8,8 +8,6 @@ import Vue from 'vue'
 // vant
 import Vant from 'vant'
 import 'vant/lib/index.css'
-// vantui-components
-import VantuiComponents from 'vantui-components'
 // global css
 import './assets/less/index.less'
 
@@ -21,7 +19,6 @@ import store from './store'
 import i18n from './lang'
 
 Vue.use(Vant)
-Vue.use(VantuiComponents)
 
 import './permission'
 import './mixin'
@@ -37,7 +34,6 @@ Object.keys(filters).forEach((key) => {
 Vue.config.productionTip = false
 console.info('[INFO] ' + 'Vue', Vue.version)
 console.info('[INFO] ' + 'Vant', Vant.version)
-console.info('[INFO] ' + 'VantuiComponents', VantuiComponents.version)
 console.info('[INFO] ' + 'AppInfo', __APP_INFO__)
 
 new Vue({
