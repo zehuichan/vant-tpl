@@ -22,7 +22,6 @@ Vue.use(Vant)
 
 import './permission'
 import './mixin'
-import './help'
 
 import * as filters from './filters'
 

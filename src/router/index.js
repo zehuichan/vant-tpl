@@ -6,17 +6,12 @@ import VueRouter from 'vue-router'
  * meta : {
     title: 'title'               the name show in sidebar and breadcrumb (recommend set)
     navbar: object               detail see: https://vant-contrib.gitee.io/vant/#/zh-CN/nav-bar#api
-    tabbar: boolean              if set true, will always show the tabbar
+    tabbar: object               if set true, will always show the tabbar
   }
  */
 
 // basic components
 import Layout from '@/layout'
-
-const RouteView = {
-  name: 'RouteView',
-  render: (h) => h('router-view')
-}
 
 export const routes = [
   { path: '/403', component: () => import('@/views/error-page/403') },
@@ -38,6 +33,7 @@ export const routes = [
             leftArrow: false,
           },
           tabbar: true,
+          keepAlive: true,
         },
       },
       {

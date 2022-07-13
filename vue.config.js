@@ -20,7 +20,7 @@ const name = defaultSettings.title || 'vue Vant Tpl' // page title
 const __APP_INFO__ = {
   name,
   version,
-  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss')
 }
 
 const port = 3000 // dev port
@@ -45,31 +45,6 @@ module.exports = {
   publicPath: process.env.NODE_ENV === 'development' ? '/' : './',
   outputDir: 'dist',
   assetsDir: 'static',
-  lintOnSave: process.env.NODE_ENV === 'development' ? 'error' : false,
-  filenameHashing: true,
-  productionSourceMap: false,
-  devServer: {
-    port: port,
-    open: false,
-    overlay: {
-      warnings: false,
-      errors: true,
-    },
-    proxy: {
-      '/': {
-        target: 'http://wx.holen.com.cn/hlwxapi',
-        changeOrigin: true
-      }
-    },
-    before: require('./mock/mock-server.js')
-  },
-  css: {
-    loaderOptions: {
-      less: {
-        additionalData: `@import "~@/assets/less/var.less";`,
-      },
-    },
-  },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that
     // it can be accessed in index.html to inject the correct title.
@@ -82,7 +57,6 @@ module.exports = {
     plugins: plugins
   },
   chainWebpack: (config) => {
-    // it can improve the speed of the first screen, it is recommended to turn on preload
     // it can improve the speed of the first screen, it is recommended to turn on preload
     config.plugin('preload').tap(() => [
       {
@@ -98,16 +72,6 @@ module.exports = {
     config.plugins.delete('prefetch')
 
     config.when(process.env.NODE_ENV !== 'development', (config) => {
-      config
-        .plugin('ScriptExtHtmlWebpackPlugin')
-        .after('html')
-        .use('script-ext-html-webpack-plugin', [
-          {
-            // `runtime` must same as runtimeChunk name. default is `runtime`
-            inline: /runtime\..*\.js$/,
-          },
-        ])
-        .end()
       config.optimization.splitChunks({
         chunks: 'all',
         cacheGroups: {
@@ -133,5 +97,27 @@ module.exports = {
       })
       config.optimization.runtimeChunk('single')
     })
+  },
+  css: {
+    loaderOptions: {
+      less: {
+        appendData: `@import "~@/assets/less/var.less";`
+      }
+    }
+  },
+  devServer: {
+    port: port,
+    open: false,
+    overlay: {
+      warnings: false,
+      errors: true,
+    },
+    proxy: {
+      '/': {
+        target: 'http://wx.holen.com.cn/hlwxapi',
+        changeOrigin: true
+      }
+    },
+    // before: require('./mock/mock-server.js')
   }
 }

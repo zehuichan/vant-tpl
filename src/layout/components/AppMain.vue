@@ -1,9 +1,9 @@
 <template>
   <div class="app-main">
     <keep-alive>
-      <router-view v-if="$route.meta.keepAlive" :key="key"/>
+      <router-view v-if="$route.meta.keepAlive" :key="key" />
     </keep-alive>
-    <router-view v-if="!$route.meta.keepAlive" :key="key"/>
+    <router-view v-if="!$route.meta.keepAlive" :key="key" />
   </div>
 </template>
 
@@ -23,6 +23,6 @@ export default {
   position: relative;
   -webkit-overflow-scrolling: touch;
   flex: 1;
-  overflow-y: auto;   // 关键， 超出部分滚动
+  overflow-y: auto; // 关键， 超出部分滚动
 }
 </style>

@@ -1,20 +1,11 @@
 import router from './router'
 import store from './store'
-// progress bar
-import NProgress from 'nprogress'
-// progress bar style
-import 'nprogress/nprogress.css'
-// NProgress Configuration
-NProgress.configure({ showSpinner: false })
-// utils
-import getPageTitle from '@/utils/get-page-title'
+import { useTitle } from '@vueuse/core'
 
 router.beforeEach(async (to, from, next) => {
-  // start progress bar
-  NProgress.start()
 
   // set page title
-  document.title = getPageTitle(to.meta.title)
+  useTitle(to.meta.title)
 
   if (store.getters.userinfo) {
     next()
@@ -32,5 +23,5 @@ router.beforeEach(async (to, from, next) => {
 })
 
 router.afterEach(() => {
-  NProgress.done()
+
 })

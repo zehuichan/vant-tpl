@@ -3,13 +3,11 @@
     <van-cell-group title="jweixin-1.6.0">
       <van-cell
         title="scanQRCode"
-        :value="'' + ready"
         is-link
         @click="scanQRCode"
       />
       <van-cell
         title="previewImage"
-        :value="'' + ready"
         is-link
         @click="previewImage"
       />
@@ -23,7 +21,7 @@
 <script setup>
 import { useAuth, useWeixin } from '@/hooks'
 
-const [ready, wx] = useWeixin()
+const [, wx] = useWeixin()
 const [code, authorize] = useAuth()
 
 const scanQRCode = () => {

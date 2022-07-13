@@ -1,15 +1,12 @@
 <template>
-  <van-tabbar class="v-tabbar" route :fixed="false" placeholder safe-area-inset-bottom>
-    <van-tabbar-item to="/home">
-      <v-svg-icon slot="icon" name="icon-earth"/>
+  <van-tabbar class="v-tabbar" v-bind="$attrs" route>
+    <van-tabbar-item icon="home-o" to="/home">
       {{ $t('tabbar.home') }}
     </van-tabbar-item>
-    <van-tabbar-item to="/tpl">
-      <v-svg-icon slot="icon" name="icon-lights"/>
+    <van-tabbar-item icon="brush-o" to="/tpl">
       {{ $t('tabbar.tpl') }}
     </van-tabbar-item>
-    <van-tabbar-item to="/center">
-      <v-svg-icon slot="icon" name="icon-agriculture"/>
+    <van-tabbar-item icon="smile-o" to="/center">
       {{ $t('tabbar.center') }}
     </van-tabbar-item>
   </van-tabbar>
@@ -17,6 +14,7 @@
 
 <script>
 export default {
-  name: 'AppTabbar'
+  name: 'AppTabbar',
+  inheritAttrs: false
 }
 </script>

@@ -1,11 +1,11 @@
-import { nextTick, ref, watchEffect } from 'vue'
+import { nextTick, ref, shallowRef, watchEffect } from 'vue'
 import { useScriptTag } from '@vueuse/core'
 import { wxconfig } from '@/api/user'
 
 export default function useWeixin(options = { debug: false }) {
   const { load } = useScriptTag('//res.wx.qq.com/open/js/jweixin-1.6.0.js')
   const ready = ref(false)
-  const instance = ref(null)
+  const instance = shallowRef(null)
 
   watchEffect(!ready.value && initWxConfig)
 
