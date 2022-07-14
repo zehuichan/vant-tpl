@@ -4,7 +4,6 @@ const webpack = require('webpack')
 const CompressionPlugin = require('compression-webpack-plugin')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const pkg = require('./package.json')
-const defaultSettings = require('./src/settings.js')
 const dayjs = require('dayjs')
 
 function resolve(dir) {
@@ -13,9 +12,7 @@ function resolve(dir) {
 
 const isProd = process.env.NODE_ENV === 'production'
 
-const { version } = pkg
-
-const name = defaultSettings.title || 'vue Vant Tpl' // page title
+const { name, version } = pkg
 
 const __APP_INFO__ = {
   name,

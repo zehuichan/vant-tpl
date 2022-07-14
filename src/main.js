@@ -21,7 +21,6 @@ import i18n from './lang'
 Vue.use(Vant)
 
 import './permission'
-import './mixin'
 
 import * as filters from './filters'
 
