@@ -14,7 +14,6 @@
 
 <script>
 export default {
-  name: 'AppTabbar',
   inheritAttrs: false
 }
 </script>

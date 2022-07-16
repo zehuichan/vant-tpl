@@ -9,17 +9,19 @@
 
 <script>
 export default {
-  name: 'AppNavBar',
-  inheritAttrs: false,
-  computed: {
-    classname() {
-      return this.$route.meta.navbar.classname
-    }
-  },
-  methods: {
-    onClickLeft() {
-      this.$router.back()
-    }
-  }
+  inheritAttrs: false
+}
+</script>
+
+<script setup>
+import { useRoute, useRouter } from '@/router'
+import { computed } from 'vue'
+
+const route = useRoute()
+const router = useRouter()
+const classname = computed(() => route.value.meta.navbar.classname)
+
+const onClickLeft = ()=>{
+  router.back()
 }
 </script>
