@@ -55,7 +55,7 @@
     "postcss-less": "^6.0.0",
     "postcss-px-to-viewport": "^1.1.1",
     "regenerator-runtime": "^0.13.9",
-    "release-it": "^15.1.1",
+    "release-it": "^15.5.0",
     "vue-template-compiler": "^2.7.13",
     "webpack-bundle-analyzer": "^4.5.0"
   },
