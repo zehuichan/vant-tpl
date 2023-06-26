@@ -19,10 +19,44 @@
 </template>
 
 <script setup>
+
 import { useAuth, useWeixin } from '@/hooks'
 
 const [, wx] = useWeixin()
 const [code, authorize] = useAuth()
+
+
+const columns = [
+  {
+    label: '姓名',
+    key: 'name'
+  },
+  {
+    label: '性别',
+    key: 'sex'
+  },
+  {
+    label: '学历',
+    key: 'record'
+  }
+]
+const tabledata = [
+  {
+    name: 'Tom',
+    sex: '男',
+    record: '小学'
+  },
+  {
+    name: 'Lucy',
+    sex: '女',
+    record: '本科',
+  },
+  {
+    name: 'Jack',
+    sex: '男',
+    record: '高中'
+  }
+]
 
 const scanQRCode = () => {
   wx.value.scanQRCode({
